@@ -1,0 +1,24 @@
+/*#loginSec {
+	display: none;
+}*/
+footer {
+	background-color: red;
+	width: 100%;
+	height: 50px;
+	vertical-align: bottom;
+	text-align: center;
+}
+
+/*#login:hover{
+	display: inherit;
+	background-color: blue;
+}*/
+header:active {
+	
+}
+header:visited ~ div #loginSec{
+	display: inherit;
+}
+#loginSec {
+	display: none;
+}
