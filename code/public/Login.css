@@ -8,9 +8,10 @@ footer {
 	text-align: center;
 	display: block;
 	vertical-align: bottom;
-	position: relative;
+	position: fixed;
 	color: white;
 	border-radius: 10px;
+	bottom: 0;
 }
 header {
 	width: 100%;
@@ -43,15 +44,20 @@ header {
 /*section {
 	display: none;
 }*/
+input[type="email"]:focus,  input[type="password"]:focus, input[type="text"]:focus{
+	border-color: blue;
+	border-radius: 10px;
+}
 section {
 	display: none;
 }
-li:hover > section{
+li:hover > section, li:focus > section, section:focus{
 	display: block;
 	border-radius: 10px;
 	background-color: white;
 	width: 90%;
 }
+
 nav {
 	vertical-align: middle;
 	text-align: center;

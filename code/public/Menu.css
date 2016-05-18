@@ -7,8 +7,8 @@ footer {
 	height: 50px;
 	text-align: center;
 	display: block;
-	vertical-align: bottom;
-	position: relative;
+	position: fixed;
+	bottom: 0;
 	color: white;
 	border-radius: 10px;
 }
@@ -19,11 +19,6 @@ header {
 	border-radius: 10px;
 	color: white;
 }
-nav {
-	width: 25%;
-	height: auto;
-	background-color: gray;
-}
 li {
 	list-style: none;
 }
@@ -31,7 +26,12 @@ li {
 li > ul {
 	display: none;
 }
-
+div {
+	border-radius: 10px;
+	width: 25%;
+	height: auto;
+	background-color: gray;
+}
 li:hover > ul {
 	display: inline-block;
 }
