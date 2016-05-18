@@ -7,39 +7,44 @@
 </head>
 <body>
 	<header>
-	<h1>My Study Life</h1>
+	<h1 class="titulo">My Study Life</h1>
+	</header>
+	<div class="padraoSection">
 	<nav>
 		<ul>
-			<li><a href="#" class="padraoHeader" id="login">Login</a></li>
-			<li><a href="#" class="padraoHeader" id="cadastro">Cadastro</a></li>
+			<li>
+				<h2><a href="#" class="padrao" id="login">Login</a></h2>
+				<section id="loginSec">
+					<h2>Login</h2>
+					<form method="post">
+						<p>email: </p>
+						<input type="email"></input>
+						<p>Senha: </p>
+						<input type="password"></input>
+						<p></p>
+						<input type="button" name="Logar" value="Logar"></input>
+					</form>
+				</section>
+			</li>
+			<li id="teste">
+				<h2><a href="#" class="padrao" id="cadastro">Cadastro</a></h2>
+				<section id="cadastroSec">
+					<h2>Cadastro</h2>
+					<form method="post">
+						<p>Nome: <input type="text"></input></p>
+						<p>Email: <input type="email"></input></p>
+						<p>Senha: <input type="password"></input></p>
+						<p>Confirmar Senha: <input type="password"></input></p>
+						<p></p>
+						<input type="button" value="Cadastrar" name="Cadastrar"></input>
+					</form>
+				</section>
+			</li>
 		</ul>
 	</nav>
-	</header>
-	<div class"padraoSection">
-		<section id="loginSec">
-			<h2>Login</h2>
-			<form method="post">
-				<p>email: </p>
-				<input type="email"></input>
-				<p>Senha: </p>
-				<input type="password"></input>
-				<input type="button" name="Logar" value="Logar"></input>
-			</form>
-		</section>
-		<section id="cadastroSec">
-			<h2>Cadastro</h2>
-			<form method="post">
-				<p>Nome: </p>
-				<input type="text"></input>
-				<p>Email: </p>
-				<input type="email"></input>
-				<p>Senha: </p>
-				<input type="password"></input>
-				<p>Confirmar Senha: </p>
-				<input type="password"></input>
-				<input type="button" value="Cadastrar" name="Cadastrar"></input>
-			</form>
-		</section>
+	</div>
+	<div class="foto">
+		<img src="../../public/disney.jpg" />
 	</div>
 	<footer>
 		<h2>Trabalho de Gerencia de Projetos</h2>
