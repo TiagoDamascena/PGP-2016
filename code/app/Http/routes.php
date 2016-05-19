@@ -16,6 +16,10 @@
     return view('Login', compact('login'));
 });
 
-\Route::get('/login','LoginController@index');
+\Route::get('/errorLogin', function () {
+    $login = false;
+    return view('Login', compact('login'));
+});
 
+\Route::get('/login','LoginController@loginAuthenticate');
 \Route::get('/home','HomeController@index');
