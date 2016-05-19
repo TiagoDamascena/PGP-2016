@@ -19,6 +19,16 @@ class HomeController extends Controller
 {
     public function index()
     {
+        return view('Menu');
+    }
+
+    public function delete(){
+        $email = Input::get('email');
+        DB::delete('DELETE FROM users WHERE email == $email');
+    }
+
+    public function logout(){
         return view('Login');
     }
+    
 }

@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>home page</title>
-	<link rel="stylesheet" type="text/css" href="../../public/Menu.css" />
 	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../../code/public/Menu.css" />
 </head>
 <body>
 	<header>
@@ -16,7 +16,10 @@
 					<li>
 						<h2>Usuario</h2>
 						<ul>
-							<li><a href="#">Excluir Conta</a></li>
+							<form id="Menu" method="get" action="{{url('/deleteUser')}}">
+							<li onclick="Menu.submit()">
+								<a href="#">Excluir Conta</a></li>
+							</form>
 							<li><a href="#">Sair da Conta</a></li>
 						</ul>
 					</li>

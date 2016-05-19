@@ -34,12 +34,15 @@
 				<section id="cadastroSec">
 					<h2>Cadastro</h2>
 					<form method="post">
-						<p>Nome: <input type="text"></input></p>
-						<p>Email: <input type="email"></input></p>
-						<p>Senha: <input type="password"></input></p>
-						<p>Confirmar Senha: <input type="password"></input></p>
+						<p>Nome: <input type="text"/></p>
+						<p>Email: <input type="email"/></p>
+						<p>Senha: <input type="password"/></p>
+						<p>Confirmar Senha: <input type="password"/></p>
 						<p></p>
-						<input type="button" value="Cadastrar" name="Cadastrar"></input>
+						<input type="button" value="Cadastrar" name="Cadastrar"/>
+						@if(!$validate)
+							<span> Cadastro já existente </span>
+						@endif
 					</form>
 				</section>
 			</li>

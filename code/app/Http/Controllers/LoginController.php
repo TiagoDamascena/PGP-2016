@@ -19,7 +19,7 @@ class LoginController extends Controller
         $email = Input::get('email');
         $password = Input::get('password');
 
-        $results = DB::select('select password from users where email = $email');
+        $results = DB::select('SELECT password FROM users WHERE email == $email');
 
         return $results == $password ? redirect(url('/home')) : redirect(url('/errorLogin'));
     }
@@ -34,9 +34,9 @@ class LoginController extends Controller
         $results=false;
 
         if ($password == $confirmPassword) {
-            $results = DB::insert('insert into users (name, password, email) values ($name,$password,$email)');
+            $results = DB::insert('INSERT INTO users (name, password, email) VALUES ($name,$password,$email)');
         }
 
-        return $results ? redirect(url('/home')) : redirect(url('/errorLogin'));
+        return $results ? redirect(url('/home')) : redirect(url('/errorCadastro'));
     }
 }

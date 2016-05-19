@@ -13,7 +13,8 @@
 
 \Route::get('/', function () {
     $login = true;
-    return view('Login', compact('login'));
+    $validate = false;
+    return view('Login', compact('login'),compact('validate'));
 });
 
 \Route::get('/errorLogin', function () {
@@ -21,5 +22,18 @@
     return view('Login', compact('login'));
 });
 
+\Route::get('/newUser', function () {
+    $validate = true;
+    return view('Login', compact('validate'));
+});
+
+\Route::get('/errorNewUser', function () {
+    $validate = false;
+    return view('Login', compact('validate'));
+});
+
 \Route::get('/login','LoginController@loginAuthenticate');
+
 \Route::get('/home','HomeController@index');
+
+\Route::get('/deleteUser','HomeController@delete');
