@@ -53,7 +53,7 @@ return [
         ],
 
         'mysql' => [
-            'driver' => 'mysql',z
+            'driver' => 'mysql',
             'host' => env('DB_HOST', 'br-cdbr-azure-south-b.cloudapp.net'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'mystudylife'),
