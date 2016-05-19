@@ -3,7 +3,7 @@
 <head>
 	<title>Login</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="../../public/Login.css" />
+	<link rel="stylesheet" type="text/css" href="../../code/public/Login.css" />
 </head>
 <body>
 	<header>
@@ -16,13 +16,16 @@
 				<h2><a href="#" class="padrao" id="login">Login</a></h2>
 				<section id="loginSec">
 					<h2>Login</h2>
-					<form method="post">
+					<form method="get" action="{{url('/login')}}">
 						<p>email: </p>
-						<input type="email"></input>
+						<input type="email" name="email"/>
+						@if(!$login)
+							<span> Email incorreto </span>
+						@endif
 						<p>Senha: </p>
-						<input type="password"></input>
+						<input type="password" name="password"/>
 						<p></p>
-						<input type="button" name="Logar" value="Logar"></input>
+						<input type="submit" name="Logar" value="Logar"/>
 					</form>
 				</section>
 			</li>

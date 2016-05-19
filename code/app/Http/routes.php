@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+\Route::get('/', function () {
+    $login = true;
+    return view('Login', compact('login'));
 });
+
+\Route::get('/login','LoginController@index');
+
+\Route::get('/home','HomeController@index');
