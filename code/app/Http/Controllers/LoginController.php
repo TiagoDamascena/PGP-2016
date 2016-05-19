@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -17,11 +18,10 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function loginAuthenticate()
     {
         $email = Input::get('email');
-
-
-        return redirect(url('/home'));
+        $password = Input::get('password');
+        return redirect(url('/errorLogin'));
     }
 }
