@@ -17,17 +17,16 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        return view('Menu');
-    }
 
     public function delete(){
         $email = Input::get('email');
-        DB::delete('DELETE FROM users WHERE email == $email');
+        $user = User::where('email', $email)->first();
+        $user->delete();
+        $this->endSession();
     }
 
-    public function logout(){
+    public function endSession(){
+        \Auth::logout();
         return view('Login');
     }
     

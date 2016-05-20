@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -15,28 +16,42 @@ class LoginController extends Controller
 {
     public function loginAuthenticate()
     {
-
-        $email = Input::get('email');
         $password = Input::get('password');
-
-        $results = DB::select('SELECT password FROM users WHERE email == $email');
-
-        return $results == $password ? redirect(url('/home')) : redirect(url('/errorLogin'));
+        $email = Input::get('email');
+        $user = User::where('email',$email)->first();
+        $loginError = null;
+        
+        if(!$user){
+            $loginError = 'email_not_found';
+        }
+        if($user->password != $password){
+            $loginError = 'wrong_password';
+        }
+        if($loginError){
+            return view('Login',compact('loginError'));
+        }
+        \Auth::login($user,true);
+        return redirect(url('/home'));
     }
 
-    public function cadastro()
+    public function newUser()
     {
-        $email = Input::get('email');
-        $password = Input::get('password');
-        $name = Input::get('nome');
+        $newUserError = null;
+        
+        $user = new User();
+        $user->name = Input::get('nome');
+        $user->email = Input::get('email');
+        $user->password = Input::get('password');
         $confirmPassword = Input::get('confirmPassword');
-
-        $results=false;
-
-        if ($password == $confirmPassword) {
-            $results = DB::insert('INSERT INTO users (name, password, email) VALUES ($name,$password,$email)');
+        
+        if ($user->password == $confirmPassword) {
+            $user->save();
+            \Auth::login($user,true);
+            return redirect(url('/home'));
         }
-
-        return $results ? redirect(url('/home')) : redirect(url('/errorCadastro'));
+        else {
+            $newUserError = 'password_differently';
+            return view('NewUser',compact('newUserError'));
+        }
     }
 }

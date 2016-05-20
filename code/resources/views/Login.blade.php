@@ -19,11 +19,14 @@
 					<form method="get" action="{{url('/login')}}">
 						<p>email: </p>
 						<input type="email" name="email"/>
-						@if(!$login)
-							<span> Email incorreto </span>
+						@if($loginError == 'email_not_found')
+						<span> Email incorreto </span>
 						@endif
 						<p>Senha: </p>
 						<input type="password" name="password"/>
+						@if($loginError == 'wrong_password')
+							<span> Senha incorreta </span>
+						@endif
 						<p></p>
 						<input type="submit" name="Logar" value="Logar"/>
 					</form>
@@ -40,9 +43,6 @@
 						<p>Confirmar Senha: <input type="password"/></p>
 						<p></p>
 						<input type="button" value="Cadastrar" name="Cadastrar"/>
-						@if(!$validate)
-							<span> Cadastro já existente </span>
-						@endif
 					</form>
 				</section>
 			</li>
@@ -50,7 +50,7 @@
 	</nav>
 	</div>
 	<div class="foto">
-		<img src="../../public/disney.jpg" />
+		<img src="../../code/public/disney.jpg" />
 	</div>
 	<footer>
 		<h2>Trabalho de Gerencia de Projetos</h2>

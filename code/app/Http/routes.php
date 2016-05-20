@@ -12,28 +12,23 @@
 */
 
 \Route::get('/', function () {
-    $login = true;
-    $validate = false;
-    return view('Login', compact('login'),compact('validate'));
+    $loginError = null;
+    return view('Login',compact('loginError'));
 });
 
-\Route::get('/errorLogin', function () {
-    $login = false;
-    return view('Login', compact('login'));
+\Route::get('/registerUser', function () {
+    $newUserError = true;
+    return view('RegisterUser', compact('newUserError'));
 });
 
-\Route::get('/newUser', function () {
-    $validate = true;
-    return view('Login', compact('validate'));
+\Route::get('/home', function (){
+    return view('Menu');
 });
 
-\Route::get('/errorNewUser', function () {
-    $validate = false;
-    return view('Login', compact('validate'));
-});
+\Route::get('/newUser','LoginController@newUser');
 
-\Route::get('/login','LoginController@loginAuthenticate');
-
-\Route::get('/home','HomeController@index');
+\Route::get('/loginUser','LoginController@loginAuthenticate');
 
 \Route::get('/deleteUser','HomeController@delete');
+
+\Route::get('/logout','HomeController@endSession');
