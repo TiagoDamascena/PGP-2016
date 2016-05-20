@@ -19,15 +19,19 @@ class HomeController extends Controller
 {
 
     public function delete(){
-        $email = Input::get('email');
-        $user = User::where('email', $email)->first();
+        $user = \Auth::user();
         $user->delete();
-        $this->endSession();
+        return redirect(url('/'));
     }
 
     public function endSession(){
         \Auth::logout();
-        return view('Login');
+        return redirect(url('/'));
+    }
+
+    public function userNotLogged(){
+        $loginError = 'user_not_logged';
+        return view('Login',compact('loginError'));
     }
     
 }

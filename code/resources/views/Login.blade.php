@@ -38,6 +38,9 @@
 						@if($loginError=='wrong_password')
 							<span> Senha incorreta! </span>
 						@endif
+						@if($loginError=='user_not_logged')
+							<span> Por Favor, faça o login primeiro! </span>
+						@endif
 					</form>
 				</section>
 			</li>

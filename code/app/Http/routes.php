@@ -22,13 +22,19 @@
 });
 
 \Route::get('/home', function (){
-    return view('Menu');
+    if (Auth::check()){
+        return view('Home');
+    }
+    return redirect(url('/userNotLogged'));
 });
 
 \Route::get('/newUser','LoginController@newUser');
 
 \Route::get('/loginUser','LoginController@loginAuthenticate');
 
+\Route::get('/userNotLogged','HomeController@userNotLogged');
+
 \Route::get('/deleteUser','HomeController@delete');
 
 \Route::get('/logout','HomeController@endSession');
+
