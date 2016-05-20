@@ -6,18 +6,44 @@ footer {
 	width: 100%;
 	height: 50px;
 	text-align: center;
-	display: block;
+	display: inline-block;
+	vertical-align: bottom;
 	position: fixed;
-	bottom: 0;
 	color: white;
-	border-radius: 10px;
+	bottom: 0;
+}
+.titulo {
+	display: inline-block;
+	margin-top: -2px;
 }
 header {
 	width: 100%;
 	height: 50px;
 	background-color: #404040;
-	border-radius: 10px;
+	position: relative;
 	color: white;
+}
+li:hover a {
+	color: gray;
+	background-color: white;
+}
+.Menu {
+	float: right;
+	font-size: 15px;
+	display: inline-block;
+	position: relative;
+	width: 100px;
+	border: solid white 2px;
+	border-radius: 10px;	
+}
+#lista {
+	position: relative;
+	margin-top: 5px;
+	display: inline-block;
+	float: right;
+	margin-right: 100px;
+	width: 50%;
+	border-width: 100%;
 }
 li {
 	list-style: none;
@@ -42,3 +68,5 @@ a {
 	font-family: "Times New Roman", Arial;
 	font-weight: bold;
 }
+
+ul	
