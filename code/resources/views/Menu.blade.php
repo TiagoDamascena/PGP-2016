@@ -3,7 +3,7 @@
 <head>
 	<title>home page</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="../../public/Menu.css" />
+	<link rel="stylesheet" type="text/css" href="../../code/public/Menu.css" />
 </head>
 <body>
 	<header>
@@ -14,7 +14,7 @@
 				<a href="#">Excluir</a></li>
 			</form>
 			<li>
-			<a class="Menu" href="#">Sair</a></li>
+			<a class="Menu" href={{url('/logout')}}>Sair</a></li>
 		</ul>
 	</header>
 	<div>

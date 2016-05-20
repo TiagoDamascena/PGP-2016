@@ -17,7 +17,7 @@
 });
 
 \Route::get('/registerUser', function () {
-    $newUserError = true;
+    $newUserError = null;
     return view('RegisterUser', compact('newUserError'));
 });
 

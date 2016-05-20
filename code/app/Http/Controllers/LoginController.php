@@ -23,13 +23,13 @@ class LoginController extends Controller
         
         if(!$user){
             $loginError = 'email_not_found';
+            return view('Login',compact('loginError'));
         }
         if($user->password != $password){
             $loginError = 'wrong_password';
-        }
-        if($loginError){
             return view('Login',compact('loginError'));
         }
+
         \Auth::login($user,true);
         return redirect(url('/home'));
     }
@@ -43,7 +43,12 @@ class LoginController extends Controller
         $user->email = Input::get('email');
         $user->password = Input::get('password');
         $confirmPassword = Input::get('confirmPassword');
-        
+
+        $compare = User::where('email',$user->email)->first();
+        if($compare){
+            $newUserError = 'user_already_exists';
+            return view('RegisterUser',compact('newUserError'));
+        }
         if ($user->password == $confirmPassword) {
             $user->save();
             \Auth::login($user,true);
@@ -51,7 +56,7 @@ class LoginController extends Controller
         }
         else {
             $newUserError = 'password_differently';
-            return view('NewUser',compact('newUserError'));
+            return view('RegisterUser',compact('newUserError'));
         }
     }
 }
