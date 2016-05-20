@@ -3,8 +3,8 @@
 <head>
 	<title>My Study Life</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="../../code/public/Login.css" />
-	<link rel="stylesheet" type="text/css" href="../../code/resources/views/bootstrap-3.3.6/dist/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href={{url('/css/Login.css')}} />
+	<link rel="stylesheet" type="text/css" href={{url('../resources/views/bootstrap-3.3.6/dist/css/bootstrap.css')}} />
 </head>
 <body>
 <header>

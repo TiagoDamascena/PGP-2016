@@ -3,7 +3,7 @@
 <head>
 	<title>home page</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="../../code/public/Menu.css" />
+	<link rel="stylesheet" type="text/css" href={{url('/css/Home.css')}} />
 </head>
 <body>
 	<header>
