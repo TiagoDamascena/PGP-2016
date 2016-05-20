@@ -42,6 +42,7 @@ class LoginController extends Controller
         $user->name = Input::get('nome');
         $user->email = Input::get('email');
         $user->password = Input::get('password');
+        $user->creationDate = date("Y-m-d H:i:s");
         $confirmPassword = Input::get('confirmPassword');
 
         $compare = User::where('email',$user->email)->first();
@@ -59,4 +60,5 @@ class LoginController extends Controller
             return view('RegisterUser',compact('newUserError'));
         }
     }
+
 }
