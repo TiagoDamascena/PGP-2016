@@ -11,3 +11,6 @@ creationDate DATETIME NOT NULL,
 UNIQUE (email),
 PRIMARY KEY (id)
 );
+
+ALTER TABLE users ADD
+remember_token VARCHAR(100);
