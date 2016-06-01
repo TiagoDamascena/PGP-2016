@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Home | My Study Life</title>
+  <title>Settings | My Study Life</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href={{url('/bootstrap/css/bootstrap.min.css')}}>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -84,8 +84,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Home
-        <small>Optional description</small>
+        Settings
+        <small>Edit your account settings</small>
       </h1>
     </section>
 
@@ -93,7 +93,90 @@
     <section class="content">
 
       <!-- Your Page Content Here -->
-
+      <section class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"><i class="ion-edit"></i> Change Name</h3>
+        </div>
+        <div class="box-body">
+          <form action="{{url('/changeName')}}" method="get">
+            <div class="row">
+              <div class="form-group has-feedback col-sm-6">
+                <input type="text" class="form-control" placeholder="New name" name="name">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-warning btn-block btn-sm">Change Name</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      
+      <section class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"><i class="ion-email"></i> Change Email</h3>
+        </div>
+        <div class="box-body">
+          <form action="{{url('/changeEmail')}}" method="get">
+            <div class="row">
+              <div class="form-group has-feedback col-sm-6">
+                <input type="email" class="form-control" placeholder="New email" name="email">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group has-feedback col-sm-6">
+                <input type="email" class="form-control" placeholder="Retype new email" name="confirmEmail">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-danger btn-block btn-sm">Change Email</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      
+      <section class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"><i class="ion-locked"></i> Change Password</h3>
+        </div>
+        <div class="box-body">
+          <form action="{{url('/changePassword')}}" method="get">
+            <div class="row">
+              <div class="form-group has-feedback col-sm-6">
+                <input type="password" class="form-control" placeholder="New password" name="password">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group has-feedback col-sm-6">
+                <input type="password" class="form-control" placeholder="Retype new password" name="confirmPassword">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-danger btn-block btn-sm">Change Password</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      
+      <section class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"><i class="ion-locked"></i> Delete Account</h3>
+        </div>
+        <div class="box-body">
+          <form action="{{url('/deleteUser')}}" method="get">
+            <div class="row">
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-danger btn-block btn-sm">Delete Account</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
     </section>
     <!-- /.content -->
   </div>

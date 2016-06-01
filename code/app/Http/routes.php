@@ -12,11 +12,17 @@
 */
 
 \Route::get('/', function () {
+    if (Auth::check()){
+        return redirect(url('/home'));
+    }
     $loginError = null;
     return view('Login',compact('loginError'));
 });
 
-\Route::get('/registerUser', function () {
+\Route::get('/register', function () {
+    if (Auth::check()){
+        return redirect(url('/home'));
+    }
     $newUserError = null;
     return view('Register', compact('newUserError'));
 });
@@ -28,6 +34,13 @@
     return redirect(url('/userNotLogged'));
 });
 
+\Route::get('/settings', function (){
+    if (Auth::check()){
+        return view('Settings');
+    }
+    return redirect(url('/userNotLogged'));
+});
+
 \Route::get('/newUser','LoginController@newUser');
 
 \Route::get('/loginUser','LoginController@loginAuthenticate');
@@ -35,8 +48,6 @@
 \Route::get('/logout','LoginController@endSession');
 
 \Route::get('/userNotLogged','LoginController@userNotLogged');
-
-\Route::get('/settings','SettingsController@load');
 
 \Route::get('/deleteUser','SettingsController@delete');
 

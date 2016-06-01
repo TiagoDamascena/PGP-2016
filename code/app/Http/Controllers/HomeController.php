@@ -17,8 +17,5 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class HomeController extends Controller
 {
-    public function load(){
-        $user = \Auth::user();
-        return view('Home',compact('user'));
-    }
+    
 }

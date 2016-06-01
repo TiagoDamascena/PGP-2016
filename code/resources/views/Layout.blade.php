@@ -103,10 +103,10 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      
+      <i class="ion-star"></i>
     </div>
     <!-- Default to the left -->
-    <strong><i class="ion-star"></i>Copyright &copy; 2016 <a href="https://github.com/nikolassupremo/PGP-2016">My Study Life</a>.</strong> Gerência de Projeto de Software.
+    <strong>Copyright &copy; 2016 <a href="https://github.com/nikolassupremo/PGP-2016">My Study Life</a>.</strong> Gerência de Projeto de Software.
   </footer>
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
