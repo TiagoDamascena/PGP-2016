@@ -18,7 +18,7 @@
 
 \Route::get('/registerUser', function () {
     $newUserError = null;
-    return view('RegisterUser', compact('newUserError'));
+    return view('Register', compact('newUserError'));
 });
 
 \Route::get('/home', function (){
@@ -32,9 +32,11 @@
 
 \Route::get('/loginUser','LoginController@loginAuthenticate');
 
-\Route::get('/userNotLogged','HomeController@userNotLogged');
+\Route::get('/logout','LoginController@endSession');
 
-\Route::get('/deleteUser','HomeController@delete');
+\Route::get('/userNotLogged','LoginController@userNotLogged');
 
-\Route::get('/logout','HomeController@endSession');
+\Route::get('/settings','SettingsController@load');
+
+\Route::get('/deleteUser','SettingsController@delete');
 
