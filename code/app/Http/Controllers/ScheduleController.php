@@ -48,15 +48,15 @@ class ScheduleController extends Controller
         $schoolYear->save();
 	}
 
-	public function createSchoolHalfYear () {
+	public function createSchoolTerm ($yearID) {
 		$user = \Auth::user();
-		$schoolHalfYear = new SchoolHalfYear();
-		$schoolHalfYear->year = $schoolYear->id;
-		$schoolHalfYear->name = Input::get('name');
-		$schoolHalfYear->startDate = Input::get('startDate');
-		$schoolHalfYear->endDate = Input::get('endDate');
+		$schoolTerm = new SchoolHalfYear();
+		$schoolTerm->year = $yearID;
+		$schoolTerm->name = Input::get('name');
+		$schoolTerm->startDate = Input::get('startDate');
+		$schoolTerm->endDate = Input::get('endDate');
 
-		$compare = SchoolHalfYear::where('name',$schoolHalfYear->name)->first();
+		$compare = SchoolHalfYear::where('name',$schoolTerm->name)->where('year', $schoolTerm->year)->first();
         if($compare){
             $newSchoolHalfYearError = 'school_half_year_already_exists';
             return view('CreateHalfYear',compact('newSchoolHalfYearError'));
@@ -68,6 +68,6 @@ class ScheduleController extends Controller
             return view('CreateHalfYear',compact('newSchoolHalfYearError'));
         }
 
-        $schoolHalfYear->save();
+        $schoolTerm->save();
 	}
 }
