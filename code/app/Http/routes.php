@@ -12,13 +12,19 @@
 */
 
 \Route::get('/', function () {
+    if (Auth::check()){
+        return redirect(url('/home'));
+    }
     $loginError = null;
     return view('Login',compact('loginError'));
 });
 
-\Route::get('/registerUser', function () {
+\Route::get('/register', function () {
+    if (Auth::check()){
+        return redirect(url('/home'));
+    }
     $newUserError = null;
-    return view('RegisterUser', compact('newUserError'));
+    return view('Register', compact('newUserError'));
 });
 
 \Route::get('/home', function (){
@@ -28,13 +34,27 @@
     return redirect(url('/userNotLogged'));
 });
 
+\Route::get('/settings', function (){
+    if (Auth::check()){
+        $settingsFeedback = null;
+        return view('Settings', compact('settingsFeedback'));
+    }
+    return redirect(url('/userNotLogged'));
+});
+
 \Route::get('/newUser','LoginController@newUser');
 
 \Route::get('/loginUser','LoginController@loginAuthenticate');
 
-\Route::get('/userNotLogged','HomeController@userNotLogged');
+\Route::get('/logout','LoginController@endSession');
 
-\Route::get('/deleteUser','HomeController@delete');
+\Route::get('/userNotLogged','LoginController@userNotLogged');
 
-\Route::get('/logout','HomeController@endSession');
+\Route::get('/changeName','SettingsController@changeName');
+
+\Route::get('/changeEmail','SettingsController@changeEmail');
+
+\Route::get('/changePassword','SettingsController@changePassword');
+
+\Route::get('/deleteUser','SettingsController@delete');
 

@@ -33,7 +33,17 @@ class LoginController extends Controller
         \Auth::login($user,true);
         return redirect(url('/home'));
     }
-
+    
+    public function endSession(){
+        \Auth::logout();
+        return redirect(url('/'));
+    }
+    
+    public function userNotLogged(){
+        $loginError = 'user_not_logged';
+        return view('Login',compact('loginError'));
+    }
+    
     public function newUser()
     {
         $newUserError = null;
@@ -48,7 +58,7 @@ class LoginController extends Controller
         $compare = User::where('email',$user->email)->first();
         if($compare){
             $newUserError = 'user_already_exists';
-            return view('RegisterUser',compact('newUserError'));
+            return view('Register',compact('newUserError'));
         }
         if ($user->password == $confirmPassword) {
             $user->save();
@@ -57,7 +67,7 @@ class LoginController extends Controller
         }
         else {
             $newUserError = 'password_differently';
-            return view('RegisterUser',compact('newUserError'));
+            return view('Register',compact('newUserError'));
         }
     }
 
