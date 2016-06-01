@@ -68,7 +68,7 @@
       <ul class="sidebar-menu">
         
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href={{url('/home')}}><i class="ion-home"></i> <span>Home</span></a></li>
+        <li><a href={{url('/home')}}><i class="ion-home"></i> <span>Home</span></a></li>
         <li><a href={{url('/calendar')}}><i class="ion-calendar"></i> <span>Calendar</span></a></li>
         <li><a href={{url('/tasks')}}><i class="ion-compose"></i> <span>Tasks</span></a></li>
         <li><a href={{url('/exams')}}><i class="ion-document-text"></i> <span>Exams</span></a></li>
@@ -119,6 +119,9 @@
         </div>
         <div class="box-body">
           <form action="{{url('/changeEmail')}}" method="get">
+            @if($settingsFeedback=='email_do_not_match')
+              <span class="text-danger"> Emails do not match </span>
+            @endif
             <div class="row">
               <div class="form-group has-feedback col-sm-6">
                 <input type="email" class="form-control" placeholder="New email" name="email">
@@ -144,6 +147,9 @@
         </div>
         <div class="box-body">
           <form action="{{url('/changePassword')}}" method="get">
+            @if($settingsFeedback=='password_do_not_match')
+              <span class="text-danger"> Passwords do not match </span>
+            @endif
             <div class="row">
               <div class="form-group has-feedback col-sm-6">
                 <input type="password" class="form-control" placeholder="New password" name="password">
@@ -171,7 +177,7 @@
           <form action="{{url('/deleteUser')}}" method="get">
             <div class="row">
               <div class="col-sm-3">
-                <button type="submit" class="btn btn-danger btn-block btn-sm">Delete Account</button>
+                <button type="submit" class="btn btn-danger btn-block btn-sm" onClick="confirmDelete()">Delete Account</button>
               </div>
             </div>
           </form>
@@ -205,5 +211,22 @@
 <script src={{url('/bootstrap/js/bootstrap.min.js')}}></script>
 <!-- AdminLTE App -->
 <script src={{url('/resources/js/app.min.js')}}></script>
+
+@if($settingsFeedback=='name_changed')
+  <script type="text/javascript">alert("Name Successfull changed!");</script>
+@endif
+@if($settingsFeedback=='email_changed')
+  <script type="text/javascript">alert("Email Successfull changed!");</script>
+@endif
+@if($settingsFeedback=='password_changed')
+  <script type="text/javascript">alert("Password Successfull changed!");</script>
+@endif
+
+<script>
+  function confirmDelete() {
+    confirm("Delete your account?");
+  }
+</script>
+
 </body>
 </html>

@@ -56,7 +56,7 @@
     
     </br>
     <a href="#">Forgot password?</a><br>
-    <p>New on My Study Life? <a href={{url('/registerUser')}} class="text-center">Register here</a></p>
+    <p>New on My Study Life? <a href={{url('/register')}} class="text-center">Register here</a></p>
 
   </div>
   <!-- /.login-box-body -->

@@ -36,7 +36,8 @@
 
 \Route::get('/settings', function (){
     if (Auth::check()){
-        return view('Settings');
+        $settingsFeedback = null;
+        return view('Settings', compact('settingsFeedback'));
     }
     return redirect(url('/userNotLogged'));
 });
@@ -48,6 +49,12 @@
 \Route::get('/logout','LoginController@endSession');
 
 \Route::get('/userNotLogged','LoginController@userNotLogged');
+
+\Route::get('/changeName','SettingsController@changeName');
+
+\Route::get('/changeEmail','SettingsController@changeEmail');
+
+\Route::get('/changePassword','SettingsController@changePassword');
 
 \Route::get('/deleteUser','SettingsController@delete');
 
