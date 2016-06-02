@@ -15,7 +15,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>My Study Life</b></a>
+        <a href={{url('/')}}><b>My Study Life</b></a>
     </div>
 
     <div class="register-box-body">
@@ -26,7 +26,7 @@
                 <input type="password" class="form-control" placeholder="New Password" name="password">
             </div>
             @if($errorRecoveryPassword =='password_do_not_match')
-                <span class="text-danger"> Passwords do not match </span>
+                <p class="login-box-msg text-danger"> E-mail not registered </p>
             @endif
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" placeholder="Retype your new password" name="confirmPassword">
@@ -34,7 +34,7 @@
             <div class="row">
                 <!-- /.col -->
                 <div class="col-xs-12">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Recovery my Password</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Recover my Password</button>
                 </div>
                 <!-- /.col -->
             </div>

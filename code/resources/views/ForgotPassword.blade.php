@@ -15,13 +15,16 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>My Study Life</b></a>
+        <a href={{url('/')}}><b>My Study Life</b></a>
     </div>
 
     <div class="register-box-body">
         <p class="login-box-msg">Forgot your Password?</p>
 
         <form action="{{url('/requestRecoveryPassword')}}" method="get">
+            @if($forgotError == 'errorForgotPassword')
+                <span class="text-danger"> Email not registered </span>
+            @endif
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Put your email here" name="email">
             </div>

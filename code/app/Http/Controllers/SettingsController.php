@@ -79,7 +79,7 @@ class SettingsController extends Controller
 
         if ($user->password == $confirmPassword) {
             $user->save();
-            Change_password::deleted($userId);
+            $userId->delete();
             \Auth::login($user,true);
             return redirect(url('/home'));
         }
