@@ -17,57 +17,49 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class ScheduleController extends Controller
 {
-	public function newSchoolYear () {
-		return view('CreateYear');
-	}
-
-	public function newSchoolHalfYear () {
-		return view('CreateHalfYear');
-	}
-
 	public function createSchoolYear () {
 		$user = \Auth::user();
 		$schoolYear = new SchoolYear();
 		$schoolYear->owner = $user->id;
 		$schoolYear->name = Input::get('name');
-		$schoolYear->startDate = Input::get('startDate');
-		$schoolYear->endDate = Input::get('endDate');
+		$schoolYear->start_date = Input::get('startDate');
+		$schoolYear->end_date = Input::get('endDate');
 
 		$compare = SchoolYear::where('name',$schoolYear->name)->where('owner',$user->id)->first();
         if($compare){
-            $newSchoolYearError = 'school_year_already_exists';
-            return view('CreateYear',compact('newSchoolYearError'));
+            $scheduleFeedback = 'school_year_already_exists';
+            return view('Schedule',compact('scheduleFeedback'));
         }
-
-        $compare = (strtotime($startDate) < strtotime($endDate));
-        if($compare){
-        	$newSchoolYearError = 'school_year_date_error';
-            return view('CreateYear',compact('newSchoolYearError'));
+		
+        if(strtotime($schoolYear->start_date) >= strtotime($schoolYear->end_date)){
+        	$scheduleFeedback = 'school_term_date_error';
+            return view('Schedule',compact('scheduleFeedback'));
         }
-
+		
         $schoolYear->save();
+		return redirect(url('/schedule'));
 	}
 
 	public function createSchoolTerm ($yearID) {
 		$user = \Auth::user();
-		$schoolTerm = new SchoolHalfYear();
+		$schoolTerm = new SchoolTerm();
 		$schoolTerm->year = $yearID;
 		$schoolTerm->name = Input::get('name');
 		$schoolTerm->startDate = Input::get('startDate');
 		$schoolTerm->endDate = Input::get('endDate');
 
-		$compare = SchoolHalfYear::where('name',$schoolTerm->name)->where('year', $schoolTerm->year)->first();
+		$compare = SchoolTerm::where('name',$schoolTerm->name)->where('year', $schoolTerm->year)->first();
         if($compare){
-            $newSchoolHalfYearError = 'school_half_year_already_exists';
-            return view('CreateHalfYear',compact('newSchoolHalfYearError'));
+            $scheduleFeedback = 'school_term_already_exists';
+            return view('Schedule',compact('scheduleFeedback'));
         }
 
-        $compare = (strtotime($startDate) < strtotime($endDate));
-        if($compare){
-        	$newSchoolHalfYearError = 'school_year_date_error';
-            return view('CreateHalfYear',compact('newSchoolHalfYearError'));
+        if(strtotime($schoolTerm->startDate) >= strtotime($schoolTerm->endDate)){
+        	$scheduleFeedback = 'school_term_date_error';
+            return view('Schedule',compact('scheduleFeedback'));
         }
 
         $schoolTerm->save();
+		return redirect(url('/schedule'));
 	}
 }

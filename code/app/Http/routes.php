@@ -42,6 +42,14 @@
     return redirect(url('/userNotLogged'));
 });
 
+\Route::get('/schedule', function (){
+    if (Auth::check()){
+        $scheduleFeedback = null;
+        return view('Schedule', compact('scheduleFeedback'));
+    }
+    return redirect(url('/userNotLogged'));
+});
+
 \Route::get('/newUser','LoginController@newUser');
 
 \Route::get('/loginUser','LoginController@loginAuthenticate');
@@ -57,4 +65,8 @@
 \Route::get('/changePassword','SettingsController@changePassword');
 
 \Route::get('/deleteUser','SettingsController@delete');
+
+\Route::get('/newSchoolYear', 'ScheduleController@createSchoolYear');
+
+\Route::get('/newSchoolTerm/{$yearID}', 'ScheduleController@createSchoolTerm($yearID)');
 
