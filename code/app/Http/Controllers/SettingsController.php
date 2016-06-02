@@ -62,7 +62,21 @@ class SettingsController extends Controller
         
         return view('Settings',compact('settingsFeedback'));
     }
-    
+
+    public function recoveryPassword($user) {
+        $user->password = Input::get('password');
+        $confirmPassword = Input::get('confirmPassword');
+
+        if ($user->password == $confirmPassword) {
+            $user->save();
+            $recoveryPasswordFeedback = 'password_changed';
+        } else {
+            $recoveryPasswordFeedback = 'password_do_not_match';
+        }
+
+        return view('Recovery Password',compact('recoveryPasswordFeedback'));
+    }
+
     public function delete() {
         $user = \Auth::user();
         $user->delete();
