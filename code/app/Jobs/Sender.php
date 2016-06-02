@@ -2,7 +2,10 @@
 
 namespace App\Jobs;
 
+use App\Change_password;
+use App\User;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Hash;
 use Ivory\HttpAdapter\Guzzle6HttpAdapter;
 use SparkPost\SparkPost;
 
@@ -19,20 +22,37 @@ class Sender
     }
 
     public function send($user){
-        $results = $this->spark->transmission->send([
+        $changePass = Change_password::where('user',$user->id)->first();
+        if (!$changePass){
+            $changePass = new Change_password();
+            $changePass->unique_key = (md5($user.date("Y-m-d H:i:s")));
+            $changePass->user = $user->id;
+            $changePass->save();
+        }
+        else{
+            $changePass->unique_key = (md5($user.date("Y-m-d H:i:s")));
+            $changePass->save();
+        }
+        
+        $url = url('/recoveryPassword/'.$changePass->unique_key);
+        $this->spark->transmission->send([
             'from'=>[
                 'name' => 'My Student Life',
                 'email' => 'from@sparkpostbox.com>'
             ],
             'html'=>'<html>
                      <body>
-                     <h1>Hello, {{name}} do you forgot you Password?</h1>
+                     <h1>Hello {{name}}, do you forgot you Password?</h1>
                      <p>You send to us a request for a new password</p>
-                     <p>Please, click here to change your password</p></body></html>',
+                     <p>Please, copy this link and go to respective site to change your password</p>
+                     <a>{{link}} </a>
+                     </body>
+                     </html>',
             'text'=>'Hello {{name}}, do you forgot you Password?
                      You send to us a request for a new password
-                     Please, click here to change your password',
-            'substitutionData'=>['name'=>$user->name],
+                     Please, click here to change your password
+                     href={{link}}>Recovery your password',
+            'substitutionData'=>['name'=>$user->name, 'link'=> $url],
             'subject'=>'Recovery your Password',
             'recipients'=>[
                 [

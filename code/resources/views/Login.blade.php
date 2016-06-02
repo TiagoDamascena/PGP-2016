@@ -24,7 +24,10 @@
     @else
       <p class="login-box-msg">Sign in to start your session</p>
     @endif
-    
+
+      @if($loginError=='email_sent')
+        <p class="login-box-msg text-danger"> Please check your email for recovery your Password </p>
+      @endif
     <form action="{{url('/loginUser')}}" method="get">
       @if($loginError=='email_not_found')
         <span class="text-danger"> Incorrect Email </span>
@@ -55,7 +58,7 @@
     </form>
     
     </br>
-    <a href="#">Forgot password?</a><br>
+    <a href="{{url('/forgotPassword')}}">Forgot password?</a><br>
     <p>New on My Study Life? <a href={{url('/register')}} class="text-center">Register here</a></p>
 
   </div>

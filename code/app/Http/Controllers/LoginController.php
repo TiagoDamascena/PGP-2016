@@ -11,12 +11,7 @@ namespace App\Http\Controllers;
 use App\Jobs\Sender;
 use App\User;
 use Illuminate\Auth\Events\Login;
-use Illuminate\Mail\Mailer;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Mail;
-use PhpParser\Node\Stmt\Return_;
-
 class LoginController extends Controller
 {
     public function loginAuthenticate()
@@ -34,7 +29,6 @@ class LoginController extends Controller
             $loginError = 'wrong_password';
             return view('Login',compact('loginError'));
         }
-
         \Auth::login($user,true);
         return redirect(url('/home'));
     }
@@ -60,7 +54,6 @@ class LoginController extends Controller
         $user->creationDate = date("Y-m-d H:i:s");
         $confirmPassword = Input::get('confirmPassword');
         
-
         $compare = User::where('email',$user->email)->first();
         if($compare){
             $newUserError = 'user_already_exists';
@@ -79,14 +72,19 @@ class LoginController extends Controller
         }
     }
 
-    public function forgotPassword($email){
+    public function forgotPassword(){
+        $email = Input::get('email');
         $user = User::where('email', $email)->first();
         if(!$user){
+            die('Sem usuario');
             $loginError = 'errorForgotPassword';
-           return view('Login', compact('loginError'));
+           return view('ForgotPassword', compact('loginError'));
         }
         $sender = new Sender();
         $sender->send($user);
+
+        $loginError = 'email_sent';
+        return view('Login',compact('loginError'));
     }
     
     
