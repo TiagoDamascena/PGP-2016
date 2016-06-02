@@ -76,8 +76,8 @@ class LoginController extends Controller
         $email = Input::get('email');
         $user = User::where('email', $email)->first();
         if(!$user){
-            $forgotError = 'errorForgotPassword';
-           return view('ForgotPassword', compact('forgotError'));
+            $loginError = 'errorForgotPassword';
+           return view('Login', compact('loginError'));
         }
         $sender = new Sender();
         $sender->send($user);

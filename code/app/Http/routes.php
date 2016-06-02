@@ -59,8 +59,8 @@
 \Route::get('/deleteUser','SettingsController@delete');
 
 \Route::get('/forgotPassword',function (){
-    $forgotError = '';
-    return view('ForgotPassword', compact('forgotError'));
+    $loginError = '';
+    return view('Login', compact('loginError'));
 });
 
 \Route::get('/recoveryPassword/{unique_key}',function ($unique_key){
