@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Change_password;
 use App\User;
 use Illuminate\Support\Facades\Input;
 use Validator;
@@ -62,10 +63,29 @@ class SettingsController extends Controller
         
         return view('Settings',compact('settingsFeedback'));
     }
-    
     public function delete() {
         $user = \Auth::user();
         $user->delete();
         return redirect(url('/'));
+    }
+
+
+    public function recoverPassword($unique_key) {
+        
+        $userId = Change_password::where('unique_key',$unique_key)->first();
+        $user = User::where('id',$userId->user)->first();
+        $user->password = Input::get('password');
+        $confirmPassword = Input::get('confirmPassword');
+
+        if ($user->password == $confirmPassword) {
+            $user->save();
+            $userId->delete();
+            \Auth::login($user,true);
+            return redirect(url('/home'));
+        }
+        else {
+            $errorRecoveryPassword = 'password_do_not_match';
+            return view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
+        }
     }
 }

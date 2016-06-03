@@ -70,3 +70,20 @@
 
 \Route::get('/newSchoolTerm/{$yearID}', 'ScheduleController@createSchoolTerm($yearID)');
 
+\Route::get('/forgotPassword',function (){
+    $loginError = '';
+    return view('Login', compact('loginError'));
+});
+
+\Route::get('/recoveryPassword/{unique_key}',function ($unique_key){
+
+    if(!\App\Change_password::where('unique_key',$unique_key)->first()){
+        die('Recovery Password - User not Found');
+    }
+    $errorRecoveryPassword = null;
+    return view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
+});
+
+Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
+
+Route::get('/passwordChanged/{unique_key}','SettingsController@recoverPassword');
