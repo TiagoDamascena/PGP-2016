@@ -12,13 +12,13 @@ use SparkPost\SparkPost;
 class Sender
 {
     private $spark;
-    private static $API_KEY = 'f74ba4aa3966924b4aab61c609769bcf8cd35671';
+    private static $API_KEY = 'a7e0dbb90759924ebbe54b0cac6f40eca6655016';
 
     public function __construct()
     {
         $client = new Client();
         $httpAdapter = new Guzzle6HttpAdapter($client);
-        $this->spark = new SparkPost($httpAdapter, ['key'=>self::$API_KEY]);
+        $this->spark = new SparkPost($httpAdapter,['key'=>self::$API_KEY]);
     }
 
     public function send($user){
@@ -33,7 +33,7 @@ class Sender
             $changePass->unique_key = (md5($user.date("Y-m-d H:i:s")));
             $changePass->save();
         }
-        
+
         $url = url('/recoveryPassword/'.$changePass->unique_key);
         $this->spark->transmission->send([
             'from'=>[
@@ -45,14 +45,13 @@ class Sender
                      <h1>Hello {{name}}, do you forgot you Password?</h1>
                      <p>You send to us a request for a new password</p>
                      <p>Please, copy this link and go to respective site to change your password</p>
-                     <a>{{link}} </a>
+                     <p>{{link}} </p>
                      </body>
                      </html>',
             'text'=>'Hello {{name}}, do you forgot you Password?
                      You send to us a request for a new password
-                     Please, click here to change your password
-                     href={{link}}>Recovery your password',
-            'substitutionData'=>['name'=>$user->name, 'link'=> $url],
+                     Please, click here to change your password',
+            'substitutionData'=>['name'=>$user->name, 'link'=>$url],
             'subject'=>'Recovery your Password',
             'recipients'=>[
                 [
