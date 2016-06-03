@@ -50,6 +50,33 @@
     return redirect(url('/userNotLogged'));
 });
 
+\Route::get('/subject/{subject_id}', function ($subject_id){
+    if (Auth::check()){
+        $subject = \App\Subject::where('id',$subject_id)->first();
+        if(!$subject) {
+            return redirect(url('/home'));
+        } else {
+            $subjectFeedback = null;
+            return view('Subject', compact('subject','subjectFeedback'));
+        }
+    }
+    return redirect(url('/userNotLogged'));
+});
+
+\Route::get('/forgotPassword',function (){
+    $loginError = '';
+    return view('Login', compact('loginError'));
+});
+
+\Route::get('/recoveryPassword/{unique_key}',function ($unique_key){
+
+    if(!\App\Change_password::where('unique_key',$unique_key)->first()){
+        die('Recovery Password - User not Found');
+    }
+    $errorRecoveryPassword = null;
+    return view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
+});
+
 \Route::get('/newUser','LoginController@newUser');
 
 \Route::get('/loginUser','LoginController@loginAuthenticate');
@@ -68,21 +95,7 @@
 
 \Route::get('/newSchoolYear', 'ScheduleController@createSchoolYear');
 
-\Route::get('/newSchoolTerm/{$yearID}', 'ScheduleController@createSchoolTerm($yearID)');
-
-\Route::get('/forgotPassword',function (){
-    $loginError = '';
-    return view('Login', compact('loginError'));
-});
-
-\Route::get('/recoveryPassword/{unique_key}',function ($unique_key){
-
-    if(!\App\Change_password::where('unique_key',$unique_key)->first()){
-        die('Recovery Password - User not Found');
-    }
-    $errorRecoveryPassword = null;
-    return view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
-});
+\Route::get('/newSchoolTerm/{yearID}', 'ScheduleController@createSchoolTerm($yearID)');
 
 Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
 
