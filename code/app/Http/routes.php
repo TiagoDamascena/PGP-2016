@@ -63,11 +63,6 @@
     return redirect(url('/userNotLogged'));
 });
 
-\Route::get('/forgotPassword',function (){
-    $loginError = '';
-    return view('Login', compact('loginError'));
-});
-
 \Route::get('/recoveryPassword/{unique_key}',function ($unique_key){
 
     if(!\App\Change_password::where('unique_key',$unique_key)->first()){
