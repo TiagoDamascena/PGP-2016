@@ -9,6 +9,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Schedule;
+use App\Task;
+use App\Exam;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -23,18 +25,12 @@ class SubjectController extends Controller
 		$schedule->subject = $subject_id;
 		$schedule->building = Input::get('building');
 		$schedule->room = Input::get('room');
-		$schedule->day = Input::get('day');
+		$schedule->day = implode(';',Input::get('day'));
 		$schedule->start_time = Input::get('startTime');
 		$schedule->end_time = Input::get('endTime');
 
 		$subject = \App\Subject::where('id',$subject_id)->first();
-
-		$compare = Schedule::where('day',$schedule->day)->where('start_time', $schedule->start_time)->first();
-        if($compare){
-            $subjectFeedback = 'schedule_already_exists';
-            return view('Subject',compact('subject','subjectFeedback'));
-        }
-
+		
         if(strtotime($schedule->start_time) >= strtotime($schedule->end_time)){
         	$subjectFeedback = 'schedule_date_error';
             return view('Subject',compact('subject','subjectFeedback'));
@@ -42,5 +38,43 @@ class SubjectController extends Controller
 
         $schedule->save();
 		return redirect(url('/subject/'.$subject_id));
+	}
+	
+	public function createTask ($subject_id) {
+		$user = \Auth::user();
+		$task = new Task();
+		$task->subject = $subject_id;
+		$task->due_date = Input::get('due_date');
+		$task->title = Input::get('title');
+		$task->description = Input::get('description');
+		
+		$subject = \App\Subject::where('id',$subject_id)->first();
+		
+		if(!$subject) {
+			return redirect(url('/home'));
+		} else {
+			$task->save();
+			return redirect(url('/subject/'.$subject_id));
+		}
+	}
+	
+	public function createExam ($subject_id) {
+		$user = \Auth::user();
+		$exam = new Exam();
+		$exam->subject = $subject_id;
+		$exam->date = Input::get('date');
+		$exam->start_time = Input::get('start_time');
+		$exam->building = Input::get('building');
+		$exam->room = Input::get('room');
+		$exam->description = Input::get('description');
+		
+		$subject = \App\Subject::where('id',$subject_id)->first();
+		
+		if(!$subject) {
+			return redirect(url('/home'));
+		} else {
+			$exam->save();
+			return redirect(url('/subject/'.$subject_id));
+		}
 	}
 }

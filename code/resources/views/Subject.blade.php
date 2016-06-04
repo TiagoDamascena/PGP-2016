@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href={{url('/plugins/datepicker/datepicker3.css')}}>
+  <link rel="stylesheet" href={{url('/plugins/timepicker/bootstrap-timepicker.min.css')}}>
+  <link rel="stylesheet" href={{url('/plugins/select2/select2.min.css')}}>
   <link rel="stylesheet" href={{url('/resources/css/AdminLTE.min.css')}}>
   <link rel="stylesheet" href={{url('/resources/css/skins/skin-blue.min.css')}}>
 </head>
@@ -137,16 +139,9 @@
       <form action="{{url('/newTask')}}<?php echo '/'.$subject->id?>" method="get">
         <div class="modal-body">
           <div class="row">
-            <div class="form-group has-feedback col-sm-12">
+            <div class="form-group has-feedback col-sm-6">
               <input type="text" class="form-control" placeholder="Task title" name="title">
             </div>
-          </div>
-          <div class="row">
-            <div class="form-group has-feedback col-sm-12">
-              <textarea rows="10" class="form-control" placeholder="Task description" name="description"></textarea>
-            </div>
-          </div>
-          <div class="row">
             <div class="form-group has-feedback col-sm-6">
               <div class="input-group date">
                 <div class="input-group-addon">
@@ -154,6 +149,11 @@
                 </div>
                 <input type="text" class="form-control pull-right" id="taskDueDate" placeholder="Due date" name="due_date">
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group has-feedback col-sm-12">
+              <textarea rows="10" class="form-control" placeholder="Task description" name="description"></textarea>
             </div>
           </div>
         </div>
@@ -186,15 +186,20 @@
                 <input type="text" class="form-control pull-right" id="examDate" placeholder="Exam date" name="date">
               </div>
             </div>
-            <div class="form-group has-feedback col-sm-6">
-              <input type="text" class="form-control" placeholder="Exam start time" name="start_time">
+            <div class="form-group has-feedback col-md-6">
+              <div class="input-group bootstrap-timepicker">
+                <input type="text" class="form-control timepicker pull-left" id="examTime" placeholder="Exam start time" name="start_time">
+                <div class="input-group-addon">
+                  <i class="ion-clock"></i>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
-            <div class="form-group has-feedback col-sm-12">
+            <div class="form-group has-feedback col-sm-6">
               <input type="text" class="form-control" placeholder="Exam building" name="building">
             </div>
-            <div class="form-group has-feedback col-sm-12">
+            <div class="form-group has-feedback col-sm-6">
               <input type="text" class="form-control" placeholder="Exam room" name="room">
             </div>
           </div>
@@ -225,24 +230,42 @@
       <form action="{{url('/newSchedule')}}<?php echo '/'.$subject->id?>" method="get">
         <div class="modal-body">
           <div class="row">
-            <div class="form-group has-feedback col-sm-12">
+            <div class="form-group has-feedback col-sm-6">
               <input type="text" class="form-control" placeholder="Schedule building" name="building">
             </div>
-            <div class="form-group has-feedback col-sm-12">
+            <div class="form-group has-feedback col-sm-6">
               <input type="text" class="form-control" placeholder="Schedule room" name="room">
             </div>
           </div>
           <div class="row">
-            <div class="form-group has-feedback col-sm-12">
-              <input type="text" class="form-control" placeholder="Schedule day" name="day">
+            <div class="form-group col-md-12">
+              <select class="form-control select2" multiple="multiple" data-placeholder="Select a Day" style="width: 100%;" name="day[]">
+                <option value="1">Sunday</option>
+                <option value="2">Monday</option>
+                <option value="3">Tuesday</option>
+                <option value="4">Wednesday</option>
+                <option value="5">Thursday</option>
+                <option value="6">Friday</option>
+                <option value="7">Saturday</option>
+              </select>
             </div>
           </div>
           <div class="row">
-            <div class="form-group has-feedback col-sm-6">
-              <input type="text" class="form-control" placeholder="Schedule start time" name="startTime">
+            <div class="form-group has-feedback col-md-6">
+              <div class="input-group bootstrap-timepicker">
+                <input type="text" class="form-control timepicker pull-left" id="scheduleStartTime" placeholder="Schedule start time" name="startTime">
+                <div class="input-group-addon">
+                  <i class="ion-clock"></i>
+                </div>
+              </div>
             </div>
-            <div class="form-group has-feedback col-sm-6">
-              <input type="text" class="form-control" placeholder="Schedule end time" name="endTime">
+            <div class="form-group has-feedback col-md-6">
+              <div class="input-group bootstrap-timepicker">
+                <input type="text" class="form-control timepicker pull-left" id="scheduleEndTime" placeholder="Schedule end time" name="endTime">
+                <div class="input-group-addon">
+                  <i class="ion-clock"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -263,11 +286,17 @@
 <script src={{url('/bootstrap/js/bootstrap.min.js')}}></script>
 <!-- Datepicker -->
 <script src={{url('/plugins/datepicker/bootstrap-datepicker.js')}}></script>
+<!-- Timepicker -->
+<script src={{url('/plugins/timepicker/bootstrap-timepicker.min.js')}}></script>
+<!-- Select2 -->
+<script src={{url('/plugins/select2/select2.full.min.js')}}></script>
 <!-- AdminLTE App -->
 <script src={{url('/resources/js/app.min.js')}}></script>
 
 <script>
   //Date picker
+  $(".select2").select2();
+  
   $('#taskDueDate').datepicker({
     format: 'yyyy-mm-dd',
     autoclose: true
@@ -275,6 +304,19 @@
   $('#examDate').datepicker({
     format: 'yyyy-mm-dd',
     autoclose: true
+  });
+  
+  $("#examTime").timepicker({
+    showMeridian: false,
+    showInputs: false
+  });
+  $("#scheduleStartTime").timepicker({
+    showMeridian: false,
+    showInputs: false
+  });
+  $("#scheduleEndTime").timepicker({
+    showMeridian: false,
+    showInputs: false
   });
 </script>
 </body>

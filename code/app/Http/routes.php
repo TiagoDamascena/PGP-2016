@@ -95,9 +95,13 @@
 
 \Route::get('/newSchoolYear', 'ScheduleController@createSchoolYear');
 
-\Route::get('/newSchoolTerm/{yearID}', 'ScheduleController@createSchoolTerm($yearID)');
+\Route::get('/newSchoolTerm/{yearID}', 'ScheduleController@createSchoolTerm');
 
 \Route::get('/newSchedule/{subject_id}', 'SubjectController@createSchedule');
+
+\Route::get('/newTask/{subject_id}', 'SubjectController@createTask');
+
+\Route::get('/newExam/{subject_id}', 'SubjectController@createExam');
 
 Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
 
