@@ -37,22 +37,14 @@ class Sender
         $url = url('/recoveryPassword/'.$changePass->unique_key);
         $this->spark->transmission->send([
             'from'=>[
-                'name' => 'My Student Life',
+                'name' => 'StudyEach',
                 'email' => 'from@sparkpostbox.com>'
             ],
-            'html'=>'<html>
-                     <body>
-                     <h1>Hello {{name}}, do you forgot you Password?</h1>
-                     <p>You send to us a request for a new password</p>
-                     <p>Please, copy this link and go to respective site to change your password</p>
-                     <p>{{link}} </p>
-                     </body>
-                     </html>',
-            'text'=>'Hello {{name}}, do you forgot you Password?
+            'html'=> view('MailRecovery', compact('user','url'))->render(),
+            'text'=>'Hello, do you forgot you Password?
                      You send to us a request for a new password
-                     Please, click here to change your password',
-            'substitutionData'=>['name'=>$user->name, 'link'=>$url],
-            'subject'=>'Recovery your Password',
+                     Please, click here to recover your password',
+            'subject'=>'Recover your Password',
             'recipients'=>[
                 [
                     'address'=>[
