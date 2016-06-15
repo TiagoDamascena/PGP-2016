@@ -92,6 +92,8 @@
 
 \Route::get('/newSchoolTerm/{yearID}', 'ScheduleController@createSchoolTerm');
 
+\Route::get('/newSubject/{schoolTermID}', 'ScheduleController@createSubject');
+
 \Route::get('/newSchedule/{subject_id}', 'SubjectController@createSchedule');
 
 \Route::get('/newTask/{subject_id}', 'SubjectController@createTask');
@@ -101,3 +103,4 @@
 Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
 
 Route::get('/passwordChanged/{unique_key}','SettingsController@recoverPassword');
+

@@ -100,6 +100,10 @@
         <div class="row">
           <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newTermModal">New School Term</button>
         </div>
+        </br>
+        <div class="row">
+          <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newSubjectModal">New Subject Modal</button>
+        </div>
       </div>
     </section>
     <!-- /.content -->
@@ -203,6 +207,36 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save term</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal New Subject -->
+<div class="modal fade" id="newSubjectModal" tabindex="-1" role="dialog" aria-labelledby="newSubjectModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Create new Subject</h4>
+      </div>
+      <form action="{{url('/newSubject')}}" method="get">
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group has-feedback col-sm-12">
+              <input type="text" class="form-control" placeholder="Subject name" name="name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group has-feedback col-sm-12">
+              <input type="text" class="form-control" placeholder="Teacher's name" name="teacher">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save Subject</button>
         </div>
       </form>
     </div>

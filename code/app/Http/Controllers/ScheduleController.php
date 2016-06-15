@@ -62,4 +62,20 @@ class ScheduleController extends Controller
         $schoolTerm->save();
 		return redirect(url('/schedule'));
 	}
+
+	public function createSubject($schoolTermID) {
+		$user = \Auth::user();
+		$subject = new Subject();
+		$subject->term = $schoolTermID;
+		$subject->name = Input::get('name');
+		$subject->teacher = Input::get('teacher');
+
+		$compare = Subject::where('name',$subject->name)->where('term', $subject->term)->first();
+        if($compare){
+            $scheduleFeedback = 'subject_already_exists';
+            return view('Schedule',compact('scheduleFeedback'));
+        }
+		$subject->save();
+		return redirect(url('/schedule'));
+
 }

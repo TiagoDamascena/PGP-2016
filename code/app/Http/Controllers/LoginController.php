@@ -86,6 +86,5 @@ class LoginController extends Controller
         return view('Login',compact('loginError'));
     }
     
-    
 
 }
