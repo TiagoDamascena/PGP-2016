@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\SchoolYear;
+use App\SchoolTerm;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -29,6 +30,11 @@ class ScheduleController extends Controller
         $user = \Auth::user();
         $years = SchoolYear::where('owner',$user->id)->orderBy('name')->get();
         return \Response::json($years);
+    }
+
+    public function getTerms ($yearId) {
+        $terms = SchoolTerm::where('year',$yearId)->orderBy('name')->get();
+        return \Response::json($terms);
     }
 
     public function createSchoolYear () {

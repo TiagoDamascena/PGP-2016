@@ -312,15 +312,16 @@
     $('[id^="year-"]').removeClass("active");
     $('#'+this.id).addClass("active");
 
-    $('#subjects').html("");
-    $('#terms').html("");
+    loadTerms(yearId);
+  });
 
-    $.get('getSubjects/' + termId, function (subjects) {
-      $('#subjects').html("");
-      $.each(subjects, function (key, value) {
-        $('#subjects').append('<a class="btn btn-block btn-default box-header" id="subject-'+value.id+'" name="schoolSubject"> <h3 class="box-title">'+value.name+'</h3> <div class="box-tools pull-right"> <button class="btn btn-box-tool" type="button"><i class="fa fa-pencil"></i></button> </div> </a>');
-      })
-    });
+  $('#terms').on("click", ("[name='schoolTerm']"), function () {
+    var termName = this.id.split('-');
+    var termId = termName[1];
+
+    currentTerm = termId;
+    $('[id^="term-"]').removeClass("active");
+    $('#'+this.id).addClass("active");
   });
 
   function loadYears() {
@@ -330,13 +331,28 @@
       $('#terms').html("");
       $.each(years, function (key, value) {
         $('#years').append('<a class="btn btn-block btn-default box-header" id="year-'+ value.id +'" name="schoolYear">' +
-                '<h3 class="box-title">'+ value.name +'</h3>' +
-                '<div class="box-tools pull-right">' +
-                '<button class="btn btn-box-tool" type="button"><i class="fa fa-pencil"></i></button>' +
-                '</div>' +
-                '</a>');
+                              '<h3 class="box-title">'+ value.name +'</h3>' +
+                              '<div class="box-tools pull-right">' +
+                                '<button class="btn btn-box-tool" type="button"><i class="fa fa-pencil"></i></button>' +
+                              '</div>' +
+                           '</a>');
       })
     })
+  }
+
+  function loadTerms(yearId) {
+    $.get('getTerms/' + yearId, function (terms) {
+      $('#terms').html("");
+      $('#subjects').html("");
+      $.each(terms, function (key, value) {
+        $('#terms').append('<a class="btn btn-block btn-default box-header" id="term-'+value.id+'" name="schoolTerm">' +
+                              '<h3 class="box-title">'+value.name+'</h3>' +
+                              '<div class="box-tools pull-right">' +
+                                '<button class="btn btn-box-tool" type="button"><i class="fa fa-pencil"></i></button>' +
+                              '</div>' +
+                           '</a>');
+      })
+    });
   }
 
 </script>
