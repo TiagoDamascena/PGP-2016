@@ -17,7 +17,21 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class ScheduleController extends Controller
 {
-	public function createSchoolYear () {
+    public function index () {
+        if (\Auth::check()){
+            $scheduleFeedback = null;
+            return view('Schedule', compact('scheduleFeedback'));
+        }
+        return redirect(url('/userNotLogged'));
+    }
+
+    public function getYears () {
+        $user = \Auth::user();
+        $years = SchoolYear::where('owner',$user->id)->orderBy('name')->get();
+        return \Response::json($years);
+    }
+
+    public function createSchoolYear () {
 		$user = \Auth::user();
 		$schoolYear = new SchoolYear();
 		$schoolYear->owner = $user->id;
@@ -45,8 +59,8 @@ class ScheduleController extends Controller
 		$schoolTerm = new SchoolTerm();
 		$schoolTerm->year = $yearID;
 		$schoolTerm->name = Input::get('name');
-		$schoolTerm->startDate = Input::get('startDate');
-		$schoolTerm->endDate = Input::get('endDate');
+		$schoolTerm->start_date = Input::get('startDate');
+		$schoolTerm->end_date = Input::get('endDate');
 
 		$compare = SchoolTerm::where('name',$schoolTerm->name)->where('year', $schoolTerm->year)->first();
         if($compare){
@@ -63,19 +77,20 @@ class ScheduleController extends Controller
 		return redirect(url('/schedule'));
 	}
 
-	public function createSubject($schoolTermID) {
-		$user = \Auth::user();
-		$subject = new Subject();
-		$subject->term = $schoolTermID;
-		$subject->name = Input::get('name');
-		$subject->teacher = Input::get('teacher');
+	public function createSubject($schoolTermID)
+    {
+        $user = \Auth::user();
+        $subject = new Subject();
+        $subject->term = $schoolTermID;
+        $subject->name = Input::get('name');
+        $subject->teacher = Input::get('teacher');
 
-		$compare = Subject::where('name',$subject->name)->where('term', $subject->term)->first();
-        if($compare){
+        $compare = Subject::where('name', $subject->name)->where('term', $subject->term)->first();
+        if ($compare) {
             $scheduleFeedback = 'subject_already_exists';
-            return view('Schedule',compact('scheduleFeedback'));
+            return view('Schedule', compact('scheduleFeedback'));
         }
-		$subject->save();
-		return redirect(url('/schedule'));
-
+        $subject->save();
+        return redirect(url('/schedule'));
+    }
 }

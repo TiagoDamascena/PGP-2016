@@ -92,17 +92,40 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="col-md-3">
-        <div class="row">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newYearModal">New School Year</button>
+      <div class="col-sm-4 col-xs-12">
+        <div class="box box-primary">
+          <div class="box-header">
+            <h3 class="box-title">School Years</h3>
+          </div>
+          <div class="box-body" id="years">
+          </div>
+          <div class="box-footer">
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newYearModal">New School Year</button>
+          </div>
         </div>
-        </br>
-        <div class="row">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newTermModal">New School Term</button>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="box box-primary">
+          <div class="box-header">
+            <h3 class="box-title">School Terms</h3>
+          </div>
+          <div class="box-body" id="terms">
+          </div>
+          <div class="box-footer">
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newTermModal">New School Term</button>
+          </div>
         </div>
-        </br>
-        <div class="row">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newSubjectModal">New Subject Modal</button>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="box box-primary">
+          <div class="box-header">
+            <h3 class="box-title">Subjects</h3>
+          </div>
+          <div class="box-body" id="subjects">
+          </div>
+          <div class="box-footer">
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newSubjectModal">New Subject</button>
+          </div>
         </div>
       </div>
     </section>
@@ -272,6 +295,50 @@
     format: 'yyyy-mm-dd',
     autoclose: true
   });
+
+  var currentYear;
+  var currentTerm;
+  var currentSubject;
+
+  $(function() {
+    loadYears();
+  });
+
+  $('#years').on("click", ("[name='schoolYear']"), function () {
+    var yearName = this.id.split('-');
+    var yearId = yearName[1];
+
+    currentYear = yearId;
+    $('[id^="year-"]').removeClass("active");
+    $('#'+this.id).addClass("active");
+
+    $('#subjects').html("");
+    $('#terms').html("");
+
+    $.get('getSubjects/' + termId, function (subjects) {
+      $('#subjects').html("");
+      $.each(subjects, function (key, value) {
+        $('#subjects').append('<a class="btn btn-block btn-default box-header" id="subject-'+value.id+'" name="schoolSubject"> <h3 class="box-title">'+value.name+'</h3> <div class="box-tools pull-right"> <button class="btn btn-box-tool" type="button"><i class="fa fa-pencil"></i></button> </div> </a>');
+      })
+    });
+  });
+
+  function loadYears() {
+    $.get('{{url('/getYears')}}', function (years) {
+      $('#years').html("");
+      $('#subjects').html("");
+      $('#terms').html("");
+      $.each(years, function (key, value) {
+        $('#years').append('<a class="btn btn-block btn-default box-header" id="year-'+ value.id +'" name="schoolYear">' +
+                '<h3 class="box-title">'+ value.name +'</h3>' +
+                '<div class="box-tools pull-right">' +
+                '<button class="btn btn-box-tool" type="button"><i class="fa fa-pencil"></i></button>' +
+                '</div>' +
+                '</a>');
+      })
+    })
+  }
+
 </script>
 </body>
 </html>

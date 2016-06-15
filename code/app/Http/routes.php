@@ -42,13 +42,9 @@
     return redirect(url('/userNotLogged'));
 });
 
-\Route::get('/schedule', function (){
-    if (Auth::check()){
-        $scheduleFeedback = null;
-        return view('Schedule', compact('scheduleFeedback'));
-    }
-    return redirect(url('/userNotLogged'));
-});
+\Route::get('/schedule', 'ScheduleController@index');
+
+\Route::get('/getYears', 'ScheduleController@getYears');
 
 \Route::get('/subject/{subject_id}', function ($subject_id){
     if (Auth::check()){
