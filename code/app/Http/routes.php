@@ -101,3 +101,7 @@
 Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
 
 Route::get('/passwordChanged/{unique_key}','SettingsController@recoverPassword');
+
+Route::get('/fbLogin', 'FBAuthController@login');
+Route::get('/fbCallback', 'FBAuthController@callback');
+Route::get('/fbInputPassword/{insertPass}', 'FBAuthController@register');

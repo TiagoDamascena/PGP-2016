@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Forgot your Password? | My Study Life</title>
+    <title>Insert a Password | My Study Life</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href={{url('/bootstrap/css/bootstrap.min.css')}}>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href={{url('/resources/css/AdminLTE.min.css')}}>
-    <link rel="stylesheet" href={{url('/resources/css/skins/skin-blue.min.css')}}>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href={{url('/resources/css/AdminLTE.min.css')}}>
+<link rel="stylesheet" href={{url('/resources/css/skins/skin-blue.min.css')}}>
 </head>
 
 <body class="hold-transition register-page">
@@ -19,13 +19,13 @@
     </div>
 
     <div class="register-box-body">
-        <p class="login-box-msg">Recover your Password</p>
+        <p class="login-box-msg">Insert a Password</p>
 
-        <form action="{{url('/passwordChanged/'.$unique_key)}}" method="get">
+        <form action="{{url('/fbInputPassword/'.$insertPass)}}" method="get">
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" placeholder="New Password" name="password">
             </div>
-            @if($errorRecoveryPassword =='password_do_not_match')
+            @if($errorFBloginPassword =='password_do_not_match')
                 <p class="login-box-msg text-danger"> Passwords don't match </p>
             @endif
             <div class="form-group has-feedback">
@@ -34,7 +34,7 @@
             <div class="row">
                 <!-- /.col -->
                 <div class="col-xs-12">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Recover my Password</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Save my Password</button>
                 </div>
                 <!-- /.col -->
             </div>

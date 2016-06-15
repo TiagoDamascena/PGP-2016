@@ -13,6 +13,8 @@
 </head>
 
 <body class="hold-transition login-page">
+
+<!-- /.login-box -->
 <div class="login-box">
   <div class="login-logo">
     <a href={{url('/')}}><b>My Study Life</b></a>
@@ -60,15 +62,21 @@
         <!-- /.col -->
       </div>
     </form>
-
     </br>
     <a data-target="#forgotModal" data-toggle="modal" >Forgot password?</a><br>
     <p>New on My Study Life? <a href={{url('/register')}} class="text-center">Register here</a></p>
-
+        <div class="text-center">
+            <p>---------------------- Sign up with ---------------------- </p>
+            <form action="{{url('/fbLogin')}}" method="get">
+                <input name="FBbutton" type="image" src={{url('/resources/img/facebook.png')}}>
+                <input name="GGbutton" type="image" src={{url('/resources/img/google.png')}}>
+            </form>
+        </div>
   </div>
-  <!-- /.login-box-body -->
+
+
 </div>
-<!-- /.login-box -->
+<!-- /.login-box-body -->
 
 <div class="modal fade" id="forgotModal" tabindex="-1" role="dialog" aria-labelledby="forgotModalLabel">
   <div class="modal-dialog">
