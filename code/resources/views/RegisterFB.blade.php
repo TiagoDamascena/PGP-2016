@@ -21,7 +21,7 @@
     <div class="register-box-body">
         <p class="login-box-msg">Insert a Password</p>
 
-        <form action="{{url('/fbInputPassword/'.$insertPass)}}" method="get">
+        <form action="{{url('/fbInputPassword/'.$userEmail)}}" method="get">
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" placeholder="New Password" name="password">
             </div>
