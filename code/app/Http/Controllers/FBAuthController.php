@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Change_password;
 use App\User;
+use App\UserProfilePhoto;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,6 +29,11 @@ class FBAuthController extends Controller
             $user->creationDate = date("Y-m-d H:i:s");
             $user->password = $userFB->getId();
             $user->save();
+
+            $photo = new UserProfilePhoto();
+            $photo->user = $user->id;
+            $photo->url = $userFB->getAvatar();
+            $photo->save();
 
             $insertPass = new Change_password();
             $insertPass->unique_key = (md5($user.date("Y-m-d H:i:s")));

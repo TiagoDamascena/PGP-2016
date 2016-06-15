@@ -69,7 +69,6 @@
             <p>---------------------- Sign up with ---------------------- </p>
             <form action="{{url('/fbLogin')}}" method="get">
                 <input name="FBbutton" type="image" src={{url('/resources/img/facebook.png')}}>
-                <input name="GGbutton" type="image" src={{url('/resources/img/google.png')}}>
             </form>
         </div>
   </div>
