@@ -54,14 +54,21 @@
 
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
+        <?php $user = \Auth::user();?>
+        <?php $photo = \App\UserProfilePhoto::where('user',$user->id)->first()?>
+        @if($photo)
         <div class="pull-left image">
-          <img src={{url('/resources/img/user.jpg')}} class="img-circle" alt="User Image">
+          <img src={{$photo->url}} class="img-circle" alt="User Image">
         </div>
-        <div class="pull-left info">
-          <?php $user = \Auth::user();?>
-          <p><?php echo $user->name?></p>
-          <p><?php echo $user->email?></p>
-        </div>
+        @else
+            <div class="pull-left image">
+              <img src={{url('/resources/img/user.jpg')}} class="img-circle" alt="User Image">
+            </div>
+          @endif
+            <div class="pull-left info">
+            <p><?php echo $user->name?></p>
+            <p><?php echo $user->email?></p>
+            </div>
       </div>
 
       <!-- Sidebar Menu -->
