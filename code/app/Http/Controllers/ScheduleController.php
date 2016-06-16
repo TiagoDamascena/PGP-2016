@@ -97,5 +97,9 @@ class ScheduleController extends Controller
             $scheduleFeedback = 'subject_already_exists';
             return view('Schedule', compact('scheduleFeedback'));
         }
+        else {
+            $subject->save();
+            return redirect(url('/schedule'));
+        }
     }
 }
