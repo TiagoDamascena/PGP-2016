@@ -15,6 +15,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Subject;
 
 class ScheduleController extends Controller
 {
@@ -96,7 +97,14 @@ class ScheduleController extends Controller
             $scheduleFeedback = 'subject_already_exists';
             return view('Schedule', compact('scheduleFeedback'));
         }
+<<<<<<< HEAD
         $subject->save();
         return redirect(url('/schedule'));
     }
+=======
+		$subject->save();
+		return redirect(url('/schedule'));
+
+	}
+>>>>>>> feature/TASK-26
 }
