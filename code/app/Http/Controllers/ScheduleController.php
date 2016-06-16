@@ -7,16 +7,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Subject;
 use App\User;
 use App\SchoolYear;
 use App\SchoolTerm;
+use App\Subject;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use App\Subject;
 
 class ScheduleController extends Controller
 {
@@ -67,6 +66,26 @@ class ScheduleController extends Controller
 		return redirect(url('/schedule'));
 	}
 
+    public function editSchoolYear ($yearId) {
+        $schoolYear = SchoolYear::where('id',$yearId)->first();
+        if ($schoolYear) {
+            $schoolYear->name = Input::get('name');
+            $schoolYear->start_date = Input::get('startDate');
+            $schoolYear->end_date = Input::get('endDate');
+
+            if(strtotime($schoolYear->start_date) >= strtotime($schoolYear->end_date)) {
+                $scheduleFeedback = 'school_year_date_error';
+                return view('Schedule',compact('scheduleFeedback'));
+            }
+
+            $schoolYear->save();
+            return redirect(url('/schedule'));
+        } else {
+            $scheduleFeedback = 'school_year_null';
+            return view('Schedule',compact('scheduleFeedback'));
+        }
+    }
+
 	public function createSchoolTerm ($yearID) {
 		$user = \Auth::user();
 		$schoolTerm = new SchoolTerm();
@@ -89,7 +108,7 @@ class ScheduleController extends Controller
         $schoolTerm->save();
 		return redirect(url('/schedule'));
 	}
-
+    
 	public function createSubject($schoolTermID)
     {
         $user = \Auth::user();
@@ -103,9 +122,8 @@ class ScheduleController extends Controller
             $scheduleFeedback = 'subject_already_exists';
             return view('Schedule', compact('scheduleFeedback'));
         }
-        else {
-            $subject->save();
-            return redirect(url('/schedule'));
-        }
+        
+        $subject->save();
+        return redirect(url('/schedule'));
     }
 }
