@@ -41,6 +41,17 @@ class FBAuthController extends Controller
         }
         else {
             \Auth::login($user,true);
+            $photo = UserProfilePhoto::where('user', $user->id)->first();
+            if($photo){
+                $photo->url = $userFB->getAvatar();
+                $photo->save();
+            }
+            else{
+                $photo = new UserProfilePhoto();
+                $photo->user = $user->id;
+                $photo->url = $userFB->getAvatar();
+                $photo->save();    
+            }
             return redirect(url('/home'));
         }
     }
