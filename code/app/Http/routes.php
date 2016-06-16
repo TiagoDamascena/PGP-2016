@@ -48,6 +48,8 @@
 
 \Route::get('/getTerms/{yearId}', 'ScheduleController@getTerms');
 
+\Route::get('/getSubjects/{termId}', 'ScheduleController@getSubjects');
+
 \Route::get('/subject/{subject_id}', function ($subject_id){
     if (Auth::check()){
         $subject = \App\Subject::where('id',$subject_id)->first();

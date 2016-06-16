@@ -322,6 +322,7 @@
     currentTerm = termId;
     $('[id^="term-"]').removeClass("active");
     $('#'+this.id).addClass("active");
+    loadSubjects(termId);
   });
 
   function loadYears() {
@@ -351,6 +352,20 @@
                                 '<button class="btn btn-box-tool" type="button"><i class="fa fa-pencil"></i></button>' +
                               '</div>' +
                            '</a>');
+      })
+    });
+  }
+
+  function loadSubjects(termId) {
+    $.get('getSubjects/' + termId, function (subjects) {
+      $('#subjects').html("");
+      $.each(subjects, function (key, value) {
+        $('#subjects').append('<a class="btn btn-block btn-default box-header" id="subject-'+value.id+'" name="subject" href="{{url('/subject')}}'+'/'+value.id+'">' +
+                                '<h3 class="box-title">'+value.name+'</h3>' +
+                                '<div class="box-tools pull-right">' +
+                                '<button class="btn btn-box-tool" type="button"><i class="fa fa-pencil"></i></button>' +
+                                '</div>' +
+                              '</a>');
       })
     });
   }
