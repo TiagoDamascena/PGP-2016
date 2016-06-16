@@ -16,7 +16,7 @@ class LoginController extends Controller
 {
     public function loginAuthenticate()
     {
-        $password = Input::get('password');
+        $password = hash('sha256', Input::get('password'));
         $email = Input::get('email');
         $user = User::where('email',$email)->first();
         $loginError = null;
@@ -50,9 +50,9 @@ class LoginController extends Controller
         $user = new User();
         $user->name = Input::get('nome');
         $user->email = Input::get('email');
-        $user->password = Input::get('password');
+        $user->password = hash('sha256', Input::get('password'));
         $user->creationDate = date("Y-m-d H:i:s");
-        $confirmPassword = Input::get('confirmPassword');
+        $confirmPassword = hash('sha256', Input::get('confirmPassword'));
         
         $compare = User::where('email',$user->email)->first();
         if($compare){
