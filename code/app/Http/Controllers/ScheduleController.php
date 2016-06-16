@@ -7,6 +7,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Subject;
 use App\User;
 use App\SchoolYear;
 use App\SchoolTerm;
@@ -35,6 +36,11 @@ class ScheduleController extends Controller
     public function getTerms ($yearId) {
         $terms = SchoolTerm::where('year',$yearId)->orderBy('name')->get();
         return \Response::json($terms);
+    }
+
+    public function getSubjects ($termId) {
+        $subjects = Subject::where('term',$termId)->orderBy('name')->get();
+        return \Response::json($subjects);
     }
 
     public function createSchoolYear () {
