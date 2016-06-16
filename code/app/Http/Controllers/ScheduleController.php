@@ -108,6 +108,26 @@ class ScheduleController extends Controller
         $schoolTerm->save();
 		return redirect(url('/schedule'));
 	}
+
+    public function editSchoolTerm ($termId) {
+        $schoolTerm = SchoolTerm::where('id',$termId)->first();
+        if ($schoolTerm) {
+            $schoolTerm->name = Input::get('name');
+            $schoolTerm->start_date = Input::get('startDate');
+            $schoolTerm->end_date = Input::get('endDate');
+
+            if(strtotime($schoolTerm->start_date) >= strtotime($schoolTerm->end_date)) {
+                $scheduleFeedback = 'school_term_date_error';
+                return view('Schedule',compact('scheduleFeedback'));
+            }
+
+            $schoolTerm->save();
+            return redirect(url('/schedule'));
+        } else {
+            $scheduleFeedback = 'school_term_null';
+            return view('Schedule',compact('scheduleFeedback'));
+        }
+    }
     
 	public function createSubject($schoolTermID)
     {

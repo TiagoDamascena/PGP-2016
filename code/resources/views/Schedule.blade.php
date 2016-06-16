@@ -310,6 +310,50 @@
   </div>
 </div>
 
+<!-- Modal Edit Term -->
+<div class="modal fade" id="editTermModal" tabindex="-1" role="dialog" aria-labelledby="editTermModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Edit School Term</h4>
+      </div>
+      <form action="{{url('/newSchoolTerm')}}" method="get">
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group has-feedback col-sm-12">
+              <input type="text" class="form-control" placeholder="Term name" name="name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group has-feedback col-sm-6">
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="ion-calendar"></i>
+                </div>
+                <input type="text" class="form-control pull-right" id="editTermStartDate" placeholder="Start date" name="startDate">
+              </div>
+            </div>
+            <div class="form-group has-feedback col-sm-6">
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="ion-calendar"></i>
+                </div>
+                <input type="text" class="form-control pull-right" id="editTermEndDate" placeholder="End date" name="endDate">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save term</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.2.0 -->
