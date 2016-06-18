@@ -100,7 +100,7 @@ class ScheduleController extends Controller
             return view('Schedule',compact('scheduleFeedback'));
         }
 
-        if(strtotime($schoolTerm->startDate) >= strtotime($schoolTerm->endDate)){
+        if(strtotime($schoolTerm->start_date) >= strtotime($schoolTerm->end_date)){
         	$scheduleFeedback = 'school_term_date_error';
             return view('Schedule',compact('scheduleFeedback'));
         }

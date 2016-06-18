@@ -90,7 +90,11 @@
 
 \Route::get('/newSchoolYear', 'ScheduleController@createSchoolYear');
 
+\Route::get('/editSchoolYear/{yearId}', 'ScheduleController@editSchoolYear');
+
 \Route::get('/newSchoolTerm/{yearID}', 'ScheduleController@createSchoolTerm');
+
+\Route::get('/edtSchoolTerm/{termId}', 'ScheduleController@editSchoolTerm');
 
 \Route::get('/newSubject/{schoolTermID}', 'ScheduleController@createSubject');
 
