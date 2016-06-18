@@ -3,3 +3,4 @@
 /code/.env
 /sh.exe.stackdump
 /code/vendor/
+.idea/
