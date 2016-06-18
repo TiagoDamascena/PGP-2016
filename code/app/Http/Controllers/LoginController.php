@@ -8,12 +8,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Change_password;
 use App\Jobs\Sender;
 use App\User;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Input;
 class LoginController extends Controller
 {
+    public function indexLogin(){
+        if (\Auth::check()){
+            return redirect(url('/home'));
+        }
+        $loginError = null;
+        return view('Login',compact('loginError'));
+    }
+
+    public function indexRegister(){
+        if (\Auth::check()){
+            return redirect(url('/home'));
+        }
+        $newUserError = null;
+        return view('Register', compact('newUserError'));
+    }
+
+    public function indexRecovery($unique_key){
+        if(!Change_password::where('unique_key',$unique_key)->first()){
+            die('Recovery Password - User not Found');
+        }
+        $errorRecoveryPassword = null;
+        return view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
+    }
+    
     public function loginAuthenticate()
     {
         $password = hash('sha256', Input::get('password'));

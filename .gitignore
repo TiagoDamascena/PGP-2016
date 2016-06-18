@@ -1,7 +1,5 @@
-code/.idea/MyStudentLife.iml
-code/.idea/blade.xml
-code/.idea/copyright/profiles_settings.xml
-code/.idea/modules.xml
-code/.idea/workspace.xml
-code/app/Http/routes.php.orig
-code/app/Jobs/Sender.php.rej
+
+/code/.idea/
+/code/.env
+/sh.exe.stackdump
+/code/vendor/

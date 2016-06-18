@@ -8,14 +8,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Support\Facades\Input;
-use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class HomeController extends Controller
 {
-    
+    public function indexHome(){
+            if (\Auth::check()){
+                return view('Home');
+            }
+            return redirect(url('/userNotLogged'));
+    }
 }

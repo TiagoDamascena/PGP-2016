@@ -11,66 +11,25 @@
 |
 */
 
-\Route::get('/', function () {
-    if (Auth::check()){
-        return redirect(url('/home'));
-    }
-    $loginError = null;
-    return view('Login',compact('loginError'));
-});
+\Route::get('/', 'LoginController@indexLogin');
 
-\Route::get('/register', function () {
-    if (Auth::check()){
-        return redirect(url('/home'));
-    }
-    $newUserError = null;
-    return view('Register', compact('newUserError'));
-});
+\Route::get('/register', 'LoginController@indexRegister');
 
-\Route::get('/home', function (){
-    if (Auth::check()){
-        return view('Home');
-    }
-    return redirect(url('/userNotLogged'));
-});
+\Route::get('/recoveryPassword/{unique_key}','LoginController@indexRecovery');
 
-\Route::get('/settings', function (){
-    if (Auth::check()){
-        $settingsFeedback = null;
-        return view('Settings', compact('settingsFeedback'));
-    }
-    return redirect(url('/userNotLogged'));
-});
+\Route::get('/home', 'HomeController@indexHome');
 
-\Route::get('/schedule', 'ScheduleController@index');
+\Route::get('/settings', 'SettingsController@indexSettings');
+
+\Route::get('/schedule', 'ScheduleController@indexSchedule');
+
+\Route::get('/subject/{subject_id}', 'SubjectController@indexSubject');
 
 \Route::get('/getYears', 'ScheduleController@getYears');
 
 \Route::get('/getTerms/{yearId}', 'ScheduleController@getTerms');
 
 \Route::get('/getSubjects/{termId}', 'ScheduleController@getSubjects');
-
-\Route::get('/subject/{subject_id}', function ($subject_id){
-    if (Auth::check()){
-        $subject = \App\Subject::where('id',$subject_id)->first();
-        if(!$subject) {
-            return redirect(url('/home'));
-        } else {
-            $subjectFeedback = null;
-            return view('Subject', compact('subject','subjectFeedback'));
-        }
-    }
-    return redirect(url('/userNotLogged'));
-});
-
-\Route::get('/recoveryPassword/{unique_key}',function ($unique_key){
-
-    if(!\App\Change_password::where('unique_key',$unique_key)->first()){
-        die('Recovery Password - User not Found');
-    }
-    $errorRecoveryPassword = null;
-    return view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
-});
 
 \Route::get('/newUser','LoginController@newUser');
 

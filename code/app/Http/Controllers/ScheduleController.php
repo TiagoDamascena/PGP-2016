@@ -7,19 +7,14 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\SchoolYear;
 use App\SchoolTerm;
 use App\Subject;
 use Illuminate\Support\Facades\Input;
-use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class ScheduleController extends Controller
 {
-    public function index () {
+    public function indexSchedule () {
         if (\Auth::check()){
             $scheduleFeedback = null;
             return view('Schedule', compact('scheduleFeedback'));

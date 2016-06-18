@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $room
  * @property string $description
  */
-class Exam extends Model
+class Exam extends Base
 {
     protected $table = 'exams';
 

@@ -11,13 +11,18 @@ namespace App\Http\Controllers;
 use App\Change_password;
 use App\User;
 use Illuminate\Support\Facades\Input;
-use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
 
 class SettingsController extends Controller
 {
+    public function indexSettings(){
+            if (\Auth::check()){
+                $settingsFeedback = null;
+                return view('Settings', compact('settingsFeedback'));
+            }
+            return redirect(url('/userNotLogged'));
+    }
+    
     public function changeName() {
         $settingsFeedback = null;
         

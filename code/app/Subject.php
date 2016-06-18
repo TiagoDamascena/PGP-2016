@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $teacher
  */
-class Subject extends Model
+class Subject extends Base
 {
     protected $table = 'subjects';
 

@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property int user
  * @property string url
  */
-class UserProfilePhoto extends Authenticatable
+class UserProfilePhoto extends Base
 {
 
     protected $table = 'user_profile_picture';

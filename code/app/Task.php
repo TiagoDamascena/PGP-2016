@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property boolean $complete
  */
-class Task extends Model
+class Task extends Base
 {
     protected $table = 'tasks';
 

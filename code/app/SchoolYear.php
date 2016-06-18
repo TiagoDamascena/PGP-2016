@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property date $start_date
  * @property date $end_date
  */
-class SchoolYear extends Model
+class SchoolYear extends Base
 {
     protected $table = 'school_years';
 
