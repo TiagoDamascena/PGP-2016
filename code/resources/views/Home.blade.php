@@ -4,5 +4,5 @@
 
 @section('content')
   @section('description', 'Your home page')
-  <!-- Content Here --!>
+  
 @endsection
