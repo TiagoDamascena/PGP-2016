@@ -148,3 +148,139 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Show Tasks -->
+<div class="modal fade" id="showTasksModal" tabindex="-1" role="dialog" aria-labelledby="showTasksModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Subject {{$subject->id}} - Tasks</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="info">
+                                <th>#</th>
+                                <th>Subject</th>
+                                <th>Due Date</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Completed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($subject->tasks()->get() as $task)
+                                <tr>
+                                    <td>{{$task->id}}</td>
+                                    <td>{{$task->subject}}</td>
+                                    <td>{{\Carbon\Carbon::createFromFormat('Y-m-d', $task->due_date)->format('d/m/Y')}}</td>
+                                    <td>{{$task->title}}</td>
+                                    <td>{{$task->description}}</td>
+                                    <td><i class="fa fa-{{$task->complete ? 'check-' : ''}}square-o"></i></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Show Exams -->
+<div class="modal fade" id="showExamsModal" tabindex="-1" role="dialog" aria-labelledby="showExamsModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Subject {{$subject->id}} - Exams</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr class="info">
+                            <th>#</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>Building</th>
+                            <th>Room</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($subject->exams()->get() as $exam)
+                            <tr>
+                                <td>{{$exam->id}}</td>
+                                <td>{{$exam->subject}}</td>
+                                <td>{{\Carbon\Carbon::createFromFormat('Y-m-d', $exam->date)->format('d/m/Y')}}</td>
+                                <td>{{$exam->start_time}}</td>
+                                <td>{{$exam->building}}</td>
+                                <td>{{$exam->room}}</td>
+                                <td>{{$exam->description}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Show Schedules -->
+<div class="modal fade" id="showSchedulesModal" tabindex="-1" role="dialog" aria-labelledby="showSchedulesModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Subject {{$subject->id}} - Schedules</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr class="info">
+                            <th>#</th>
+                            <th>Subject</th>
+                            <th>Building</th>
+                            <th>Room</th>
+                            <th>Day</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($subject->schedules()->get() as $schedule)
+                            <tr>
+                                <td>{{$schedule->id}}</td>
+                                <td>{{$schedule->subject}}</td>
+                                <td>{{$schedule->building}}</td>
+                                <td>{{$schedule->room}}</td>
+                                <th>{{date('l', strtotime("Saturday +{$schedule->day} days"))}}</th>
+                                <td>{{$schedule->end_time}}</td>
+                                <td>{{$schedule->start_time}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

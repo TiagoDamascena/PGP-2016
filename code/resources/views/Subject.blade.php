@@ -17,6 +17,20 @@
       <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newScheduleModal">New Schedule</button>
     </div>
   </div>
+
+<div class="col-md-3 col-md-offset-2">
+  <div class="row">
+    <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#showTasksModal">Show Tasks</button>
+  </div>
+  </br>
+  <div class="row">
+    <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#showExamsModal">Show Exams</button>
+  </div>
+  </br>
+  <div class="row">
+    <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#showSchedulesModal">Show Schedules</button>
+  </div>
+</div>
 @endsection
 
 @include('layouts.subject_modals')

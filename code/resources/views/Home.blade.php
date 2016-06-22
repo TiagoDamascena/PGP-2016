@@ -2,7 +2,8 @@
 
 @section('title', 'Home')
 
+@section('description', 'Your home page')
+
 @section('content')
-  @section('description', 'Your home page')
   
 @endsection
