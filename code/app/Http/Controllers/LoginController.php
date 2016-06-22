@@ -8,15 +8,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Change_password;
 use App\Jobs\Sender;
 use App\User;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Input;
 class LoginController extends Controller
 {
+    public function indexLogin(){
+        if (\Auth::check()){
+            return redirect(url('/home'));
+        }
+        $loginError = null;
+        return view('Login',compact('loginError'));
+    }
+
+    public function indexRegister(){
+        if (\Auth::check()){
+            return redirect(url('/home'));
+        }
+        $newUserError = null;
+        return view('Register', compact('newUserError'));
+    }
+
+    public function indexRecovery($unique_key){
+        if(!Change_password::where('unique_key',$unique_key)->first()){
+            die('Recovery Password - User not Found');
+        }
+        $errorRecoveryPassword = null;
+        return view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
+    }
+    
     public function loginAuthenticate()
     {
-        $password = Input::get('password');
+        $password = hash('sha256', Input::get('password'));
         $email = Input::get('email');
         $user = User::where('email',$email)->first();
         $loginError = null;
@@ -50,9 +74,9 @@ class LoginController extends Controller
         $user = new User();
         $user->name = Input::get('nome');
         $user->email = Input::get('email');
-        $user->password = Input::get('password');
+        $user->password = hash('sha256', Input::get('password'));
         $user->creationDate = date("Y-m-d H:i:s");
-        $confirmPassword = Input::get('confirmPassword');
+        $confirmPassword = hash('sha256', Input::get('confirmPassword'));
         
         $compare = User::where('email',$user->email)->first();
         if($compare){
@@ -85,7 +109,6 @@ class LoginController extends Controller
         $loginError = 'email_sent';
         return view('Login',compact('loginError'));
     }
-    
     
 
 }

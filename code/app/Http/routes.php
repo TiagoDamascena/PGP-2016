@@ -11,66 +11,25 @@
 |
 */
 
-\Route::get('/', function () {
-    if (Auth::check()){
-        return redirect(url('/home'));
-    }
-    $loginError = null;
-    return view('Login',compact('loginError'));
-});
+\Route::get('/', 'LoginController@indexLogin');
 
-\Route::get('/register', function () {
-    if (Auth::check()){
-        return redirect(url('/home'));
-    }
-    $newUserError = null;
-    return view('Register', compact('newUserError'));
-});
+\Route::get('/register', 'LoginController@indexRegister');
 
-\Route::get('/home', function (){
-    if (Auth::check()){
-        return view('Home');
-    }
-    return redirect(url('/userNotLogged'));
-});
+\Route::get('/recoveryPassword/{unique_key}','LoginController@indexRecovery');
 
-\Route::get('/settings', function (){
-    if (Auth::check()){
-        $settingsFeedback = null;
-        return view('Settings', compact('settingsFeedback'));
-    }
-    return redirect(url('/userNotLogged'));
-});
+\Route::get('/home', 'HomeController@indexHome');
 
-\Route::get('/schedule', function (){
-    if (Auth::check()){
-        $scheduleFeedback = null;
-        return view('Schedule', compact('scheduleFeedback'));
-    }
-    return redirect(url('/userNotLogged'));
-});
+\Route::get('/settings', 'SettingsController@indexSettings');
 
-\Route::get('/subject/{subject_id}', function ($subject_id){
-    if (Auth::check()){
-        $subject = \App\Subject::where('id',$subject_id)->first();
-        if(!$subject) {
-            return redirect(url('/home'));
-        } else {
-            $subjectFeedback = null;
-            return view('Subject', compact('subject','subjectFeedback'));
-        }
-    }
-    return redirect(url('/userNotLogged'));
-});
+\Route::get('/schedule', 'ScheduleController@indexSchedule');
 
-\Route::get('/recoveryPassword/{unique_key}',function ($unique_key){
+\Route::get('/subject/{subject_id}', 'SubjectController@indexSubject');
 
-    if(!\App\Change_password::where('unique_key',$unique_key)->first()){
-        die('Recovery Password - User not Found');
-    }
-    $errorRecoveryPassword = null;
-    return view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
-});
+\Route::get('/getYears', 'ScheduleController@getYears');
+
+\Route::get('/getTerms/{yearId}', 'ScheduleController@getTerms');
+
+\Route::get('/getSubjects/{termId}', 'ScheduleController@getSubjects');
 
 \Route::get('/newUser','LoginController@newUser');
 
@@ -90,7 +49,13 @@
 
 \Route::get('/newSchoolYear', 'ScheduleController@createSchoolYear');
 
+\Route::get('/editSchoolYear/{yearId}', 'ScheduleController@editSchoolYear');
+
 \Route::get('/newSchoolTerm/{yearID}', 'ScheduleController@createSchoolTerm');
+
+\Route::get('/edtSchoolTerm/{termId}', 'ScheduleController@editSchoolTerm');
+
+\Route::get('/newSubject/{schoolTermID}', 'ScheduleController@createSubject');
 
 \Route::get('/newSchedule/{subject_id}', 'SubjectController@createSchedule');
 
@@ -101,3 +66,7 @@
 Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
 
 Route::get('/passwordChanged/{unique_key}','SettingsController@recoverPassword');
+
+Route::get('/fbLogin', 'FBAuthController@login');
+Route::get('/fbCallback', 'FBAuthController@callback');
+Route::get('/fbInputPassword/{userEmail}', 'FBAuthController@register');

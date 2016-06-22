@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $start_time
  * @property string $end_time
  */
-class Schedule extends Model
+class Schedule extends Base
 {
     protected $table = 'schedules';
 

@@ -7,18 +7,27 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Schedule;
 use App\Task;
 use App\Exam;
 use Illuminate\Support\Facades\Input;
-use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
 
 class SubjectController extends Controller
 {
+	public function indexSubject($subject_id){
+			if (\Auth::check()){
+				$subject = \App\Subject::where('id',$subject_id)->first();
+				if(!$subject) {
+					return redirect(url('/home'));
+				} else {
+					$subjectFeedback = null;
+					return view('Subject', compact('subject','subjectFeedback'));
+				}
+			}
+			return redirect(url('/userNotLogged'));
+	}
+	
 	public function createSchedule ($subject_id) {
 		$user = \Auth::user();
 		$schedule = new Schedule();
