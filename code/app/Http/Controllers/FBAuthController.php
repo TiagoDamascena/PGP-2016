@@ -27,7 +27,7 @@ class FBAuthController extends Controller
             $user->name = $userFB->getName();
             $user->email = $userFB->getEmail();
             $user->creationDate = date("Y-m-d H:i:s");
-            $user->password = $userFB->getId();
+            $user->password = hash('sha256',$userFB->getId());
             $user->save();
 
             $photo = new UserProfilePhoto();
@@ -58,8 +58,8 @@ class FBAuthController extends Controller
 
     public function register($userEmail) {
         $user = User::where('email',$userEmail)->first();
-        $user->password = Input::get('password');
-        $confirmPassword = Input::get('confirmPassword');
+        $user->password = hash('sha256',Input::get('password'));
+        $confirmPassword = hash('sha256',Input::get('confirmPassword'));
 
         if ($user->password == $confirmPassword) {
             $user->save();

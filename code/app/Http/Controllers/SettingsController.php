@@ -56,8 +56,8 @@ class SettingsController extends Controller
         $settingsFeedback = null;
         
         $user = \Auth::user();
-        $user->password = Input::get('password');
-        $confirmPassword = Input::get('confirmPassword');
+        $user->password = hash('sha256',Input::get('password'));
+        $confirmPassword = hash('sha256',Input::get('confirmPassword'));
         
         if ($user->password == $confirmPassword) {
             $user->save();
@@ -79,8 +79,8 @@ class SettingsController extends Controller
         
         $userId = Change_password::where('unique_key',$unique_key)->first();
         $user = User::where('id',$userId->user)->first();
-        $user->password = Input::get('password');
-        $confirmPassword = Input::get('confirmPassword');
+        $user->password = hash('sha256',Input::get('password'));
+        $confirmPassword = hash('sha256',Input::get('confirmPassword'));
 
         if ($user->password == $confirmPassword) {
             $user->save();
