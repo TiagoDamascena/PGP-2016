@@ -1,4 +1,5 @@
-var subjectId = 21;
+var subjectId;
+var currentSchedule;
 
 $(function() {
     loadSchedule();
@@ -13,7 +14,7 @@ function loadSchedule() {
                                     '<div class="box-header with-border">' +
                                         '<h3 class="box-title">'+value.day+'</h3>' +
                                         '<div class="box-tools pull-right">' +
-                                            '<button class="btn btn-box-tool"><i class="fa fa-pencil"></i></button>' +
+                                            '<button class="btn btn-box-tool" name="edit" id="schedule-'+value.id+'" data-toggle="modal" data-target="#editScheduleModal"><i class="fa fa-pencil"></i></button>' +
                                             '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>' +
                                         '</div>' +
                                     '</div>' +
@@ -29,7 +30,7 @@ function loadSchedule() {
 function loadTasks() {
     $.get('getTasks/' + subjectId, function (tasks) {
         $.each(tasks, function (key, value) {
-            $('#tasks').append('<div class="box box-primary box-solid collapsed-box">' +
+            $('#tasks').append('<div class="box box-primary box-solid collapsed-box" id="task-'+value.id+'">' +
                                     '<div class="box-header with-border">' +
                                         '<h3 class="box-title">'+value.title+'</h3>' +
                                         '<div class="box-tools pull-right">' +
@@ -50,7 +51,7 @@ function loadTasks() {
 function loadExams() {
     $.get('getExams/' + subjectId, function (schedule) {
         $.each(schedule, function (key, value) {
-            $('#exams').append('<div class="box box-primary box-solid collapsed-box">' +
+            $('#exams').append('<div class="box box-primary box-solid collapsed-box" id="exam-'+value.id+'">' +
                                     '<div class="box-header with-border">' +
                                         '<h3 class="box-title">'+value.date+'</h3>' +
                                         '<div class="box-tools pull-right">' +
@@ -67,6 +68,13 @@ function loadExams() {
         })
     });
 }
+
+$('#schedule').on("click", ("[name='edit']"), function () {
+    var scheduleName = this.id.split('-');
+    var scheduleId = scheduleName[1];
+
+    currentSchedule = scheduleId;
+});
 
 //Date picker
 $(".select2").select2();
@@ -91,4 +99,9 @@ $("#scheduleStartTime").timepicker({
 $("#scheduleEndTime").timepicker({
     showMeridian: false,
     showInputs: false
+});
+
+$('#editScheduleModal').on("submit", ("[name='form']"), function () {
+    this.action = 'editSchedule/'+currentSchedule;
+    return true;
 });

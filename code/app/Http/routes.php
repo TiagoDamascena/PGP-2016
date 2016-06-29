@@ -31,6 +31,8 @@
 
 \Route::get('/subject/getExams/{subjectId}', 'SubjectController@getExams');
 
+\Route::get('/subject/editSchedule/{scheduleId}', 'SubjectController@editSchedule');
+
 \Route::get('/getYears', 'ScheduleController@getYears');
 
 \Route::get('/getTerms/{yearId}', 'ScheduleController@getTerms');
