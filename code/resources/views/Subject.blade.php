@@ -2,6 +2,16 @@
 
 @section('title', 'Subject')
 
+@section('head')
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href={{url('/plugins/datepicker/datepicker3.css')}}>
+  <!-- Select2 -->
+  <link rel="stylesheet" href={{url('/plugins/select2/select2.min.css')}}>
+  <!-- bootstrap timepicker -->
+  <link rel="stylesheet" href={{url('/plugins/timepicker/bootstrap-timepicker.css')}}>
+
+@endsection
+
 @section('content')
   @section('description', 'Your Subject')
   <div class="col-md-3">
@@ -33,7 +43,9 @@
 </div>
 @endsection
 
-@include('layouts.subject_modals')
+@section('page_end')
+  @include('layouts.subject_modals')
+@endsection
 
 @section('include_js')
   <!-- Datepicker -->
@@ -41,7 +53,7 @@
   <!-- Timepicker -->
   <script src={{url('/plugins/timepicker/bootstrap-timepicker.min.js')}}></script>
   <!-- Select2 -->
-  <script src={{url('/plugins/select2/select2.full.min.js')}}></script>
+  <script src={{url('/plugins/select2/select2.min.js')}}></script>
 
   <script src={{url('/resources/js/pages/subject.js')}}></script>
 @endsection
