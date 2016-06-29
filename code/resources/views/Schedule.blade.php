@@ -2,6 +2,11 @@
 
 @section('title', 'Schedule')
 
+@section('head')
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href={{url('/plugins/datepicker/datepicker3.css')}}>
+@endsection
+
 @section('content')
   @section('description', 'Edit your schedule')
 
@@ -46,7 +51,9 @@
   </div>
 @endsection
 
-@include('layouts.schedule_modals')
+@section('page_end')
+  @include('layouts.schedule_modals')
+@endsection
 
 @section('include_js')
   <!-- Datepicker -->

@@ -25,6 +25,14 @@
 
 \Route::get('/subject/{subject_id}', 'SubjectController@indexSubject');
 
+\Route::get('/subject/getSchedule/{subjectId}', 'SubjectController@getSchedule');
+
+\Route::get('/subject/getTasks/{subjectId}', 'SubjectController@getTasks');
+
+\Route::get('/subject/getExams/{subjectId}', 'SubjectController@getExams');
+
+\Route::get('/subject/editSchedule/{scheduleId}', 'SubjectController@editSchedule');
+
 \Route::get('/getYears', 'ScheduleController@getYears');
 
 \Route::get('/getTerms/{yearId}', 'ScheduleController@getTerms');

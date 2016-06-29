@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Schedule;
+use App\Subject;
 use App\Task;
 use App\Exam;
 use Illuminate\Support\Facades\Input;
@@ -85,5 +86,42 @@ class SubjectController extends Controller
 			$exam->save();
 			return redirect(url('/subject/'.$subject_id));
 		}
+	}
+
+	public function editSchedule ($scheduleId) {
+		$schedule = Schedule::where('id', $scheduleId)->first();
+		if($schedule) {
+			$schedule->building = Input::get('building');
+			$schedule->room = Input::get('room');
+			$schedule->day = implode(';',Input::get('day'));
+			$schedule->start_time = Input::get('startTime');
+			$schedule->end_time = Input::get('endTime');
+
+			if(strtotime($schedule->start_time) >= strtotime($schedule->end_time)){
+				$subjectFeedback = 'schedule_date_error';
+				return view('Subject',compact('subject','subjectFeedback'));
+			}
+
+			$schedule->save();
+			return redirect(url('/subject/'.$schedule->subject));
+		} else {
+			$scheduleFeedback = 'schedule_null';
+			return view('Subject',compact('subject','subjectFeedback'));
+		}
+	}
+
+	public function getSchedule ($subjectId) {
+		$schedule = Schedule::where('subject',$subjectId)->orderBy('day')->get();
+		return \Response::json($schedule);
+	}
+
+	public function getTasks ($subjectId) {
+		$tasks = Task::where('subject',$subjectId)->orderBy('due_date')->get();
+		return \Response::json($tasks);
+	}
+
+	public function getExams ($subjectId) {
+		$exams = Exam::where('subject',$subjectId)->orderBy('date')->get();
+		return \Response::json($exams);
 	}
 }

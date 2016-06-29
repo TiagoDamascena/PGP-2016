@@ -90,6 +90,8 @@
             <div class="control-sidebar-bg"></div>
         </div>
 
+        @yield('page_end')
+
         <!-- REQUIRED JS SCRIPTS -->
 
         <!-- jQuery 2.2.0 -->
