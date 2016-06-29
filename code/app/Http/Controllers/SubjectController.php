@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Schedule;
+use App\Subject;
 use App\Task;
 use App\Exam;
 use Illuminate\Support\Facades\Input;
@@ -85,5 +86,20 @@ class SubjectController extends Controller
 			$exam->save();
 			return redirect(url('/subject/'.$subject_id));
 		}
+	}
+
+	public function getSchedule ($subjectId) {
+		$schedule = Schedule::where('subject',$subjectId)->orderBy('day')->get();
+		return \Response::json($schedule);
+	}
+
+	public function getTasks ($subjectId) {
+		$tasks = Task::where('subject',$subjectId)->orderBy('due_date')->get();
+		return \Response::json($tasks);
+	}
+
+	public function getExams ($subjectId) {
+		$exams = Exam::where('subject',$subjectId)->orderBy('date')->get();
+		return \Response::json($exams);
 	}
 }

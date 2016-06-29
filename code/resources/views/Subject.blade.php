@@ -14,33 +14,46 @@
 
 @section('content')
   @section('description', 'Your Subject')
-  <div class="col-md-3">
-    <div class="row">
-      <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newTaskModal">New Task</button>
-    </div>
-    </br>
-    <div class="row">
-      <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newExamModal">New Exam</button>
-    </div>
-    </br>
-    <div class="row">
-      <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newScheduleModal">New Schedule</button>
-    </div>
-  </div>
 
-<div class="col-md-3 col-md-offset-2">
-  <div class="row">
-    <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#showTasksModal">Show Tasks</button>
+  <div class="col-md-4 col-xs-12">
+    <section class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Schedule</h3>
+      </div>
+      <div class="box-body" id="schedule">
+
+      </div>
+      <div class="box-footer">
+        <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newScheduleModal">New Schedule</button>
+      </div>
+    </section>
   </div>
-  </br>
-  <div class="row">
-    <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#showExamsModal">Show Exams</button>
+  <div class="col-md-4 col-xs-12">
+    <section class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Tasks</h3>
+      </div>
+      <div class="box-body" id="tasks">
+
+      </div>
+      <div class="box-footer">
+        <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newTaskModal">New Task</button>
+      </div>
+    </section>
   </div>
-  </br>
-  <div class="row">
-    <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#showSchedulesModal">Show Schedules</button>
+  <div class="col-md-4 col-xs-12">
+    <section class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Exams</h3>
+      </div>
+      <div class="box-body" id="exams">
+
+      </div>
+      <div class="box-footer">
+        <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newExamModal">New Exam</button>
+      </div>
+    </section>
   </div>
-</div>
 @endsection
 
 @section('page_end')

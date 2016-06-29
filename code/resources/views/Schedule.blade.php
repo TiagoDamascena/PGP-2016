@@ -51,7 +51,9 @@
   </div>
 @endsection
 
-@include('layouts.schedule_modals')
+@section('page_end')
+  @include('layouts.schedule_modals')
+@endsection
 
 @section('include_js')
   <!-- Datepicker -->
