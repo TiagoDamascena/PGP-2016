@@ -28,7 +28,15 @@ class SubjectController extends Controller
 			}
 			return redirect(url('/userNotLogged'));
 	}
-	
+
+	public function deleteSubject ($subject_id) {
+		$subject = Subject::where('id',$subject_id)->first();
+		if($subject) {
+			$subject->delete();
+			return redirect(url('/schedule'));
+		}
+	}
+
 	public function createSchedule ($subject_id) {
 		$user = \Auth::user();
 		$schedule = new Schedule();
