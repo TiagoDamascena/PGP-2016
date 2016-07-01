@@ -111,3 +111,8 @@ $('#editScheduleModal').on("submit", ("[name='form']"), function () {
     this.action = 'editSchedule/'+currentSchedule;
     return true;
 });
+
+$('#editSubjectModal').on("click", ("[name='delete']"), function () {
+    window.location.href = 'deleteSubject/'+subjectId;
+    return true;
+});

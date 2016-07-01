@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" name="delete">Delete</button>
                     <button type="submit" class="btn btn-primary">Save Subject</button>
                 </div>
             </form>
