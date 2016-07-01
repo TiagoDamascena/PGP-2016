@@ -101,6 +101,12 @@ $("#scheduleEndTime").timepicker({
     showInputs: false
 });
 
+
+$('#editSubjectModal').on("submit", ("[name='form']"), function () {
+    this.action = 'editSubject/'+subjectId;
+    return true;
+});
+
 $('#editScheduleModal').on("submit", ("[name='form']"), function () {
     this.action = 'editSchedule/'+currentSchedule;
     return true;
