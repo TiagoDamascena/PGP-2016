@@ -78,5 +78,11 @@ Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
 Route::get('/passwordChanged/{unique_key}','SettingsController@recoverPassword');
 
 Route::get('/fbLogin', 'FBAuthController@login');
+
 Route::get('/fbCallback', 'FBAuthController@callback');
+
 Route::get('/fbInputPassword/{userEmail}', 'FBAuthController@register');
+
+Route::get('/schedule/deleteYear/{yearID}', 'ScheduleController@removeSchoolYear');
+
+Route::get('/schedule/deleteTerm/{termID}', 'ScheduleController@removeSchoolTerm');

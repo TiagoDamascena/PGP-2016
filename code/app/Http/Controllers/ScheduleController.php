@@ -81,6 +81,14 @@ class ScheduleController extends Controller
         }
     }
 
+    public function removeSchoolYear ($yearId) {
+        $schoolYear = SchoolYear::where('id',$yearId)->first();
+        if ($schoolYear) {
+            $schoolYear->delete();
+            return redirect(url('/schedule'));
+        }
+    }
+
 	public function createSchoolTerm ($yearID) {
 		$user = \Auth::user();
 		$schoolTerm = new SchoolTerm();
@@ -124,6 +132,14 @@ class ScheduleController extends Controller
         }
     }
     
+    public function removeSchoolTerm ($termID) {
+        $schoolTerm = SchoolTerm::where('id',$termID)->first();
+        if ($schoolTerm) {
+            $schoolTerm->delete();
+            return redirect(url('/schedule'));
+        }
+    }
+
 	public function createSubject($schoolTermID)
     {
         $user = \Auth::user();
