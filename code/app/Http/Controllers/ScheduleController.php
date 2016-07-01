@@ -85,6 +85,7 @@ class ScheduleController extends Controller
         $schoolYear = SchoolYear::where('id',$yearId)->first();
         if ($schoolYear) {
             $schoolYear->delete();
+            return redirect(url('/schedule'));
         }
     }
 
@@ -131,10 +132,11 @@ class ScheduleController extends Controller
         }
     }
     
-    public function removeSchoolTerm ($termId) {
-        $schoolTerm = SchoolTerm::where('id',$termId)->first();
+    public function removeSchoolTerm ($termID) {
+        $schoolTerm = SchoolTerm::where('id',$termID)->first();
         if ($schoolTerm) {
             $schoolTerm->delete();
+            return redirect(url('/schedule'));
         }
     }
 
