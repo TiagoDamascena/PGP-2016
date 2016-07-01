@@ -141,4 +141,18 @@ class ScheduleController extends Controller
         $subject->save();
         return redirect(url('/schedule'));
     }
+
+    public function editSubject ($subjectId) {
+        $subject = Subject::where('id',$subjectId)->first();
+        if ($subject) {
+            $subject->name = Input::get('name');
+            $subject->teacher = Input::get('teacher');
+
+            $subject->save();
+            return redirect(url('/schedule'));
+        } else {
+            $scheduleFeedback = 'subject_null';
+            return view('Schedule',compact('scheduleFeedback'));
+        }
+    }
 }

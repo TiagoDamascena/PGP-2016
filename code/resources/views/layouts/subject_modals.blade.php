@@ -1,3 +1,34 @@
+<!-- Modal Edit Subject -->
+<div class="modal fade" id="editSubjectModal" tabindex="-1" role="dialog" aria-labelledby="editSubjectModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Create new Subject</h4>
+            </div>
+            <form name="form" method="get">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-12">
+                            <input type="text" class="form-control" placeholder="Subject name" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-12">
+                            <input type="text" class="form-control" placeholder="Teacher's name" name="teacher">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Subject</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Modal New Task -->
 <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel">
     <div class="modal-dialog">
@@ -203,6 +234,38 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save Schedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Edit Subject -->
+<div class="modal fade" id="editSubjectModal" tabindex="-1" role="dialog" aria-labelledby="editSubjectModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Create new Subject</h4>
+            </div>
+            <form name="form" method="get">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-12">
+                            <input type="text" class="form-control" placeholder="Subject name" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-12">
+                            <input type="text" class="form-control" placeholder="Teacher's name" name="teacher">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Subject</button>
                 </div>
             </form>
         </div>
