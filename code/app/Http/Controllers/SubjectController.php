@@ -57,6 +57,14 @@ class SubjectController extends Controller
         $schedule->save();
 		return redirect(url('/subject/'.$subject_id));
 	}
+	 
+	public function deleteSchedule ($schedule_id) {
+		$schedule = Schedule::where('id',$schedule_id)->first();
+		if($schedule) {
+			$schedule->delete();
+			return redirect(url('/schedule'));
+		}
+	}
 	
 	public function createTask ($subject_id) {
 		$user = \Auth::user();

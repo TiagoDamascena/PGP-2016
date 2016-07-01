@@ -88,3 +88,5 @@ Route::get('/schedule/deleteYear/{yearID}', 'ScheduleController@removeSchoolYear
 Route::get('/schedule/deleteTerm/{termID}', 'ScheduleController@removeSchoolTerm');
 
 Route::get('/subject/deleteSubject/{subject_id}', 'SubjectController@deleteSubject');
+
+Route::get('/subject/deleteSchedule/{schedule_id}', 'SubjectController@deleteSchedule');

@@ -116,3 +116,8 @@ $('#editSubjectModal').on("click", ("[name='delete']"), function () {
     window.location.href = 'deleteSubject/'+subjectId;
     return true;
 });
+
+$('#editScheduleModal').on("click", ("[name='delete']"), function () {
+    window.location.href = 'deleteSchedule/'+currentSchedule;
+    return true;
+});
