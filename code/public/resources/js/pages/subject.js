@@ -1,5 +1,6 @@
 var subjectId;
 var currentSchedule;
+var currentExam;
 
 $(function() {
     loadSchedule();
@@ -49,13 +50,13 @@ function loadTasks() {
 }
 
 function loadExams() {
-    $.get('getExams/' + subjectId, function (schedule) {
-        $.each(schedule, function (key, value) {
+    $.get('getExams/' + subjectId, function (exams) {
+        $.each(exams, function (key, value) {
             $('#exams').append('<div class="box box-primary box-solid collapsed-box" id="exam-'+value.id+'">' +
                                     '<div class="box-header with-border">' +
                                         '<h3 class="box-title">'+value.date+'</h3>' +
                                         '<div class="box-tools pull-right">' +
-                                            '<button class="btn btn-box-tool"><i class="fa fa-pencil"></i></button>' +
+                                            '<button class="btn btn-box-tool" name="edit" id="exam-'+value.id+'" data-toggle="modal" data-target="#editExamModal"><i class="fa fa-pencil"></i></button>' +
                                             '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>' +
                                         '</div>' +
                                     '</div>' +
@@ -74,6 +75,13 @@ $('#schedule').on("click", ("[name='edit']"), function () {
     var scheduleId = scheduleName[1];
 
     currentSchedule = scheduleId;
+});
+
+$('#exams').on("click", ("[name='edit']"), function () {
+    var examName = this.id.split('-');
+    var examId = examName[1];
+
+    currentExam = examId;
 });
 
 //Date picker
@@ -119,5 +127,10 @@ $('#editSubjectModal').on("click", ("[name='delete']"), function () {
 
 $('#editScheduleModal').on("click", ("[name='delete']"), function () {
     window.location.href = 'deleteSchedule/'+currentSchedule;
+    return true;
+});
+
+$('#editExamModal').on("submit", ("[name='form']"), function () {
+    this.action = 'editExam/'+currentExam;
     return true;
 });

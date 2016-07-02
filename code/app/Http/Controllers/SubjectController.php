@@ -104,6 +104,22 @@ class SubjectController extends Controller
 		}
 	}
 
+	public function editExam ($exam_id) {
+		$exam = Exam::where('id', $exam_id)->first();
+		if($exam) {
+			$exam->date = Input::get('date');
+			$exam->start_time = Input::get('start_time');
+			$exam->building = Input::get('building');
+			$exam->room = Input::get('room');
+			$exam->description = Input::get('description');
+			$exam->save();
+			return redirect(url('/subject/'.$exam->subject));
+		} else {
+			$scheduleFeedback = 'exam_null';
+			return view('Subject',compact('subject','subjectFeedback'));
+		}
+	}
+	
 	public function editSchedule ($scheduleId) {
 		$schedule = Schedule::where('id', $scheduleId)->first();
 		if($schedule) {

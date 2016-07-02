@@ -73,6 +73,8 @@
 
 \Route::get('/newExam/{subject_id}', 'SubjectController@createExam');
 
+\Route::get('/subject/editExam/{exam_id}', 'SubjectController@editExam');
+
 Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
 
 Route::get('/passwordChanged/{unique_key}','SettingsController@recoverPassword');
