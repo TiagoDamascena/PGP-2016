@@ -323,3 +323,42 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Edit Task -->
+<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Edit Task</h4>
+            </div>
+            <form name="form" method="get">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-6">
+                            <input type="text" class="form-control" placeholder="Task title" name="title">
+                        </div>
+                        <div class="form-group has-feedback col-sm-6">
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="ion-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="taskDueDate" placeholder="Due date" name="due_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-12">
+                            <textarea rows="10" class="form-control" placeholder="Task description" name="description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -83,6 +83,20 @@ class SubjectController extends Controller
 			return redirect(url('/subject/'.$subject_id));
 		}
 	}
+
+	public function editTask ($task_id) {
+		$task = Task::where('id', $task_id)->first();
+		if($task) {
+			$task->due_Date = Input::get('due_date');
+			$task->title = Input::get('title');
+			$task->description = Input::get('description');
+			$task->save();
+			return redirect(url('/subject/'.$task->subject));
+		} else {
+			$scheduleFeedback = 'task_null';
+			return view('Subject',compact('subject','subjectFeedback'));
+		}
+	}
 	
 	public function createExam ($subject_id) {
 		$user = \Auth::user();

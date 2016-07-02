@@ -71,6 +71,8 @@
 
 \Route::get('/newTask/{subject_id}', 'SubjectController@createTask');
 
+\Route::get('/subject/editTask/{task_id}', 'SubjectController@editTask');
+
 \Route::get('/newExam/{subject_id}', 'SubjectController@createExam');
 
 \Route::get('/subject/editExam/{exam_id}', 'SubjectController@editExam');

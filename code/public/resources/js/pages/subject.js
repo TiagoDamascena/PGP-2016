@@ -1,6 +1,7 @@
 var subjectId;
 var currentSchedule;
 var currentExam;
+var currentTask;
 
 $(function() {
     loadSchedule();
@@ -35,7 +36,7 @@ function loadTasks() {
                                     '<div class="box-header with-border">' +
                                         '<h3 class="box-title">'+value.title+'</h3>' +
                                         '<div class="box-tools pull-right">' +
-                                            '<button class="btn btn-box-tool"><i class="fa fa-pencil"></i></button>' +
+                                            '<button class="btn btn-box-tool" name="edit" id="task-'+value.id+'" data-toggle="modal" data-target="#editTaskModal"><i class="fa fa-pencil"></i></button>' +
                                             '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>' +
                                         '</div>' +
                                     '</div>' +
@@ -82,6 +83,13 @@ $('#exams').on("click", ("[name='edit']"), function () {
     var examId = examName[1];
 
     currentExam = examId;
+});
+
+$('#tasks').on("click", ("[name='edit']"), function () {
+    var taskName = this.id.split('-');
+    var taskId = taskName[1];
+
+    currentTask = taskId;
 });
 
 //Date picker
@@ -132,5 +140,10 @@ $('#editScheduleModal').on("click", ("[name='delete']"), function () {
 
 $('#editExamModal').on("submit", ("[name='form']"), function () {
     this.action = 'editExam/'+currentExam;
+    return true;
+});
+
+$('#editTaskModal').on("submit", ("[name='form']"), function () {
+    this.action = 'editTask/'+currentTask;
     return true;
 });
