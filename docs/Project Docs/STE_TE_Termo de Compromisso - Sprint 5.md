@@ -5,3 +5,4 @@ Tiago Damascena - 26/07/2016
 Jean Marcos - 26/07/2016
 João Gabriel - 26/07/2016
 Michel Berigo - 26/07/2016
+Bruno Messias 27/07/2016
