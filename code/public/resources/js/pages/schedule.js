@@ -127,3 +127,13 @@ $('#editTermModal').on("submit", ("[name='form']"), function () {
     this.action = 'editSchoolTerm/'+currentTerm;
     return true;
 });
+
+$('#editYearModal').on("click", ("[name='delete']"), function () {
+    window.location.href = 'schedule/deleteYear/'+currentYear;
+    return true;
+});
+
+$('#editTermModal').on("click", ("[name='delete']"), function () {
+    window.location.href = 'schedule/deleteTerm/'+currentTerm;
+    return true;
+});
