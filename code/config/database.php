@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => 'br-cdbr-azure-south-b.cloudapp.net',
+            'host' => 'mysql.hostinger.com.br',
             'port' => '3306',
-            'database' => 'mystudylife',
-            'username' => 'bb129cc90f6ffc',
-            'password' => 'd038a2a1',
+            'database' => 'u692567425_db',
+            'username' => 'u692567425_user',
+            'password' => 'eonikolas',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
