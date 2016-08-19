@@ -82,7 +82,7 @@
 
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    v0.2.0
+                    v2.0.0
                     <i class="fa fa-star"></i>
                 </div>
                 <strong>Copyright &copy; 2016 <a href="https://github.com/nikolassupremo/PGP-2016">Study Each</a>.</strong> Gerência de Projeto de Software.
