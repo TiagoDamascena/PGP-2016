@@ -1,7 +1,7 @@
 <snippet>
 <content>
 ## Project Name
-My Study Life
+Study Each
 
 ## Instruções
 Instruções importantes sobre este projeto se encontram dentro dos planos na pasta docs
