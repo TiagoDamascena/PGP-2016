@@ -1,6 +1,7 @@
-
-/code/.idea/
-/code/.env
-/sh.exe.stackdump
-/code/vendor/
-.idea/
+/node_modules
+/public/storage
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
