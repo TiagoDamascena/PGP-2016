@@ -1,6 +1,6 @@
 # My Study Life
 
-### Projeto
+### - Projeto
 Esse projeto foi inicialmente desenvolvido como trabalho 
 prático da disciplina de Gerência de Projetos 2016/01 do 
 curso de Engenharia de Software da Universidade Federal 
@@ -17,7 +17,22 @@ a metodologia eXtreme Programming(XP) ao processo de
 desenvolvimento e dar continuidade ao desenvolvimento da 
 aplicação.
 
-### Documentação
+### - Documentação
 Toda a documentação referente ao projeto se encontra na 
 pasta docs desse repositório. Incluindo documentação de
 projeto e de código.
+
+### - Instruções
+Abaixo se encontram as instruções para configurar a aplicação 
+e para executá-la.
+
+#### Instalação
+######LINUX
+1. Clonar esse repositório em sua máquina;
+2. Instalar o Docker e o Docker Compose;
+3. Entrar na pasta do projeto;
+4. Executar o arquivo install.sh;
+
+#### Execução
+######LINUX
+1. Executar o arquivo run.sh;
