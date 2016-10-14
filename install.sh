@@ -5,9 +5,9 @@ cp ./.env.example ./.env
 docker-compose build
 docker-compose up -d
 
-docker-compose exec workspace composer update
-docker-compose exec workspace php artisan key:generate && php artisan config:clear
-docker-compose exec workspace php artisan migrate
+docker-compose run -u laradock workspace composer update
+docker-compose run -u laradock workspace php artisan key:generate && php artisan config:clear
+docker-compose run -u laradock workspace php artisan migrate
 
 docker-compose kill
 
