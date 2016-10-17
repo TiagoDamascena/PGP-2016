@@ -8,8 +8,8 @@
     <link rel="stylesheet" href={{url('/bootstrap/css/bootstrap.min.css')}}>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href={{url('/resources/css/AdminLTE.min.css')}}>
-<link rel="stylesheet" href={{url('/resources/css/skins/skin-blue.min.css')}}>
+<link rel="stylesheet" href={{url('/resources/AdminLTE/css/AdminLTE.min.css')}}>
+<link rel="stylesheet" href={{url('/resources/AdminLTE/css/skins/skin-blue.min.css')}}>
 </head>
 
 <body class="hold-transition register-page">
