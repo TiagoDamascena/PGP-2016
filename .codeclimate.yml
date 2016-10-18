@@ -1,0 +1,36 @@
+engines:
+  phpcodesniffer:
+    enabled: true
+    config:
+      file_extensions: "php"
+      standard: "codesniffer-standard.xml"
+  duplication:
+    enabled: true
+    config:
+      languages:
+        php:
+        javascript:
+ratings:
+  paths:
+  - "**.php"
+exclude_paths:
+- "**/vendor/"
+- "**/index.php"
+- "app/Console/"
+- "app/Exceptions/Handler.php"
+- "app/Http/Controllers/Auth/"
+- "app/Http/Middleware/"
+- "app/Http/Kernel.php"
+- "app/Jobs/Sender.php"
+- "app/Providers/"
+- "config/"
+- "bootstrap/"
+- "database/migrations/"
+- "docs/"
+- "images/"
+- "public/plugins/"
+- "public/resources/AdminLTE"
+- "public/resources/img/"
+- "storage/"
+- "artisan"
+- "server.php"
