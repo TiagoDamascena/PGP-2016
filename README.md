@@ -1,6 +1,8 @@
-# My Study Life
+# Study Each
 
-### - Projeto
+[![Code Climate](https://codeclimate.com/github/TiagoDamascena/StudyEach/badges/gpa.svg)](https://codeclimate.com/github/TiagoDamascena/StudyEach)
+[![Test Coverage](https://codeclimate.com/github/TiagoDamascena/StudyEach/badges/coverage.svg)](https://codeclimate.com/github/TiagoDamascena/StudyEach/coverage)
+
 Esse projeto foi inicialmente desenvolvido como trabalho 
 prático da disciplina de Gerência de Projetos 2016/01 do 
 curso de Engenharia de Software da Universidade Federal 
@@ -20,7 +22,8 @@ aplicação.
 ### - Documentação
 Toda a documentação referente ao projeto se encontra na 
 pasta docs desse repositório. Incluindo documentação de
-projeto e de código.
+projeto e de código. A documentação do processo utilizado 
+se encontra na Wiki desse mesmo repositório.
 
 ### - Instruções
 Abaixo se encontram as instruções para configurar a aplicação 
