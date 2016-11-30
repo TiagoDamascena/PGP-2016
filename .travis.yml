@@ -1,0 +1,16 @@
+sudo: required
+language: php
+php:
+  - '7.0'
+services:
+  - docker
+install:
+  - sudo apt-get update
+  - sudo apt-get install -y docker-engine
+  - ./install.sh
+before_script:
+  - docker-compose up -d
+script:
+  - phpunit
+after_script:
+  - docker-compose kill
