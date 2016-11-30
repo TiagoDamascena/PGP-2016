@@ -9,6 +9,6 @@ docker-compose run -u laradock workspace composer update
 docker-compose run -u laradock workspace php artisan key:generate && php artisan config:clear
 docker-compose run -u laradock workspace php artisan migrate
 
-docker-compose kill
+docker-compose down
 
-echo 'DONE - Study Each installed'
+echo 'Study Each installed'

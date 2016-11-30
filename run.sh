@@ -8,4 +8,4 @@ echo 'Study Each is running...'
 
 docker-compose run -u laradock workspace bash
 
-docker-compose kill
+docker-compose down
