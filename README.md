@@ -1,6 +1,6 @@
 # Study Each
 
-[![Build Status](https://travis-ci.org/TiagoDamascena/StudyEach.svg?branch=master)](https://travis-ci.org/TiagoDamascena/StudyEach)
+[![Build Status](https://travis-ci.org/TiagoDamascena/StudyEach.svg?branch=develop)](https://travis-ci.org/TiagoDamascena/StudyEach)
 [![Code Climate](https://codeclimate.com/github/TiagoDamascena/StudyEach/badges/gpa.svg)](https://codeclimate.com/github/TiagoDamascena/StudyEach)
 [![Test Coverage](https://codeclimate.com/github/TiagoDamascena/StudyEach/badges/coverage.svg)](https://codeclimate.com/github/TiagoDamascena/StudyEach/coverage)
 
