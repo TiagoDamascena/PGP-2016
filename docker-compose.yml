@@ -5,6 +5,7 @@ services:
 ### Workspace Utilities Container ###########################
 
     workspace:
+        container_name: studyeach_workspace
         build:
             context: ./images/workspace
             args:
@@ -31,6 +32,7 @@ services:
 ### PHP-FPM Container #######################################
 
     php-fpm:
+        container_name: studyeach_php-fpm
         build:
             context: ./images/php-fpm
             args:
@@ -57,6 +59,7 @@ services:
 ### Nginx Server Container ##################################
 
     nginx:
+        container_name: studyeach_nginx
         build:
             context: ./images/nginx
             args:
@@ -74,6 +77,7 @@ services:
 ### MySQL Container #########################################
 
     mysql:
+        container_name: studyeach_mysql
         build: ./images/mysql
         volumes_from:
             - volumes_data
@@ -88,6 +92,7 @@ services:
 ### Laravel Application Code Container ######################
 
     volumes_source:
+        container_name: studyeach_volumes_source
         image: tianon/true
         volumes:
             - ./:/var/www/laravel
@@ -95,6 +100,7 @@ services:
 ### Databases Data Container ################################
 
     volumes_data:
+        container_name: studyeach_volumes_data
         image: tianon/true
         volumes:
             - ./data/mysql:/var/lib/mysql

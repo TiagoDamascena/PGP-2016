@@ -37,6 +37,15 @@ e para executá-la.
 3. Entrar na pasta do projeto;
 4. Executar o arquivo install.sh;
 
+######WINDOWS
+1. Clonar esse repositório em sua máquina;
+2. Instalar o Docker;
+3. Entrar na pasta do projeto;
+4. Executar o arquivo install.bat;
+
 #### Execução
 ######LINUX
 1. Executar o arquivo run.sh;
+
+######WINDOWS
+1. Executar o arquivo run.bat;
