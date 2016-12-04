@@ -7,6 +7,7 @@ docker-compose up -d
 
 docker exec -it studyeach_workspace composer update
 docker exec -it studyeach_workspace php artisan key:generate && php artisan config:clear
+docker exec -it studyeach_workspace php artisan migrate
 
 docker-compose down
 

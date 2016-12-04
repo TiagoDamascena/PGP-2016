@@ -8,8 +8,7 @@ addons:
   code_climate:
     repo_token: 209d9fb51cdb22ee01f0937b3fb201a7e2de2d866a430113c3f5e76bd14632ed
 install:
-  - sudo apt-get update
-  - sudo apt-get install -y docker-engine
+  - sudo service mysql stop
   - ./install.sh
 before_script:
   - docker-compose up -d
