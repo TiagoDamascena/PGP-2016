@@ -10,56 +10,73 @@ namespace App\Http\Controllers;
 use App\SchoolYear;
 use App\SchoolTerm;
 use App\Subject;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 
-class ScheduleController extends Controller
-{
+class ScheduleController extends Controller {
+
     public function indexSchedule () {
-        if (\Auth::check()){
+        if (Auth::check()) {
             $scheduleFeedback = null;
-            return view('Schedule', compact('scheduleFeedback'));
+            $response = view('Schedule', compact('scheduleFeedback'));
+        } else {
+            $response = redirect(url('/userNotLogged'));
         }
-        return redirect(url('/userNotLogged'));
+
+        return $response;
     }
 
     public function getYears () {
-        $user = \Auth::user();
+        $user = Auth::user();
         $years = SchoolYear::where('owner',$user->id)->orderBy('name')->get();
-        return \Response::json($years);
+        $response = Response::json($years);
+        return $response;
     }
 
     public function getTerms ($yearId) {
         $terms = SchoolTerm::where('year',$yearId)->orderBy('name')->get();
-        return \Response::json($terms);
+        $response = Response::json($terms);
+        return $response;
     }
 
     public function getSubjects ($termId) {
         $subjects = Subject::where('term',$termId)->orderBy('name')->get();
-        return \Response::json($subjects);
+        $response = Response::json($subjects);
+        return $response;
+    }
+
+    public function getYear($yearId) {
+        $year = SchoolYear::where('id', $yearId)->first();
+        $response = Response::json($year);
+        return $response;
     }
 
     public function createSchoolYear () {
-		$user = \Auth::user();
-		$schoolYear = new SchoolYear();
-		$schoolYear->owner = $user->id;
-		$schoolYear->name = Input::get('name');
-		$schoolYear->start_date = Input::get('startDate');
-		$schoolYear->end_date = Input::get('endDate');
+        $user = \Auth::user();
+        $schoolYear = new SchoolYear();
+        $schoolYear->owner = $user->id;
+        $schoolYear->name = Input::get('name');
+        $schoolYear->start_date = Input::get('startDate');
+        $schoolYear->end_date = Input::get('endDate');
 
-		$compare = SchoolYear::where('name',$schoolYear->name)->where('owner',$user->id)->first();
-        if($compare){
+        $compare = SchoolYear::where('name',$schoolYear->name)->where('owner',$user->id)->first();
+        if ($compare) {
             $scheduleFeedback = 'school_year_already_exists';
-            return view('Schedule',compact('scheduleFeedback'));
+            $response = view('Schedule',compact('scheduleFeedback'));
+            return $response;
         }
-		
-        if(strtotime($schoolYear->start_date) >= strtotime($schoolYear->end_date)){
-        	$scheduleFeedback = 'school_term_date_error';
-            return view('Schedule',compact('scheduleFeedback'));
+
+        if (strtotime($schoolYear->start_date) >= strtotime($schoolYear->end_date)) {
+            $scheduleFeedback = 'school_term_date_error';
+            $response = view('Schedule',compact('scheduleFeedback'));
+            return $response;
         }
-		
+
         $schoolYear->save();
-		return redirect(url('/schedule'));
-	}
+        $response = redirect(url('/schedule'));
+        return $response;
+    }
 
     public function editSchoolYear ($yearId) {
         $schoolYear = SchoolYear::where('id',$yearId)->first();
@@ -68,49 +85,55 @@ class ScheduleController extends Controller
             $schoolYear->start_date = Input::get('startDate');
             $schoolYear->end_date = Input::get('endDate');
 
-            if(strtotime($schoolYear->start_date) >= strtotime($schoolYear->end_date)) {
+            if (strtotime($schoolYear->start_date) >= strtotime($schoolYear->end_date)) {
                 $scheduleFeedback = 'school_year_date_error';
-                return view('Schedule',compact('scheduleFeedback'));
+                $response = view('Schedule',compact('scheduleFeedback'));
+            } else {
+                $schoolYear->save();
+                $response = redirect(url('/schedule'));
             }
-
-            $schoolYear->save();
-            return redirect(url('/schedule'));
         } else {
             $scheduleFeedback = 'school_year_null';
-            return view('Schedule',compact('scheduleFeedback'));
+            $response = view('Schedule',compact('scheduleFeedback'));
         }
+
+        return $response;
     }
 
     public function removeSchoolYear ($yearId) {
         $schoolYear = SchoolYear::where('id',$yearId)->first();
         if ($schoolYear) {
             $schoolYear->delete();
-            return redirect(url('/schedule'));
         }
+
+        $response = redirect(url('/schedule'));
+        return $response;
     }
 
-	public function createSchoolTerm ($yearID) {
-		$user = \Auth::user();
-		$schoolTerm = new SchoolTerm();
-		$schoolTerm->year = $yearID;
-		$schoolTerm->name = Input::get('name');
-		$schoolTerm->start_date = Input::get('startDate');
-		$schoolTerm->end_date = Input::get('endDate');
+    public function createSchoolTerm ($yearID) {
+        $schoolTerm = new SchoolTerm();
+        $schoolTerm->year = $yearID;
+        $schoolTerm->name = Input::get('name');
+        $schoolTerm->start_date = Input::get('startDate');
+        $schoolTerm->end_date = Input::get('endDate');
 
-		$compare = SchoolTerm::where('name',$schoolTerm->name)->where('year', $schoolTerm->year)->first();
-        if($compare){
+        $compare = SchoolTerm::where('name',$schoolTerm->name)->where('year', $schoolTerm->year)->first();
+        if ($compare) {
             $scheduleFeedback = 'school_term_already_exists';
-            return view('Schedule',compact('scheduleFeedback'));
+            $response = view('Schedule',compact('scheduleFeedback'));
+            return $response;
         }
 
-        if(strtotime($schoolTerm->start_date) >= strtotime($schoolTerm->end_date)){
-        	$scheduleFeedback = 'school_term_date_error';
-            return view('Schedule',compact('scheduleFeedback'));
+        if (strtotime($schoolTerm->start_date) >= strtotime($schoolTerm->end_date)) {
+            $scheduleFeedback = 'school_term_date_error';
+            $response = view('Schedule',compact('scheduleFeedback'));
+            return $response;
         }
 
         $schoolTerm->save();
-		return redirect(url('/schedule'));
-	}
+        $response = redirect(url('/schedule'));
+        return $response;
+    }
 
     public function editSchoolTerm ($termId) {
         $schoolTerm = SchoolTerm::where('id',$termId)->first();
@@ -119,30 +142,33 @@ class ScheduleController extends Controller
             $schoolTerm->start_date = Input::get('startDate');
             $schoolTerm->end_date = Input::get('endDate');
 
-            if(strtotime($schoolTerm->start_date) >= strtotime($schoolTerm->end_date)) {
+            if (strtotime($schoolTerm->start_date) >= strtotime($schoolTerm->end_date)) {
                 $scheduleFeedback = 'school_term_date_error';
-                return view('Schedule',compact('scheduleFeedback'));
+                $response = view('Schedule',compact('scheduleFeedback'));
+                return $response;
             }
 
             $schoolTerm->save();
-            return redirect(url('/schedule'));
+            $response = redirect(url('/schedule'));
+            return $response;
         } else {
             $scheduleFeedback = 'school_term_null';
-            return view('Schedule',compact('scheduleFeedback'));
+            $response = view('Schedule',compact('scheduleFeedback'));
+            return $response;
         }
     }
-    
+
     public function removeSchoolTerm ($termID) {
         $schoolTerm = SchoolTerm::where('id',$termID)->first();
         if ($schoolTerm) {
             $schoolTerm->delete();
-            return redirect(url('/schedule'));
         }
+
+        $response = redirect(url('/schedule'));
+        return $response;
     }
 
-	public function createSubject($schoolTermID)
-    {
-        $user = \Auth::user();
+    public function createSubject ($schoolTermID) {
         $subject = new Subject();
         $subject->term = $schoolTermID;
         $subject->name = Input::get('name');
@@ -151,11 +177,13 @@ class ScheduleController extends Controller
         $compare = Subject::where('name', $subject->name)->where('term', $subject->term)->first();
         if ($compare) {
             $scheduleFeedback = 'subject_already_exists';
-            return view('Schedule', compact('scheduleFeedback'));
+            $response = view('Schedule', compact('scheduleFeedback'));
+            return $response;
         }
-        
+
         $subject->save();
-        return redirect(url('/schedule'));
+        $response = redirect(url('/schedule'));
+        return $response;
     }
 
     public function editSubject ($subjectId) {
@@ -165,10 +193,11 @@ class ScheduleController extends Controller
             $subject->teacher = Input::get('teacher');
 
             $subject->save();
-            return redirect(url('/schedule'));
+            $response = redirect(url('/schedule'));
         } else {
             $scheduleFeedback = 'subject_null';
-            return view('Schedule',compact('scheduleFeedback'));
+            $response = view('Schedule',compact('scheduleFeedback'));
         }
+        return $response;
     }
 }
