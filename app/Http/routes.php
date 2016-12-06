@@ -37,6 +37,7 @@ Route::get('/schedule', 'ScheduleController@indexSchedule');
 Route::get('/getYears', 'ScheduleController@getYears');
 Route::get('/getYear/{yearId}', 'ScheduleController@getYear');
 Route::get('/getTerms/{yearId}', 'ScheduleController@getTerms');
+Route::get('/getTerm/{termId}', 'ScheduleController@getTerm');
 Route::get('/getSubjects/{termId}', 'ScheduleController@getSubjects');
 Route::get('/newSchoolYear', 'ScheduleController@createSchoolYear');
 Route::get('/editSchoolYear/{yearId}', 'ScheduleController@editSchoolYear');

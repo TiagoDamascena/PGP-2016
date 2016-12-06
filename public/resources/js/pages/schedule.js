@@ -168,3 +168,13 @@ editYearModal.on('shown.bs.modal', function () {
         $('#editYearEndDate').val(end_date[0]);
     });
 });
+
+editTermModal.on('shown.bs.modal', function () {
+    $.getJSON('/getTerm/'+currentTerm, function (term) {
+        $('#editTermName').val(term.name);
+        var start_date = term.start_date.split(' ');
+        $('#editTermStartDate').val(start_date[0]);
+        var end_date = term.end_date.split(' ');
+        $('#editTermEndDate').val(end_date[0]);
+    });
+});

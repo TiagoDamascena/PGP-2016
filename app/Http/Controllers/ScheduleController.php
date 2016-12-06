@@ -52,6 +52,12 @@ class ScheduleController extends Controller {
         return $response;
     }
 
+    public function getTerm($termId) {
+        $term = SchoolTerm::where('id', $termId)->first();
+        $response = Response::json($term);
+        return $response;
+    }
+
     public function createSchoolYear () {
         $user = \Auth::user();
         $schoolYear = new SchoolYear();
