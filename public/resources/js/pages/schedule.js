@@ -1,8 +1,11 @@
 var currentYear;
 var currentTerm;
 
-var newTermModal = $('#newTerm');
-var newSubjectModal = $('#newSubject');
+var newTerm = $('#newTerm');
+var newSubject = $('#newSubject');
+
+var newTermModal = $('#newTermModal');
+var newSubjectModal = $('#newSubjectModal');
 
 var editYearModal = $('#editYearModal');
 var editTermModal = $('#editTermModal');
@@ -12,8 +15,8 @@ var termsDiv = $('#terms');
 var subjectsDiv = $('#subjects');
 
 $(function() {
-    newTermModal.prop( "disabled", true );
-    newSubjectModal.prop( "disabled", true );
+    newTerm.prop( "disabled", true );
+    newSubject.prop( "disabled", true );
     loadYears();
 });
 
@@ -38,8 +41,8 @@ yearsDiv.on("click", ("[name='schoolYear']"), function () {
     var yearName = this.id.split('-');
     var yearId = yearName[1];
 
-    newTermModal.prop( "disabled", false );
-    newSubjectModal.prop( "disabled", true );
+    newTerm.prop( "disabled", false );
+    newSubject.prop( "disabled", true );
 
     currentYear = yearId;
     $('[id^="year-"]').removeClass("active");
@@ -68,7 +71,7 @@ termsDiv.on("click", ("[name='schoolTerm']"), function () {
     var termName = this.id.split('-');
     var termId = termName[1];
 
-    newSubjectModal.prop( "disabled", false );
+    newSubject.prop( "disabled", false );
 
     currentTerm = termId;
     $('[id^="term-"]').removeClass("active");
@@ -162,19 +165,15 @@ editTermModal.on("click", ("[name='delete']"), function () {
 editYearModal.on('shown.bs.modal', function () {
     $.getJSON('/getYear/'+currentYear, function (year) {
         $('#editYearName').val(year.name);
-        var start_date = year.start_date.split(' ');
-        $('#editYearStartDate').val(start_date[0]);
-        var end_date = year.end_date.split(' ');
-        $('#editYearEndDate').val(end_date[0]);
+        $('#editYearStartDate').datepicker('update', year.start_date);
+        $('#editYearEndDate').datepicker('update', year.end_date);
     });
 });
 
 editTermModal.on('shown.bs.modal', function () {
     $.getJSON('/getTerm/'+currentTerm, function (term) {
         $('#editTermName').val(term.name);
-        var start_date = term.start_date.split(' ');
-        $('#editTermStartDate').val(start_date[0]);
-        var end_date = term.end_date.split(' ');
-        $('#editTermEndDate').val(end_date[0]);
+        $('#editTermStartDate').datepicker('update', term.start_date);
+        $('#editTermEndDate').datepicker('update',  term.end_date);
     });
 });
