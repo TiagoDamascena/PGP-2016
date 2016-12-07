@@ -16,8 +16,8 @@ class CreateSchoolYearsTable extends Migration
             $table->increments('id');
             $table->integer('owner')->unsigned();
             $table->string('name');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
 
             $table->unique(['owner', 'name']);

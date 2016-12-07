@@ -130,7 +130,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group has-feedback col-sm-12">
-                            <input type="text" class="form-control" placeholder="Year name" name="name">
+                            <input type="text" class="form-control" id="editYearName" placeholder="Year name" name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -174,7 +174,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group has-feedback col-sm-12">
-                            <input type="text" class="form-control" placeholder="Term name" name="name">
+                            <input type="text" class="form-control" id="editTermName" placeholder="Term name" name="name">
                         </div>
                     </div>
                     <div class="row">
