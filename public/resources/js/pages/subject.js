@@ -14,7 +14,7 @@ var tasksDiv = $('#tasks');
 var examsDiv = $('#exams');
 
 function loadSchedule() {
-    $.get('getSchedule/' + subjectId, function (schedule) {
+    $.get('/getSchedules/' + subjectId, function (schedule) {
         $.each(schedule, function (key, value) {
             scheduleDiv.append('<div class="box box-primary box-solid collapsed-box">' +
                                     '<div class="box-header with-border">' +
@@ -34,7 +34,7 @@ function loadSchedule() {
 }
 
 function loadTasks() {
-    $.get('getTasks/' + subjectId, function (tasks) {
+    $.get('/getTasks/' + subjectId, function (tasks) {
         $.each(tasks, function (key, value) {
             tasksDiv.append('<div class="box box-primary box-solid collapsed-box" id="task-'+value.id+'">' +
                                     '<div class="box-header with-border">' +
@@ -55,7 +55,7 @@ function loadTasks() {
 }
 
 function loadExams() {
-    $.get('getExams/' + subjectId, function (exams) {
+    $.get('/getExams/' + subjectId, function (exams) {
         $.each(exams, function (key, value) {
             examsDiv.append('<div class="box box-primary box-solid collapsed-box" id="exam-'+value.id+'">' +
                                     '<div class="box-header with-border">' +
@@ -140,32 +140,32 @@ var editExamModal = $('#editExamModal');
 var editTaskModal = $('#editTaskModal');
 
 editSubjectModal.on("submit", ("[name='form']"), function () {
-    this.action = 'editSubject/'+subjectId;
+    this.action = '/editSubject/'+subjectId;
     return true;
 });
 
 editScheduleModal.on("submit", ("[name='form']"), function () {
-    this.action = 'editSchedule/'+currentSchedule;
+    this.action = '/editSchedule/'+currentSchedule;
     return true;
 });
 
 editExamModal.on("submit", ("[name='form']"), function () {
-    this.action = 'editExam/'+currentExam;
+    this.action = '/editExam/'+currentExam;
     return true;
 });
 
 editTaskModal.on("submit", ("[name='form']"), function () {
-    this.action = 'editTask/'+currentTask;
+    this.action = '/editTask/'+currentTask;
     return true;
 });
 
 editSubjectModal.on("click", ("[name='delete']"), function () {
-    window.location.href = 'deleteSubject/'+subjectId;
+    window.location.href = '/deleteSubject/'+subjectId;
     return true;
 });
 
 editScheduleModal.on("click", ("[name='delete']"), function () {
-    window.location.href = 'deleteSchedule/'+currentSchedule;
+    window.location.href = '/deleteSchedule/'+currentSchedule;
     return true;
 });
 
@@ -173,5 +173,16 @@ editSubjectModal.on('shown.bs.modal', function () {
     $.getJSON('/getSubject/'+subjectId, function (subject) {
         $('#editSubjectName').val(subject.name);
         $('#editSubjectTeacher').val(subject.teacher);
+    });
+});
+
+editScheduleModal.on('shown.bs.modal', function () {
+    $.getJSON('/getSchedule/'+currentSchedule, function (schedule) {
+        $('#editScheduleBuilding').val(schedule.building);
+        $('#editScheduleRoom').val(schedule.room);
+        var days = schedule.day.split(';');
+        $('#editScheduleDay').val(days).trigger("change");
+        editScheduleStartTime.timepicker('setTime',  schedule.start_time);
+        editScheduleEndTime.timepicker('setTime',  schedule.end_time);
     });
 });

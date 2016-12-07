@@ -50,11 +50,12 @@ Route::get('/schedule/deleteTerm/{termID}', 'ScheduleController@removeSchoolTerm
 
 Route::get('/subject/{subject_id}', 'SubjectController@indexSubject');
 Route::get('/getSubject/{subject_id}', 'SubjectController@getSubject');
-Route::get('/subject/getSchedule/{subjectId}', 'SubjectController@getSchedule');
+Route::get('/getSchedules/{subjectId}', 'SubjectController@getSchedules');
+Route::get('/getSchedule/{scheduleId}', 'SubjectController@getSchedule');
+Route::get('/newSchedule/{subject_id}', 'SubjectController@createSchedule');
 Route::get('/subject/editSchedule/{scheduleId}', 'SubjectController@editSchedule');
 Route::get('/subject/getTasks/{subjectId}', 'SubjectController@getTasks');
 Route::get('/subject/getExams/{subjectId}', 'SubjectController@getExams');
-Route::get('/newSchedule/{subject_id}', 'SubjectController@createSchedule');
 Route::get('/newTask/{subject_id}', 'SubjectController@createTask');
 Route::get('/subject/editTask/{task_id}', 'SubjectController@editTask');
 Route::get('/newExam/{subject_id}', 'SubjectController@createExam');

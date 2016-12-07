@@ -11,14 +11,14 @@ use App\Schedule;
 use App\Subject;
 use App\Task;
 use App\Exam;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
-
 class SubjectController extends Controller {
 
-    public function indexSubject($subject_id) {
-        if (\Auth::check()) {
+    public function indexSubject ($subject_id) {
+        if (Auth::check()) {
             $subject = \App\Subject::where('id',$subject_id)->first();
             if(!$subject) {
                 $response = redirect(url('/home'));
@@ -29,51 +29,78 @@ class SubjectController extends Controller {
         } else {
             $response = redirect(url('/userNotLogged'));
         }
+
         return $response;
     }
 
-    public function getSubject($subjectId) {
+    public function getSubject ($subjectId) {
         $subject = Subject::where('id',$subjectId)->first();
         $response = Response::json($subject);
         return $response;
     }
 
-	public function deleteSubject ($subject_id) {
-		$subject = Subject::where('id',$subject_id)->first();
-		if($subject) {
-			$subject->delete();
-			return redirect(url('/schedule'));
-		}
-	}
-
-	public function createSchedule ($subject_id) {
-		$user = \Auth::user();
-		$schedule = new Schedule();
-		$schedule->subject = $subject_id;
-		$schedule->building = Input::get('building');
-		$schedule->room = Input::get('room');
-		$schedule->day = implode(';',Input::get('day'));
-		$schedule->start_time = Input::get('startTime');
-		$schedule->end_time = Input::get('endTime');
-
-		$subject = \App\Subject::where('id',$subject_id)->first();
-		
-        if(strtotime($schedule->start_time) >= strtotime($schedule->end_time)){
-        	$subjectFeedback = 'schedule_date_error';
-            return view('Subject',compact('subject','subjectFeedback'));
+    public function deleteSubject ($subject_id) {
+        $subject = Subject::where('id',$subject_id)->first();
+        if ($subject) {
+            $subject->delete();
         }
 
-        $schedule->save();
-		return redirect(url('/subject/'.$subject_id));
-	}
-	 
-	public function deleteSchedule ($schedule_id) {
-		$schedule = Schedule::where('id',$schedule_id)->first();
-		if($schedule) {
-			$schedule->delete();
-			return redirect(url('/schedule'));
-		}
-	}
+        $response = redirect(url('/schedule'));
+        return $response;
+    }
+
+    public function getSchedules ($subjectId) {
+        $schedule = Schedule::where('subject',$subjectId)->orderBy('day')->get();
+        $response = Response::json($schedule);
+        return $response;
+    }
+
+    public function getSchedule ($scheduleId) {
+        $schedule = Schedule::where('id',$scheduleId)->first();
+        $response = Response::json($schedule);
+        return $response;
+    }
+
+    public function createSchedule ($subject_id) {
+        $schedule = new Schedule();
+        $schedule->subject = $subject_id;
+        $schedule->building = Input::get('building');
+        $schedule->room = Input::get('room');
+        $schedule->day = implode(';',Input::get('day'));
+        $schedule->start_time = Input::get('startTime');
+        $schedule->end_time = Input::get('endTime');
+
+        $subject = Subject::where('id',$subject_id)->first();
+
+        if (strtotime($schedule->start_time) >= strtotime($schedule->end_time)) {
+            $subjectFeedback = 'schedule_date_error';
+            $response = view('Subject',compact('subject','subjectFeedback'));
+        } else {
+            $schedule->save();
+            $response = redirect(url('/subject/'.$subject_id));
+        }
+
+        return $response;
+    }
+
+    public function deleteSchedule ($schedule_id) {
+        $schedule = Schedule::where('id',$schedule_id)->first();
+        if ($schedule) {
+            $schedule->delete();
+        }
+        $response = redirect(url('/schedule'));
+        return $response;
+    }
+
+    public function getTasks ($subjectId) {
+        $tasks = Task::where('subject',$subjectId)->orderBy('due_date')->get();
+        return \Response::json($tasks);
+    }
+
+    public function getExams ($subjectId) {
+        $exams = Exam::where('subject',$subjectId)->orderBy('date')->get();
+        return \Response::json($exams);
+    }
 	
 	public function createTask ($subject_id) {
 		$user = \Auth::user();
@@ -163,20 +190,5 @@ class SubjectController extends Controller {
 			$scheduleFeedback = 'schedule_null';
 			return view('Subject',compact('subject','subjectFeedback'));
 		}
-	}
-
-	public function getSchedule ($subjectId) {
-		$schedule = Schedule::where('subject',$subjectId)->orderBy('day')->get();
-		return \Response::json($schedule);
-	}
-
-	public function getTasks ($subjectId) {
-		$tasks = Task::where('subject',$subjectId)->orderBy('due_date')->get();
-		return \Response::json($tasks);
-	}
-
-	public function getExams ($subjectId) {
-		$exams = Exam::where('subject',$subjectId)->orderBy('date')->get();
-		return \Response::json($exams);
 	}
 }
