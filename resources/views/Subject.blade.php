@@ -15,7 +15,7 @@
 @section('content')
   @section('description', 'Your Subject')
 
-  <script>subjectId = <?php echo $subject->id?></script>
+  <script>subjectId = <?php echo $subject->id?>;</script>
   <div class="row">
     <div class="col-md-4 col-xs-12">
       <section class="box box-primary">

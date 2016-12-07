@@ -12,22 +12,31 @@ use App\Subject;
 use App\Task;
 use App\Exam;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 
 
-class SubjectController extends Controller
-{
-	public function indexSubject($subject_id){
-			if (\Auth::check()){
-				$subject = \App\Subject::where('id',$subject_id)->first();
-				if(!$subject) {
-					return redirect(url('/home'));
-				} else {
-					$subjectFeedback = null;
-					return view('Subject', compact('subject','subjectFeedback'));
-				}
-			}
-			return redirect(url('/userNotLogged'));
-	}
+class SubjectController extends Controller {
+
+    public function indexSubject($subject_id) {
+        if (\Auth::check()) {
+            $subject = \App\Subject::where('id',$subject_id)->first();
+            if(!$subject) {
+                $response = redirect(url('/home'));
+            } else {
+                $subjectFeedback = null;
+                $response = view('Subject', compact('subject','subjectFeedback'));
+            }
+        } else {
+            $response = redirect(url('/userNotLogged'));
+        }
+        return $response;
+    }
+
+    public function getSubject($subjectId) {
+        $subject = Subject::where('id',$subjectId)->first();
+        $response = Response::json($subject);
+        return $response;
+    }
 
 	public function deleteSubject ($subject_id) {
 		$subject = Subject::where('id',$subject_id)->first();

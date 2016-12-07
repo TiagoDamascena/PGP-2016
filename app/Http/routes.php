@@ -49,6 +49,7 @@ Route::get('/schedule/deleteYear/{yearID}', 'ScheduleController@removeSchoolYear
 Route::get('/schedule/deleteTerm/{termID}', 'ScheduleController@removeSchoolTerm');
 
 Route::get('/subject/{subject_id}', 'SubjectController@indexSubject');
+Route::get('/getSubject/{subject_id}', 'SubjectController@getSubject');
 Route::get('/subject/getSchedule/{subjectId}', 'SubjectController@getSchedule');
 Route::get('/subject/editSchedule/{scheduleId}', 'SubjectController@editSchedule');
 Route::get('/subject/getTasks/{subjectId}', 'SubjectController@getTasks');
