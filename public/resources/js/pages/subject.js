@@ -99,6 +99,11 @@ examsDiv.on("click", ("[name='edit']"), function () {
 var editScheduleStartTime = $('#editScheduleStartTime');
 var editScheduleEndTime = $('#editScheduleEndTime');
 
+var editTaskDueDate = $('#editTaskDueDate');
+
+var editExamDate = $('#editExamDate');
+var editExamTime = $('#editExamTime');
+
 //Date picker
 $(".select2").select2();
 
@@ -128,8 +133,21 @@ editScheduleStartTime.timepicker({
     showMeridian: false,
     showInputs: false
 });
-
 editScheduleEndTime.timepicker({
+    showMeridian: false,
+    showInputs: false
+});
+
+editTaskDueDate.datepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true
+});
+
+editExamDate.datepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true
+});
+editExamTime.timepicker({
     showMeridian: false,
     showInputs: false
 });
@@ -184,5 +202,13 @@ editScheduleModal.on('shown.bs.modal', function () {
         $('#editScheduleDay').val(days).trigger("change");
         editScheduleStartTime.timepicker('setTime',  schedule.start_time);
         editScheduleEndTime.timepicker('setTime',  schedule.end_time);
+    });
+});
+
+editTaskModal.on('shown.bs.modal', function () {
+    $.getJSON('/getTask/'+currentTask, function (task) {
+        editTaskDueDate.datepicker('update',  task.due_date);
+        $('#editTaskTitle').val(task.title);
+        $('#editTaskDescription').val(task.description);
     });
 });

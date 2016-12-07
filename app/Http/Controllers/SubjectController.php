@@ -94,7 +94,14 @@ class SubjectController extends Controller {
 
     public function getTasks ($subjectId) {
         $tasks = Task::where('subject',$subjectId)->orderBy('due_date')->get();
-        return \Response::json($tasks);
+        $response = Response::json($tasks);
+        return $response;
+    }
+
+    public function getTask ($taskId) {
+        $tasks = Task::where('id',$taskId)->first();
+        $response = Response::json($tasks);
+        return $response;
     }
 
     public function getExams ($subjectId) {
