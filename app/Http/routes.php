@@ -60,7 +60,8 @@ Route::get('/getTasks/{subjectId}', 'SubjectController@getTasks');
 Route::get('/getTask/{taskId}', 'SubjectController@getTask');
 Route::get('/newTask/{subject_id}', 'SubjectController@createTask');
 Route::get('/editTask/{task_id}', 'SubjectController@editTask');
-Route::get('/subject/getExams/{subjectId}', 'SubjectController@getExams');
+Route::get('/getExams/{subjectId}', 'SubjectController@getExams');
+Route::get('/getExam/{examId}', 'SubjectController@getExam');
 Route::get('/newExam/{subject_id}', 'SubjectController@createExam');
 Route::get('/editExam/{exam_id}', 'SubjectController@editExam');
 

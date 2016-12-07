@@ -102,7 +102,7 @@ var editScheduleEndTime = $('#editScheduleEndTime');
 var editTaskDueDate = $('#editTaskDueDate');
 
 var editExamDate = $('#editExamDate');
-var editExamTime = $('#editExamTime');
+var editExamStartTime = $('#editExamStartTime');
 
 //Date picker
 $(".select2").select2();
@@ -147,7 +147,7 @@ editExamDate.datepicker({
     format: 'yyyy-mm-dd',
     autoclose: true
 });
-editExamTime.timepicker({
+editExamStartTime.timepicker({
     showMeridian: false,
     showInputs: false
 });
@@ -210,5 +210,15 @@ editTaskModal.on('shown.bs.modal', function () {
         editTaskDueDate.datepicker('update',  task.due_date);
         $('#editTaskTitle').val(task.title);
         $('#editTaskDescription').val(task.description);
+    });
+});
+
+editExamModal.on('shown.bs.modal', function () {
+    $.getJSON('/getExam/'+currentExam, function (exam) {
+        editExamDate.datepicker('update',  exam.date);
+        editExamStartTime.timepicker('setTime',  exam.start_time);
+        $('#editExamBuilding').val(exam.building);
+        $('#editExamRoom').val(exam.room);
+        $('#editExamDescription').val(exam.description);
     });
 });

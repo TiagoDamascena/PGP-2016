@@ -262,7 +262,7 @@
                         </div>
                         <div class="form-group has-feedback col-md-6">
                             <div class="input-group bootstrap-timepicker">
-                                <input type="text" class="form-control timepicker pull-left" id="editExamTime" placeholder="Exam start time" name="start_time">
+                                <input type="text" class="form-control timepicker pull-left" id="editExamStartTime" placeholder="Exam start time" name="start_time">
                                 <div class="input-group-addon">
                                     <i class="ion-clock"></i>
                                 </div>
