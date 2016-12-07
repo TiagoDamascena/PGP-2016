@@ -15,12 +15,15 @@
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./app/Http/Controllers</directory>
             <exclude>
-                <file>./app/Http/routes.php</file>
+                <directory suffix=".php">./app/Http/Controllers/Auth</directory>
             </exclude>
         </whitelist>
     </filter>
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
