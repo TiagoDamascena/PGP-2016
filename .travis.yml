@@ -13,7 +13,7 @@ install:
 before_script:
   - docker-compose up -d
 script:
-  - phpunit --coverage-clover build/logs/clover.xml
+  - phpunit
 after_script:
   - docker-compose down
   - CODECLIMATE_REPO_TOKEN=209d9fb51cdb22ee01f0937b3fb201a7e2de2d866a430113c3f5e76bd14632ed ./vendor/bin/test-reporter

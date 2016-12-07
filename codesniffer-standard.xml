@@ -13,12 +13,6 @@
     <rule ref="Generic.Commenting.Todo"/>
     <rule ref="Generic.Commenting.Fixme"/>
     <rule ref="Generic.ControlStructures.InlineControlStructure"/>
-    <rule ref="Generic.Files.LineLength">
-        <properties>
-            <property name="lineLimit" value="120"/>
-            <property name="absoluteLineLimit" value="160"/>
-        </properties>
-    </rule>
     <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
     <rule ref="Generic.Formatting.NoSpaceAfterCast"/>
     <rule ref="Generic.Functions.CallTimePassByReference"/>

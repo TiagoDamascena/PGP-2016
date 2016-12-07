@@ -5,18 +5,18 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Create new Subject</h4>
+                <h4 class="modal-title">Edit Subject</h4>
             </div>
             <form name="form" method="get">
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group has-feedback col-sm-12">
-                            <input type="text" class="form-control" placeholder="Subject name" name="name">
+                            <input type="text" class="form-control" id="editSubjectName" placeholder="Subject name" name="name">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group has-feedback col-sm-12">
-                            <input type="text" class="form-control" placeholder="Teacher's name" name="teacher">
+                            <input type="text" class="form-control" id="editSubjectTeacher" placeholder="Teacher's name" name="teacher">
                         </div>
                     </div>
                 </div>
@@ -193,15 +193,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group has-feedback col-sm-6">
-                            <input type="text" class="form-control" placeholder="Schedule building" name="building">
+                            <input type="text" class="form-control" id="editScheduleBuilding" placeholder="Schedule building" name="building">
                         </div>
                         <div class="form-group has-feedback col-sm-6">
-                            <input type="text" class="form-control" placeholder="Schedule room" name="room">
+                            <input type="text" class="form-control" id="editScheduleRoom" placeholder="Schedule room" name="room">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <select class="form-control select2" multiple="multiple" data-placeholder="Select a Day" style="width: 100%;" name="day[]">
+                            <select class="form-control select2" id="editScheduleDay" multiple="multiple" data-placeholder="Select a Day" style="width: 100%;" name="day[]">
                                 <option value="1">Sunday</option>
                                 <option value="2">Monday</option>
                                 <option value="3">Tuesday</option>
@@ -215,7 +215,7 @@
                     <div class="row">
                         <div class="form-group has-feedback col-md-6">
                             <div class="input-group bootstrap-timepicker">
-                                <input type="text" class="form-control timepicker pull-left" id="scheduleStartTime" placeholder="Schedule start time" name="startTime">
+                                <input type="text" class="form-control timepicker pull-left" id="editScheduleStartTime" placeholder="Schedule start time" name="startTime">
                                 <div class="input-group-addon">
                                     <i class="ion-clock"></i>
                                 </div>
@@ -223,7 +223,7 @@
                         </div>
                         <div class="form-group has-feedback col-md-6">
                             <div class="input-group bootstrap-timepicker">
-                                <input type="text" class="form-control timepicker pull-left" id="scheduleEndTime" placeholder="Schedule end time" name="endTime">
+                                <input type="text" class="form-control timepicker pull-left" id="editScheduleEndTime" placeholder="Schedule end time" name="endTime">
                                 <div class="input-group-addon">
                                     <i class="ion-clock"></i>
                                 </div>
@@ -234,38 +234,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" name="delete">Delete</button>
                     <button type="submit" class="btn btn-primary">Save Schedule</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal Edit Subject -->
-<div class="modal fade" id="editSubjectModal" tabindex="-1" role="dialog" aria-labelledby="editSubjectModalLabel">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Create new Subject</h4>
-            </div>
-            <form name="form" method="get">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="form-group has-feedback col-sm-12">
-                            <input type="text" class="form-control" placeholder="Subject name" name="name">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group has-feedback col-sm-12">
-                            <input type="text" class="form-control" placeholder="Teacher's name" name="teacher">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Subject</button>
                 </div>
             </form>
         </div>
@@ -289,12 +257,12 @@
                                 <div class="input-group-addon">
                                     <i class="ion-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" id="examDate" placeholder="Exam date" name="date">
+                                <input type="text" class="form-control pull-right" id="editExamDate" placeholder="Exam date" name="date">
                             </div>
                         </div>
                         <div class="form-group has-feedback col-md-6">
                             <div class="input-group bootstrap-timepicker">
-                                <input type="text" class="form-control timepicker pull-left" id="examTime" placeholder="Exam start time" name="start_time">
+                                <input type="text" class="form-control timepicker pull-left" id="editExamStartTime" placeholder="Exam start time" name="start_time">
                                 <div class="input-group-addon">
                                     <i class="ion-clock"></i>
                                 </div>
@@ -303,15 +271,15 @@
                     </div>
                     <div class="row">
                         <div class="form-group has-feedback col-sm-6">
-                            <input type="text" class="form-control" placeholder="Exam building" name="building">
+                            <input type="text" class="form-control" id="editExamBuilding" placeholder="Exam building" name="building">
                         </div>
                         <div class="form-group has-feedback col-sm-6">
-                            <input type="text" class="form-control" placeholder="Exam room" name="room">
+                            <input type="text" class="form-control" id="editExamRoom" placeholder="Exam room" name="room">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group has-feedback col-sm-12">
-                            <textarea rows="10" class="form-control" placeholder="Exam description" name="description"></textarea>
+                            <textarea rows="10" class="form-control" id="editExamDescription" placeholder="Exam description" name="description"></textarea>
                         </div>
                     </div>
                 </div>
@@ -337,20 +305,20 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group has-feedback col-sm-6">
-                            <input type="text" class="form-control" placeholder="Task title" name="title">
+                            <input type="text" class="form-control" id="editTaskTitle" placeholder="Task title" name="title">
                         </div>
                         <div class="form-group has-feedback col-sm-6">
                             <div class="input-group date">
                                 <div class="input-group-addon">
                                     <i class="ion-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" id="taskDueDate" placeholder="Due date" name="due_date">
+                                <input type="text" class="form-control pull-right" id="editTaskDueDate" placeholder="Due date" name="due_date">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group has-feedback col-sm-12">
-                            <textarea rows="10" class="form-control" placeholder="Task description" name="description"></textarea>
+                            <textarea rows="10" class="form-control" id="editTaskDescription" placeholder="Task description" name="description"></textarea>
                         </div>
                     </div>
                 </div>
