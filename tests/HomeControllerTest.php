@@ -35,5 +35,4 @@ class HomeControllerTest extends TestCase {
 
         Auth::login($user, true);
     }
-
 }
