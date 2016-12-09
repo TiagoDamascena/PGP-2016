@@ -210,6 +210,16 @@ RUN if [ ${INSTALL_AEROSPIKE_EXTENSION} = false ]; then \
     rm /etc/php/7.0/cli/conf.d/aerospike.ini \
 ;fi
 
+#####################################
+# Non-root user : PHPUnit path
+#####################################
+
+# add ./vendor/bin to non-root user's bashrc (needed for phpunit)
+USER laradock
+
+RUN echo "" >> ~/.bashrc && \
+    echo 'export PATH="/var/www/laravel/vendor/bin:$PATH"' >> ~/.bashrc
+
 #
 #--------------------------------------------------------------------------
 # Final Touch

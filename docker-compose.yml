@@ -9,7 +9,7 @@ services:
         build:
             context: ./images/workspace
             args:
-                - INSTALL_XDEBUG=false
+                - INSTALL_XDEBUG=true
                 - INSTALL_MONGO=false
                 - INSTALL_NODE=true
                 - INSTALL_DRUSH=false
@@ -36,7 +36,7 @@ services:
         build:
             context: ./images/php-fpm
             args:
-                - INSTALL_XDEBUG=false
+                - INSTALL_XDEBUG=true
                 - INSTALL_MONGO=false
                 - INSTALL_ZIP_ARCHIVE=false
                 - INSTALL_MEMCACHED=false

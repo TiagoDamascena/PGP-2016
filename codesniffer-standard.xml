@@ -80,6 +80,7 @@
         <properties>
             <property name="spacing" value="1"/>
         </properties>
+        <exclude name="Squiz.WhiteSpace.FunctionSpacing.After"/>
     </rule>
     <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
     <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>

@@ -8,13 +8,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
-{
-    public function indexHome(){
-            if (\Auth::check()){
-                return view('Home');
-            }
-            return redirect(url('/userNotLogged'));
+class HomeController extends Controller {
+
+    public function indexHome() {
+        if (Auth::check()) {
+            $response = view('Home');
+        } else {
+            $response = redirect(url('/userNotLogged'));
+        }
+
+        return $response;
     }
 }

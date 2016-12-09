@@ -13,9 +13,8 @@ install:
 before_script:
   - docker-compose up -d
 script:
-  - phpunit
+  - docker-compose run -u laradock workspace php -dzend_extension=xdebug.so vendor/bin/phpunit
+after_success:
+  - docker-compose run -u laradock -e CODECLIMATE_REPO_TOKEN=209d9fb51cdb22ee01f0937b3fb201a7e2de2d866a430113c3f5e76bd14632ed workspace vendor/bin/test-reporter
 after_script:
   - docker-compose down
-  - CODECLIMATE_REPO_TOKEN=209d9fb51cdb22ee01f0937b3fb201a7e2de2d866a430113c3f5e76bd14632ed ./vendor/bin/test-reporter
-after_success:
-  - vendor/bin/test-reporter
