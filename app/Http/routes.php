@@ -21,7 +21,7 @@ Route::get('/recoveryPassword/{unique_key}','LoginController@indexRecovery');
 Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
 
 Route::get('/fbLogin', 'FBAuthController@login');
-Route::get('/fbCallback', 'FBAuthController@callback');
+Route::get('/public/fbCallback', 'FBAuthController@callback');
 Route::get('/fbInputPassword/{userEmail}', 'FBAuthController@register');
 
 Route::get('/home', 'HomeController@indexHome');
