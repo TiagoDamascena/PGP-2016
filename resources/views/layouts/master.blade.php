@@ -76,7 +76,9 @@
                 </section>
 
                 <section class="content">
-                    @yield('content')
+                    <div class="row">
+                        @yield('content')
+                    </div>
                 </section>
             </div>
 

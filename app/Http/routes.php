@@ -26,6 +26,9 @@ Route::get('/fbInputPassword/{userEmail}', 'FBAuthController@register');
 
 Route::get('/home', 'HomeController@indexHome');
 
+Route::get('/calendar', 'CalendarController@index');
+Route::get('/getCalendar', 'CalendarController@getCalendar');
+
 Route::get('/settings', 'SettingsController@indexSettings');
 Route::get('/changeName','SettingsController@changeName');
 Route::get('/changeEmail','SettingsController@changeEmail');
