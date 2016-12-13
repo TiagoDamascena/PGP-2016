@@ -35,4 +35,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function years() {
+        $years = $this->hasMany('App\SchoolYear', 'owner');
+        return $years;
+    }
 }

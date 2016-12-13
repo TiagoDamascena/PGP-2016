@@ -20,18 +20,18 @@ class Subject extends Base
 
     protected $primaryKey = 'id';
 
-    public function schedules()
-    {
-        return $this->hasMany('App\Schedule', 'subject', 'id');
+    public function schedules() {
+        $schedules = $this->hasMany('App\Schedule', 'subject');
+        return $schedules;
     }
 
-    public function tasks()
-    {
-        return $this->hasMany('App\Task', 'subject', 'id');
+    public function tasks() {
+        $tasks = $this->hasMany('App\Task', 'subject');
+        return $tasks;
     }
 
-    public function exams()
-    {
-        return $this->hasMany('App\Exam', 'subject', 'id');
+    public function exams() {
+        $exams = $this->hasMany('App\Exam', 'subject');
+        return $exams;
     }
 }
