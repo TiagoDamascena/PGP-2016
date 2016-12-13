@@ -66,5 +66,7 @@ Route::get('/newExam/{subject_id}', 'SubjectController@createExam');
 Route::get('/editExam/{exam_id}', 'SubjectController@editExam');
 
 Route::get('/tasks/', 'TaskController@index');
+Route::get('/getTasks/', 'TaskController@getUserTask');
+
 
 
