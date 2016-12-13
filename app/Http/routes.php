@@ -71,5 +71,5 @@ Route::get('/editExam/{exam_id}', 'SubjectController@editExam');
 Route::get('/tasks/', 'TaskController@index');
 Route::get('/getTasks/', 'TaskController@getUserTask');
 
-
-
+Route::get('/getClassesToday/', 'ClassController@getClassesToday');
+Route::get('/getExamsWeek/', 'ExamController@getExamsWeek');
