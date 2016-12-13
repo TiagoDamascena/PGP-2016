@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property date $due_date
  * @property string $title
  * @property string $description
- * @property string $subject_name
  * @property boolean $complete
  */
 class Task extends Base
