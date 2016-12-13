@@ -133,6 +133,7 @@ class SubjectController extends Controller {
         $task->subject = $subject_id;
         $task->due_date = Input::get('due_date');
         $task->title = Input::get('title');
+        $task->subject_name = Subject::where('id',$subject_id)->first()->name;
         $task->description = Input::get('description');
 
         $subject = Subject::where('id',$subject_id)->first();
