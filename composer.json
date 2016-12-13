@@ -20,7 +20,7 @@
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
-        "codeclimate/php-test-reporter": "dev-master"
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
         "classmap": [
