@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/TiagoDamascena/StudyEach.svg?branch=develop)](https://travis-ci.org/TiagoDamascena/StudyEach)
 [![Code Climate](https://codeclimate.com/github/TiagoDamascena/StudyEach/badges/gpa.svg)](https://codeclimate.com/github/TiagoDamascena/StudyEach)
-[![Test Coverage](https://codeclimate.com/github/TiagoDamascena/StudyEach/badges/coverage.svg)](https://codeclimate.com/github/TiagoDamascena/StudyEach/coverage)
+[![Coverage Status](https://coveralls.io/repos/github/TiagoDamascena/StudyEach/badge.svg?branch=hotfix%2FNC-10)](https://coveralls.io/github/TiagoDamascena/StudyEach?branch=hotfix%2FNC-10)
 
 Esse projeto foi inicialmente desenvolvido como trabalho 
 prático da disciplina de Gerência de Projetos 2016/01 do 
