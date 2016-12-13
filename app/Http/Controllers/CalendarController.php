@@ -35,6 +35,8 @@ class CalendarController extends Controller {
                     foreach ($schedules as $schedule) {
                         $object = [
                             'color' => '#3c8dbc',
+                            'type' => 'schedule',
+                            'id' => $schedule->id,
                             'title' => $subject->name,
                             'start' => $schedule->start_time,
                             'end' => $schedule->end_time,
@@ -51,6 +53,8 @@ class CalendarController extends Controller {
                     foreach ($tasks as $task) {
                         $object = [
                             'color' => '#33cc33',
+                            'type' => 'task',
+                            'id' => $task->id,
                             'title' => $task->title,
                             'start' => $task->due_date.'T'.$task->due_time.'Z',
                             'end' => $task->due_date.'T'.$task->due_time.'Z',
@@ -62,6 +66,8 @@ class CalendarController extends Controller {
                     foreach ($exams as $exam) {
                         $object = [
                             'color' => '#ff9900',
+                            'type' => 'exam',
+                            'id' => $exam->id,
                             'title' => $subject->name,
                             'start' => $exam->date.'T'.$exam->start_time,
                             'end' => $exam->date.'T'.$exam->start_time,
