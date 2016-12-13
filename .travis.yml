@@ -12,6 +12,6 @@ before_script:
 script:
   - docker-compose run -u laradock workspace php -dzend_extension=xdebug.so vendor/bin/phpunit
 after_success:
-  - docker-compose run -u laradock workspace php vendor/bin/coveralls -v
+  - docker-compose run -u laradock -e TRAVIS=$TRAVIS -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID workspace php vendor/bin/coveralls -v
 after_script:
   - docker-compose down
