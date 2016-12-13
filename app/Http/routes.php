@@ -26,6 +26,9 @@ Route::get('/fbInputPassword/{userEmail}', 'FBAuthController@register');
 
 Route::get('/home', 'HomeController@indexHome');
 
+Route::get('/calendar', 'CalendarController@index');
+Route::get('/getCalendar', 'CalendarController@getCalendar');
+
 Route::get('/settings', 'SettingsController@indexSettings');
 Route::get('/changeName','SettingsController@changeName');
 Route::get('/changeEmail','SettingsController@changeEmail');
@@ -44,9 +47,9 @@ Route::get('/editSchoolYear/{yearId}', 'ScheduleController@editSchoolYear');
 Route::get('/newSchoolTerm/{yearID}', 'ScheduleController@createSchoolTerm');
 Route::get('/editSchoolTerm/{termId}', 'ScheduleController@editSchoolTerm');
 Route::get('/newSubject/{schoolTermID}', 'ScheduleController@createSubject');
-Route::get('/subject/editSubject/{subjectId}', 'ScheduleController@editSubject');
-Route::get('/schedule/deleteYear/{yearID}', 'ScheduleController@removeSchoolYear');
-Route::get('/schedule/deleteTerm/{termID}', 'ScheduleController@removeSchoolTerm');
+Route::get('/editSubject/{subjectId}', 'ScheduleController@editSubject');
+Route::get('/deleteYear/{yearID}', 'ScheduleController@removeSchoolYear');
+Route::get('/deleteTerm/{termID}', 'ScheduleController@removeSchoolTerm');
 
 Route::get('/subject/{subject_id}', 'SubjectController@indexSubject');
 Route::get('/getSubject/{subject_id}', 'SubjectController@getSubject');

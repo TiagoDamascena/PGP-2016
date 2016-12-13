@@ -16,4 +16,9 @@ class SchoolTerm extends Base
     protected $table = 'school_terms';
 
     protected $primaryKey = 'id';
+
+    public function subjects() {
+        $subjects = $this->hasMany('App\Subject', 'term');
+        return $subjects;
+    }
 }

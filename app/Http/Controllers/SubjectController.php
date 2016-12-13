@@ -112,6 +112,7 @@ class SubjectController extends Controller {
         if ($schedule) {
             $schedule->delete();
         }
+
         $response = redirect(url('/schedule'));
         return $response;
     }
@@ -132,6 +133,7 @@ class SubjectController extends Controller {
         $task = new Task();
         $task->subject = $subject_id;
         $task->due_date = Input::get('due_date');
+        $task->due_time = Input::get('due_time');
         $task->title = Input::get('title');
         $task->description = Input::get('description');
 
@@ -151,6 +153,7 @@ class SubjectController extends Controller {
         $task = Task::where('id', $task_id)->first();
         if ($task) {
             $task->due_Date = Input::get('due_date');
+            $task->due_time = Input::get('due_time');
             $task->title = Input::get('title');
             $task->description = Input::get('description');
             $task->save();

@@ -16,4 +16,9 @@ class SchoolYear extends Base
     protected $table = 'school_years';
 
     protected $primaryKey = 'id';
+
+    public function terms() {
+        $terms = $this->hasMany('App\SchoolTerm', 'year');
+        return $terms;
+    }
 }
