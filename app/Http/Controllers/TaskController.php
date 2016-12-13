@@ -18,7 +18,8 @@ class TaskController extends Controller
     private $list  = [];
 
     public function index() {
-        return view('Tasks');
+        $response = view('Tasks');
+        return $response;
     }
 
     public function getUserTask() {
