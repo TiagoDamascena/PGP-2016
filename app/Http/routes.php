@@ -16,7 +16,7 @@ Route::post('/loginUser','LoginController@loginAuthenticate');
 Route::get('/register', 'LoginController@indexRegister');
 Route::post('/newUser','LoginController@newUser');
 Route::get('/userNotLogged','LoginController@userNotLogged');
-Route::post('/logout','LoginController@endSession');
+Route::get('/logout','LoginController@endSession');
 Route::get('/recoveryPassword/{unique_key}','LoginController@indexRecovery');
 Route::post('/requestRecoveryPassword','LoginController@forgotPassword');
 
