@@ -3,7 +3,7 @@ $(function() {
         header: {
             left: 'prev next',
             center: 'title',
-            right: 'today month agendaWeek'
+            right: 'today month list'
         },
         editable: false,
         selectable: true,
