@@ -18,7 +18,8 @@
       <div class="register-box-body">
         <p class="login-box-msg">Register a new user</p>
 
-        <form action="{{url('/newUser')}}" method="get">
+        <form method="POST" action="{{url('/newUser')}}">
+          {{ csrf_field() }}
           <div class="form-group has-feedback">
             <input type="text" class="form-control" placeholder="Full name" name="nome">
           </div>

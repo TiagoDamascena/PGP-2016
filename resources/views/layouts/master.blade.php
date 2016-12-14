@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href={{url('/resources/AdminLTE/css/AdminLTE.min.css')}}>
         <link rel="stylesheet" href={{url('/resources/AdminLTE/css/skins/skin-blue.min.css')}}>
+        <link rel="stylesheet" href={{url('/resources/css/master.css')}}>
         @yield('head')
     </head>
 
