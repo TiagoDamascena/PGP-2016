@@ -16,7 +16,7 @@ function loadTasks() {
                 '</div>' +
                 '</div>' +
                 '<div class="box-body">' +
-                    '<h3>Subject : '+value.subject_name+'</h3>' +
+                '<h3>Subject : '+value.subject_name+'</h3>' +
                 '<h4>Description : '+value.description+'</h4>' +
                 '<h4>Date : '+value.due_date+' </h4>' +
                 '</div>' +
