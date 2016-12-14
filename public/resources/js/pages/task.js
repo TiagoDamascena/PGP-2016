@@ -8,7 +8,7 @@ function loadTasks() {
     $.getJSON('/getTasks/' , function (tasks) {
         $.each(tasks, function (key,value) {
             compareDate(value.date_status);
-            tasksDiv.append('<div class="box '+colorDiv+' box-solid collapsed-box" id="task-"'+value.id+'>' +
+            tasksDiv.append('<div class="box '+colorDiv+' box-solid collapsed-box std-box" id="task-"'+value.id+'>' +
                 '<div class="box-header with-border">' +
                 '<h3 class="box-title ">'+value.title+'</h3>' +
                 '<div class="box-tools pull-right">' +
