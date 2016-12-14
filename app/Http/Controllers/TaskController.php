@@ -13,6 +13,7 @@ use phpDocumentor\Reflection\Types\Object_;
 
 class TaskController extends Controller
 {
+
     public function index() {
         $response = view('Tasks');
         return $response;
@@ -46,6 +47,7 @@ class TaskController extends Controller
             $schoolTerms = $schoolYear->terms()->get();
             $response = $this->addResponse($response, $schoolTerms);
         }
+
         return $response;
     }
 
@@ -64,20 +66,22 @@ class TaskController extends Controller
             $task = $subject->tasks()->get();
             $response = $this->addTask($response, $task);
         }
+
         return $response;
     }
 
     private function addResponse($list, $objects) {
-            foreach ($objects as $object) {
-                $size = count($list);
-                $list[$size] = $object;
-            };
+        foreach ($objects as $object) {
+            $size = count($list);
+            $list[$size] = $object;
+        };
+
         return $list;
     }
 
     private function addTask($list, $objects) {
-            $size = count($list);
-            $list[$size] = $objects;
+        $size = count($list);
+        $list[$size] = $objects;
         return $list;
     }
 
@@ -96,7 +100,9 @@ class TaskController extends Controller
                 $response = $this->addTask($response,$taskJson);
             }
         }
-        return Response::json($response);
+
+        $response = Response::json($response);
+        return $response;
     }
 
     private function date_status($dateTask) {
