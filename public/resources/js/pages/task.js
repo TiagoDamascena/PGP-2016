@@ -7,7 +7,7 @@ var colorDiv;
 function loadTasks() {
     $.getJSON('/getTasks/' , function (tasks) {
         $.each(tasks, function (key,value) {
-            compareDate(value.due_date);
+            compareDate(value.date_status);
             tasksDiv.append('<div class="box '+colorDiv+' box-solid collapsed-box" id="task-"'+value.id+'>' +
                 '<div class="box-header with-border">' +
                 '<h3 class="box-title ">'+value.title+'</h3>' +
@@ -16,6 +16,7 @@ function loadTasks() {
                 '</div>' +
                 '</div>' +
                 '<div class="box-body">' +
+                    '<h3>Subject : '+value.subject_name+'</h3>' +
                 '<h4>Description : '+value.description+'</h4>' +
                 '<h4>Date : '+value.due_date+' </h4>' +
                 '</div>' +
@@ -24,40 +25,17 @@ function loadTasks() {
     });
 }
 
-function compareDate(date) {
-
-    if (getToday() > date) {
-        tasksDiv = $('#past-task');
-        colorDiv = 'box-danger';
+function compareDate(date_status) {
+    if (date_status === "future-task") {
+        tasksDiv = $('#future-task');
+        colorDiv = 'box-primary';
     }
-    else if (getNextWeek() > date) {
+    else if (date_status === "present-task"){
         tasksDiv = $('#present-task');
         colorDiv = 'box-warning';
     }
     else {
-        tasksDiv = $('#future-task');
-        colorDiv = 'box-primary';
+        tasksDiv = $('#past-task');
+        colorDiv = 'box-danger';
     }
 }
-
-    function getToday() {
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-
-        var currentDate = yyyy+'-'+mm+'-'+dd;
-
-        return currentDate;
-    }
-
-    function getNextWeek() {
-        var today = new Date();
-        var dd = today.getDate()+7;
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-
-        var nextWeek = yyyy+'-'+mm+'-'+dd;
-
-        return nextWeek
-    }
