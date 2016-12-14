@@ -96,7 +96,7 @@ class TaskController extends Controller
                 $taskJson->due_date = $task->due_date;
                 $taskJson->description = $task->description;
                 $taskJson->subject_name = Subject::where('id', $task->subject)->first()->name;
-                $taskJson->date_status = $this->date_status($task->due_date);
+                $taskJson->date_status = $this->dateStatus($task->due_date);
                 $response = $this->addTask($response,$taskJson);
             }
         }
@@ -105,7 +105,7 @@ class TaskController extends Controller
         return $response;
     }
 
-    private function date_status($dateTask) {
+    private function dateStatus($dateTask) {
         // Comparando as Datas
         if (strtotime(date('Y-m-d')) > strtotime($dateTask)) {
             $response = "past-task";
@@ -114,6 +114,7 @@ class TaskController extends Controller
         } else {
             $response = "future-task";
         }
+
         return $response;
     }
 }
