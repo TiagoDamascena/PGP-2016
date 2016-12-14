@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Subject;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use phpDocumentor\Reflection\Types\Object_;
 
@@ -15,7 +16,12 @@ class TaskController extends Controller
 {
 
     public function index() {
-        $response = view('Tasks');
+        if (Auth::check()) {
+            $response = view('Tasks');
+        } else {
+            $response = redirect(url('/userNotLogged'));
+        }
+
         return $response;
     }
 
