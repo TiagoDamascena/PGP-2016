@@ -5,8 +5,8 @@
 @section('description', 'All your Tasks in one place')
 
 @section('content')
-<div class="col-sm-4 col-xs-12">
-    <div class="box box-danger">
+<div class="col-sm-4 col-xs-12 no-padding">
+    <div class="box box-danger std-box-col">
         <div class="box-header text-center">
             <h3 class="box-title">Past Tasks</h3>
         </div>
@@ -15,8 +15,8 @@
         </div>
     </div>
 </div>
-<div class="col-sm-4 col-xs-12">
-    <div class="box box-warning">
+<div class="col-sm-4 col-xs-12 no-padding">
+    <div class="box box-warning std-box-col">
         <div class="box-header text-center">
             <h3 class="box-title">Due Next Week</h3>
         </div>
@@ -25,8 +25,8 @@
         </div>
     </div>
 </div>
-<div class="col-sm-4 col-xs-12">
-    <div class="box box-primary">
+<div class="col-sm-4 col-xs-12 no-padding">
+    <div class="box box-primary std-box-col">
         <div class="box-header text-center">
             <h3 class="box-title te">Future Tasks</h3>
         </div>

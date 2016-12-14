@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="col-md-4 col-xs-12 no-padding">
-        <div class="box box-primary">
+        <div class="box box-primary std-box-col">
             <div class="box-header text-center">
                 <h3 class="box-title">Classes</h3>
             </div>
@@ -16,21 +16,21 @@
         </div>
     </div>
     <div class="col-md-4 col-xs-12 no-padding">
-        <div class="box box-warning">
+        <div class="box box-warning std-box-col">
             <div class="box-header text-center">
                 <h3 class="box-title">Tasks</h3>
             </div>
-            <div class="box-body  text-center" id="tasks">
+            <div class="box-body text-center" id="tasks">
 
             </div>
         </div>
     </div>
     <div class="col-md-4 col-xs-12 no-padding">
-        <div class="box box-success">
+        <div class="box box-success std-box-col">
             <div class="box-header text-center">
                 <h3 class="box-title">Exams</h3>
             </div>
-            <div class="box-body  text-center" id="exams">
+            <div class="box-body text-center" id="exams">
 
             </div>
         </div>

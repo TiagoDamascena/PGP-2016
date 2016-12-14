@@ -13,7 +13,7 @@
         @yield('head')
     </head>
 
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-blue sidebar-mini fixed">
         <div class="wrapper">
             <header class="main-header">
                 <a href={{url('/home')}} class="logo">
@@ -70,10 +70,17 @@
 
             <div class="content-wrapper">
                 <section class="content-header">
-                    <h1>
-                        @yield('title')
-                        <small>@yield('description')</small>
-                    </h1>
+                    <div class="row std-content-header">
+                        <div class="col-md-6">
+                            <p>
+                                @yield('title')
+                                <small>@yield('description')</small>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            @yield('header')
+                        </div>
+                    </div>
                 </section>
 
                 <section class="content">
@@ -85,12 +92,18 @@
 
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    v0.2.0
                     <i class="fa fa-star"></i>
+                    v3.2.0
                 </div>
-                <strong>Copyright &copy; 2016 <a href="https://github.com/nikolassupremo/PGP-2016">Study Each</a>.</strong> Gerência de Projeto de Software.
+                <strong>Copyright &copy; 2016 <a href="https://github.com/TiagoDamascena/StudyEach">Study Each</a>.</strong>
             </footer>
             <div class="control-sidebar-bg"></div>
+        </div>
+        <div id="users-device-size">
+            <div id="xs" class="visible-xs"></div>
+            <div id="sm" class="visible-sm"></div>
+            <div id="md" class="visible-md"></div>
+            <div id="lg" class="visible-lg"></div>
         </div>
 
         @yield('page_end')
@@ -103,6 +116,8 @@
         <script src={{url('/plugins/bootstrap/js/bootstrap.min.js')}}></script>
         <!-- AdminLTE App -->
         <script src={{url('/resources/AdminLTE/js/app.min.js')}}></script>
+        <!-- Master JS -->
+        <script src={{url('/resources/js/master.js')}}></script>
         @yield('include_js')
 
         <script>
