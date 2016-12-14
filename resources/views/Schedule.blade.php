@@ -10,8 +10,8 @@
 @section('content')
   @section('description', 'Edit your schedule')
 
-  <div class="col-sm-4 col-xs-12">
-    <div class="box box-primary">
+  <div class="col-sm-4 col-xs-12 no-padding">
+    <div class="box box-primary std-box-col">
       <div class="box-header">
         <h3 class="box-title">School Years</h3>
       </div>
@@ -23,8 +23,8 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-4 col-xs-12">
-    <div class="box box-primary">
+  <div class="col-sm-4 col-xs-12 no-padding">
+    <div class="box box-primary std-box-col">
       <div class="box-header">
         <h3 class="box-title">School Terms</h3>
       </div>
@@ -36,8 +36,8 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-4 col-xs-12">
-    <div class="box box-primary">
+  <div class="col-sm-4 col-xs-12 no-padding">
+    <div class="box box-primary std-box-col">
       <div class="box-header">
         <h3 class="box-title">Subjects</h3>
       </div>
