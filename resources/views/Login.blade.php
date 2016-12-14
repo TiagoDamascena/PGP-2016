@@ -30,7 +30,8 @@
         @if($loginError=='email_sent')
           <p class="login-box-msg text-danger"> Please check your email for recovery your Password </p>
         @endif
-        <form action="{{url('/loginUser')}}" method="get">
+        <form method="POST" action="{{url('/loginUser')}}">
+          {{ csrf_field() }}
           @if($loginError=='email_not_found')
             <span class="text-danger"> Incorrect Email </span>
           @endif
@@ -80,7 +81,8 @@
             </h4>
           </div>
           <div class="modal-body text-center">
-            <form action="{{url('/requestRecoveryPassword')}}" method="get">
+            <form method="POST" action="{{url('/requestRecoveryPassword')}}">
+              {{ csrf_field() }}
               @if($loginError == 'errorForgotPassword')
                 <span class="text-danger"> Email not registered </span>
               @endif
