@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Change_password;
 use App\Jobs\Sender;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
@@ -40,17 +41,19 @@ class LoginController extends Controller {
 
     public function indexRecovery($unique_key) {
         if (!Change_password::where('unique_key',$unique_key)->first()) {
-            die('Recovery Password - User not Found');
+            $response = redirect(url('/'));
+        } else {
+            $errorRecoveryPassword = null;
+            $response = view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
         }
 
-        $errorRecoveryPassword = null;
-        $response = view('RecoveryPassword',compact('unique_key','errorRecoveryPassword'));
         return $response;
     }
 
-    public function loginAuthenticate() {
-        $password = hash('sha256', Input::get('password'));
-        $email = Input::get('email');
+    public function loginAuthenticate(Request $request) {
+        $email = $request->input('email');
+        $password = hash('sha256', $request->input('password'));
+
         $user = User::where('email', $email)->first();
         $loginError = null;
 
@@ -82,15 +85,15 @@ class LoginController extends Controller {
         return $response;
     }
 
-    public function newUser() {
+    public function newUser(Request $request) {
         $newUserError = null;
 
         $user = new User();
-        $user->name = Input::get('nome');
-        $user->email = Input::get('email');
-        $user->password = hash('sha256', Input::get('password'));
+        $user->name = $request->input('nome');
+        $user->email = $request->input('email');
+        $user->password = hash('sha256', $request->input('password'));
         $user->creationDate = date("Y-m-d H:i:s");
-        $confirmPassword = hash('sha256', Input::get('confirmPassword'));
+        $confirmPassword = hash('sha256', $request->input('confirmPassword'));
 
         $compare = User::where('email', $user->email)->first();
         if ($compare) {
