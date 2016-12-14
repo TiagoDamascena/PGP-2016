@@ -25,13 +25,43 @@ class TaskController extends Controller
         return $response;
     }
 
-    public function getUserTask() {
-        $listTasks = $this->searchTask();
+    public function getUserPastTasks(){
+        $response = "past-task";
+        $listTasks = $this->searchSomeTask($response);
         $response = $this->tasksToJson($listTasks);
         return $response;
     }
 
-    private function searchTask() {
+    public function getUserPresentTasks(){
+        $response = "present-task";
+        $listTasks = $this->searchSomeTask($response);
+        $response = $this->someTasksToJson($listTasks);
+        return $response;
+    }
+
+    public function getUserFutureTasks(){
+        $response = "future-task";
+        $listTasks = $this->searchSomeTask($response);
+        $response = $this->someTasksToJson($listTasks);
+        return $response;
+    }
+
+    public function getUserTask() {
+        $listTasks = $this->searchAllTask();
+        $response = $this->someTasksToJson($listTasks);
+        return $response;
+    }
+
+    private function searchSomeTask($dateStatusTask) {
+        $user = \Auth::User();
+        $listYears = $this->getSchoolYear($user);
+        $listTerms = $this->getSchoolTerm($listYears);
+        $listSubjects = $this->getSubjects($listTerms);
+        $listTasks = $this->getSomeTasks($listSubjects, $dateStatusTask);
+        return $listTasks;
+    }
+
+    private function searchAllTask() {
         $user = \Auth::User();
         $listYears = $this->getSchoolYear($user);
         $listTerms = $this->getSchoolTerm($listYears);
@@ -76,6 +106,20 @@ class TaskController extends Controller
         return $response;
     }
 
+    private function getSomeTasks($subjects,$dateStatus) {
+        $response = [];
+        foreach ($subjects as $subject) {
+            $listTasks = $subject->tasks()->get();
+            foreach ($listTasks as $tasks) {
+                $task = \GuzzleHttp\json_decode($tasks);
+                if($dateStatus == $this->dateStatus($task->due_date)) {
+                    $response = $this->addTask($response, $task);
+                }
+            }
+        }
+        return $response;
+    }
+
     private function addResponse($list, $objects) {
         foreach ($objects as $object) {
             $size = count($list);
@@ -107,6 +151,22 @@ class TaskController extends Controller
             }
         }
 
+        $response = Response::json($response);
+        return $response;
+    }
+
+    private function someTasksToJson($listTasks) {
+        $response = [];
+        foreach ($listTasks as $task) {
+                $taskJson = new Object_();
+                $taskJson->id = $task->id;
+                $taskJson->title = $task->title;
+                $taskJson->due_date = $task->due_date;
+                $taskJson->description = $task->description;
+                $taskJson->subject_name = Subject::where('id', $task->subject)->first()->name;
+                $taskJson->date_status = $this->dateStatus($task->due_date);
+                $response = $this->addTask($response,$taskJson);
+            }
         $response = Response::json($response);
         return $response;
     }
