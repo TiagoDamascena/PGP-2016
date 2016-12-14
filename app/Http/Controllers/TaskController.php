@@ -148,6 +148,7 @@ class TaskController extends Controller
                 $taskJson->description = $task->description;
                 $taskJson->subject_name = Subject::where('id', $task->subject)->first()->name;
                 $taskJson->date_status = $this->dateStatus($task->due_date);
+                $taskJson->due_time = $task->due_time;
                 $response = $this->addTask($response,$taskJson);
             }
         }
@@ -166,7 +167,9 @@ class TaskController extends Controller
                 $taskJson->description = $task->description;
                 $taskJson->subject_name = Subject::where('id', $task->subject)->first()->name;
                 $taskJson->date_status = $this->dateStatus($task->due_date);
-                $response = $this->addTask($response,$taskJson);
+                $taskJson->due_time = $task->due_date;
+
+            $response = $this->addTask($response,$taskJson);
         }
 
         $response = Response::json($response);

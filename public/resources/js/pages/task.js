@@ -19,6 +19,7 @@ function loadTasks() {
                 '<h3>Subject : '+value.subject_name+'</h3>' +
                 '<h4>Description : '+value.description+'</h4>' +
                 '<h4>Date : '+value.due_date+' </h4>' +
+                '<h5>Hours : '+value.due_time+' </h5>' +
                 '</div>' +
                 '</div>');
         })
