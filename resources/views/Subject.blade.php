@@ -12,56 +12,53 @@
 
 @endsection
 
-@section('content')
-  @section('description', 'Your Subject')
+@section('description', 'Your Subject')
 
+@section('header')
+  <button type="button" class="btn btn-warning pull-right" name="edit-subject" data-toggle="modal" data-target="#editSubjectModal"><i class="fa fa-pencil"></i>Edit Subject</button>
+@endsection
+
+@section('content')
   <script>subjectId = <?php echo $subject->id?>;</script>
-  <div class="row">
-    <div class="col-md-4 col-xs-12">
-      <section class="box box-primary">
+    <div class="col-md-4 col-xs-12 no-padding">
+      <section class="box box-primary text-center std-box-col">
         <div class="box-header with-border">
           <h3 class="box-title">Schedule</h3>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-primary btn-block btn-sm std-btn" data-toggle="modal" data-target="#newScheduleModal">New Schedule</button>
         </div>
         <div class="box-body" id="schedule">
 
         </div>
-        <div class="box-footer">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newScheduleModal">New Schedule</button>
-        </div>
       </section>
     </div>
-    <div class="col-md-4 col-xs-12">
-      <section class="box box-primary">
+    <div class="col-md-4 col-xs-12 no-padding">
+      <section class="box box-primary text-center std-box-col">
         <div class="box-header with-border">
           <h3 class="box-title">Tasks</h3>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-success btn-block btn-sm std-btn" data-toggle="modal" data-target="#newTaskModal">New Task</button>
         </div>
         <div class="box-body" id="tasks">
 
         </div>
-        <div class="box-footer">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newTaskModal">New Task</button>
-        </div>
       </section>
     </div>
-    <div class="col-md-4 col-xs-12">
-      <section class="box box-primary">
+    <div class="col-md-4 col-xs-12 no-padding">
+      <section class="box box-primary text-center std-box-col">
         <div class="box-header with-border">
           <h3 class="box-title">Exams</h3>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-warning btn-block btn-sm std-btn" data-toggle="modal" data-target="#newExamModal">New Exam</button>
         </div>
         <div class="box-body" id="exams">
 
         </div>
-        <div class="box-footer">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#newExamModal">New Exam</button>
-        </div>
       </section>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-xs-12">
-      <button type="button" class="btn btn-warning" name="edit-subject" data-toggle="modal" data-target="#editSubjectModal"><i class="fa fa-pencil"></i>Edit Subject</button>
-    </div>
-  </div>
 @endsection
 
 @section('page_end')

@@ -16,7 +16,7 @@ var examsDiv = $('#exams');
 function loadSchedule() {
     $.get('/getSchedules/' + subjectId, function (schedule) {
         $.each(schedule, function (key, value) {
-            scheduleDiv.append('<div class="box box-primary box-solid collapsed-box">' +
+            scheduleDiv.append('<div class="box box-primary box-solid collapsed-box std-box">' +
                                     '<div class="box-header with-border">' +
                                         '<h3 class="box-title">'+value.day+'</h3>' +
                                         '<div class="box-tools pull-right">' +
@@ -25,8 +25,8 @@ function loadSchedule() {
                                         '</div>' +
                                     '</div>' +
                                     '<div class="box-body">' +
-                                        '<p>'+value.start_time+' - '+value.end_time+'</p>' +
                                         '<h3>'+value.building+' '+value.room+'</h3>' +
+                                        '<h4>'+value.start_time+' - '+value.end_time+'</h4>' +
                                     '</div>' +
                                 '</div>');
         })
@@ -36,7 +36,7 @@ function loadSchedule() {
 function loadTasks() {
     $.get('/getTasks/' + subjectId, function (tasks) {
         $.each(tasks, function (key, value) {
-            tasksDiv.append('<div class="box box-primary box-solid collapsed-box" id="task-'+value.id+'">' +
+            tasksDiv.append('<div class="box box-success box-solid collapsed-box std-box" id="task-'+value.id+'">' +
                                     '<div class="box-header with-border">' +
                                         '<h3 class="box-title">'+value.title+'</h3>' +
                                         '<div class="box-tools pull-right">' +
@@ -45,9 +45,8 @@ function loadTasks() {
                                         '</div>' +
                                     '</div>' +
                                     '<div class="box-body">' +
-                                        '<p>'+value.description+'</p>' +
                                         '<h3>'+value.due_date+'</h3>' +
-                                        '<h3>'+value.complete+'</h3>' +
+                                        '<pre>'+value.description+'</pre>' +
                                     '</div>' +
                                 '</div>');
         })
@@ -57,7 +56,7 @@ function loadTasks() {
 function loadExams() {
     $.get('/getExams/' + subjectId, function (exams) {
         $.each(exams, function (key, value) {
-            examsDiv.append('<div class="box box-primary box-solid collapsed-box" id="exam-'+value.id+'">' +
+            examsDiv.append('<div class="box box-warning box-solid collapsed-box std-box" id="exam-'+value.id+'">' +
                                     '<div class="box-header with-border">' +
                                         '<h3 class="box-title">'+value.date+'</h3>' +
                                         '<div class="box-tools pull-right">' +
@@ -66,9 +65,9 @@ function loadExams() {
                                         '</div>' +
                                     '</div>' +
                                     '<div class="box-body">' +
-                                        '<p>'+value.description+'</p>'+
-                                        '<p>'+value.start_time+'</p>' +
                                         '<h3>'+value.building+' '+value.room+'</h3>' +
+                                        '<h4>'+value.start_time+'</h4>' +
+                                        '<pre>'+value.description+'</pre>' +
                                     '</div>' +
                                 '</div>');
         })

@@ -12,13 +12,13 @@
 */
 
 Route::get('/', 'LoginController@indexLogin');
+Route::post('/loginUser','LoginController@loginAuthenticate');
 Route::get('/register', 'LoginController@indexRegister');
-Route::get('/newUser','LoginController@newUser');
-Route::get('/loginUser','LoginController@loginAuthenticate');
-Route::get('/logout','LoginController@endSession');
+Route::post('/newUser','LoginController@newUser');
 Route::get('/userNotLogged','LoginController@userNotLogged');
+Route::get('/logout','LoginController@endSession');
 Route::get('/recoveryPassword/{unique_key}','LoginController@indexRecovery');
-Route::get('/requestRecoveryPassword','LoginController@forgotPassword');
+Route::post('/requestRecoveryPassword','LoginController@forgotPassword');
 
 Route::get('/fbLogin', 'FBAuthController@login');
 Route::get('/public/fbCallback', 'FBAuthController@callback');

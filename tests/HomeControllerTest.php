@@ -16,23 +16,12 @@ class HomeControllerTest extends TestCase {
     }
 
     public function testUserLoggedLink() {
-        $this->login();
+        LoginControllerTest::login();
         $this->visit('/home')->seePageIs('/home');
     }
 
     public function testUserLoggedPage() {
-        $this->login();
+        LoginControllerTest::login();
         $this->visit('/home')->see('Home');
-    }
-
-    private function login() {
-        $user = factory(\App\User::class)->create(
-            ['email' => 'teste@teste.teste',
-                'password' => 'teste',
-                'name' => 'Teste',
-                'creationDate' => '2016-12-8 13:02:00']
-        );
-
-        Auth::login($user, true);
     }
 }

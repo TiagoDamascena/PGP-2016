@@ -10,8 +10,8 @@
 @section('content')
     @section('description', 'Your Calendar')
 
-    <div class="col-md-12 col-xs-12">
-        <div class="box box-primary">
+    <div class="col-md-12 col-xs-12 no-padding">
+        <div class="box box-primary std-box-col">
             <div class="box-body" id="calendar">
 
             </div>
