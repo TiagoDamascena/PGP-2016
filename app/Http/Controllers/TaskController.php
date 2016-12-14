@@ -28,7 +28,7 @@ class TaskController extends Controller
     public function getUserPastTasks(){
         $response = "past-task";
         $listTasks = $this->searchSomeTask($response);
-        $response = $this->tasksToJson($listTasks);
+        $response = $this->someTasksToJson($listTasks);
         return $response;
     }
 
@@ -48,7 +48,7 @@ class TaskController extends Controller
 
     public function getUserTask() {
         $listTasks = $this->searchAllTask();
-        $response = $this->someTasksToJson($listTasks);
+        $response = $this->TasksToJson($listTasks);
         return $response;
     }
 
@@ -117,6 +117,7 @@ class TaskController extends Controller
                 }
             }
         }
+
         return $response;
     }
 
@@ -167,6 +168,7 @@ class TaskController extends Controller
                 $taskJson->date_status = $this->dateStatus($task->due_date);
                 $response = $this->addTask($response,$taskJson);
             }
+
         $response = Response::json($response);
         return $response;
     }
