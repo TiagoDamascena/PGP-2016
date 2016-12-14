@@ -25,21 +25,21 @@ class TaskController extends Controller
         return $response;
     }
 
-    public function getUserPastTasks(){
+    public function getUserPastTasks() {
         $response = "past-task";
         $listTasks = $this->searchSomeTask($response);
         $response = $this->someTasksToJson($listTasks);
         return $response;
     }
 
-    public function getUserPresentTasks(){
+    public function getUserPresentTasks() {
         $response = "present-task";
         $listTasks = $this->searchSomeTask($response);
         $response = $this->someTasksToJson($listTasks);
         return $response;
     }
 
-    public function getUserFutureTasks(){
+    public function getUserFutureTasks() {
         $response = "future-task";
         $listTasks = $this->searchSomeTask($response);
         $response = $this->someTasksToJson($listTasks);
@@ -112,7 +112,7 @@ class TaskController extends Controller
             $listTasks = $subject->tasks()->get();
             foreach ($listTasks as $tasks) {
                 $task = \GuzzleHttp\json_decode($tasks);
-                if($dateStatus == $this->dateStatus($task->due_date)) {
+                if ($dateStatus == $this->dateStatus($task->due_date)) {
                     $response = $this->addTask($response, $task);
                 }
             }
@@ -167,7 +167,7 @@ class TaskController extends Controller
                 $taskJson->subject_name = Subject::where('id', $task->subject)->first()->name;
                 $taskJson->date_status = $this->dateStatus($task->due_date);
                 $response = $this->addTask($response,$taskJson);
-            }
+        }
 
         $response = Response::json($response);
         return $response;
