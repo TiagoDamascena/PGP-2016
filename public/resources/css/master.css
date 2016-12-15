@@ -9,6 +9,12 @@
 
 .std-content-header p {
     font-size: 21px;
+    margin: 0px;
+}
+
+.std-content-header p small {
+    font-size: 14px;
+    color: #b5b5b5;
 }
 
 .content-wrapper {
