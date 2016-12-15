@@ -13,7 +13,7 @@ class ExamController extends Controller {
     public function getExamsWeek() {
         $user = Auth::user();
         $date = Carbon::today();
-        $nextWeek = $date->addDays(7);
+        $nextWeek = Carbon:: today()->addDays(7);
 
         $result = array();
 
@@ -23,7 +23,7 @@ class ExamController extends Controller {
             foreach ($terms as $term) {
                 $subjects = $term->subjects()->get();
                 foreach ($subjects as $subject) {
-                    $exams = $subject->exams()->where('date', '<=', $nextWeek->toDateString())->orWhere('date', '>=', $date->toDateString())->get();
+                    $exams = $subject->exams()->where('date', '>=', $date->toDateString())->where('date', '<=', $nextWeek->toDateString())->get();
                     foreach ($exams as $exam) {
                         $exam->subject = $subject;
                         array_push($result, $exam);
